@@ -1,1 +1,16 @@
+# 数据源基本配置
+spring:
+  datasource:
+    username: root
+    password: sql123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kytms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
 
+# mybatis 映射文件位置配置
+mybatis:
+  mapper-locations: classpath*:mapper/*/*.xml
+  type-aliases-package: com.t28.forest
+
+# 日志输出级别
+logging:
+  level: info
