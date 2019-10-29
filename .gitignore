@@ -23,3 +23,9 @@
 hs_err_pid*
 .idea/
 
+logistics_mgt_sys/target/classes/application.yml
+logistics_mgt_sys/target/classes/log4j.properties
+logistics_mgt_sys/target/classes/templates/
+logistics_mgt_sys/target/generated-sources/
+logistics_mgt_sys/target/generated-test-sources/
+
