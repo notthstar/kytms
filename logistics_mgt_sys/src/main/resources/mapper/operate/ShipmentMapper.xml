@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t28.forest.operate.dao.ShipmentDao">
+
+    <!--通过条件分页查询运单信息-->
+    <select id="findShipmentsByPage" resultType="com.t28.forest.operate.vo.ShipmentVO">
+        SELECT shipment0_.ID AS 'id', organizati2_.NAME AS 'name', shipment0_.CODE AS 'code', shipment0_.TIME AS 'time', shipment0_.STATUS AS 'status', shipment0_.IS_INOUTCOME AS 'isInoutCome', CASE WHEN vehiclehea1_.CODE IS NOT NULL THEN vehiclehea1_.CODE ELSE shipment0_.LIENSE END AS 'liens', organizati4_.NAME AS 'organName1', organizati6_.NAME AS 'organName2', organizati7_.NAME AS 'organName3', organizati5_.NAME AS 'organName4', SUM(ledgerdeta8_.AMOUNT) AS 'amount', shipment0_.ORDER_CODE AS 'orderCode', shipment0_.RELATEBILL1 AS 'relateBill', shipment0_.OPERATION_PATTERN AS 'operationPattern', carrier3_.NAME AS 'carName', shipment0_.CARRIER_TYPE AS 'carrierType', shipment0_.CARRIAGE_IS_EXCEED AS 'carriageIsExceed', shipment0_.TAN AS 'tan', shipment0_.NUMBER AS 'number', shipment0_.WEIGHT AS 'weight', shipment0_.VOLUME AS 'volume', shipment0_.VALUE AS 'value', shipment0_.CREATE_NAME AS 'createName', shipment0_.CREATE_TIME AS 'createTime', shipment0_.MODIFY_NAME AS 'modifyName', shipment0_.MODIFY_TIME AS 'modifyTime', shipment0_.IS_ABNORMAL AS 'isAbnormal'
+        FROM JC_SHIPMENT shipment0_
+        LEFT OUTER JOIN JC_VEHICLE_HEAD vehiclehea1_ ON shipment0_.JC_VEHICLE_HEAD_ID=vehiclehea1_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ ON shipment0_.JC_ORGANIZATION_ID=organizati2_.ID
+        LEFT OUTER JOIN JC_CARRIER carrier3_ ON shipment0_.JC_CARRIER_ID=carrier3_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati4_ ON shipment0_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati5_ ON shipment0_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati6_ ON shipment0_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati7_ ON shipment0_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        LEFT OUTER JOIN JC_LEDGER_DETAIL ledgerdeta8_ ON shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
+        <where>
+            AND shipment0_.STATUS != 0
+            AND shipment0_.STATUS != 99
+            <if test="null != condition">
+                AND organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <if test="condition.values.length > 1">
+                        AND #{condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                    </if>
+                    AND #{condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                </if>
+            </if>
+        </where>
+        GROUP BY shipment0_.ID ORDER BY shipment0_.CREATE_TIME DESC LIMIT #{page.start},#{page.size};
+    </select>
+
+</mapper>
