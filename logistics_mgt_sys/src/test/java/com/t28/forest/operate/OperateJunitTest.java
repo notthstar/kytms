@@ -1,9 +1,16 @@
 package com.t28.forest.operate;
 
+import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.vo.PageVO;
+import com.t28.forest.operate.dao.ShipmentDao;
+import com.t28.forest.operate.vo.ShipmentVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 /**
  * @author XiangYuFeng
@@ -19,6 +26,22 @@ public class OperateJunitTest {
     public void test() {
         Object[] objs = new Object[1];
         System.out.println(objs.length > 1);
+    }
+
+    @Autowired
+    ShipmentDao shipmentDao;
+
+    @Test
+    public void findShipmentByPageTest() {
+        Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
+//        condition.setName("time");
+//        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
+        condition.setName("name");
+        condition.setValues(new Object[]{"广州"});
+        List<ShipmentVO> shipments = shipmentDao.findShipmentsByPage(new PageVO(1, 4), condition);
+        for (ShipmentVO shipment : shipments) {
+            System.out.println(shipment);
+        }
     }
 
 }

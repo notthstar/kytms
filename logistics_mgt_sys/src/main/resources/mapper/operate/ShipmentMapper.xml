@@ -21,10 +21,14 @@
             <if test="null != condition">
                 AND organizati2_.ID=#{condition.id}
                 <if test="null != condition.values">
-                    <if test="condition.values.length > 1">
-                        AND #{condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
-                    </if>
-                    AND #{condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND #{condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND #{codition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
                 </if>
             </if>
         </where>

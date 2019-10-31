@@ -25,4 +25,14 @@ public class ShipmentServiceImpl implements ShipmentService {
     public List<ShipmentVO> getShipmentsByPage(PageVO page, Condition condition) {
         return shipmentDao.findShipmentsByPage(page, condition);
     }
+
+    @Override
+    public Integer addShipment() {
+        return null;
+    }
+
+    @Override
+    public Integer updateShipmentById() {
+        return null;
+    }
 }

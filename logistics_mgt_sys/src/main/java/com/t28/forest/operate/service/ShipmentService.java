@@ -26,4 +26,16 @@ public interface ShipmentService {
      */
     public List<ShipmentVO> getShipmentsByPage(PageVO page, Condition condition);
 
+    /**
+     * 保存运单信息
+     * @return integer
+     */
+    public Integer addShipment();
+
+    /**
+     * 通过ID修改运单信息
+     * @return Integer
+     */
+    public Integer updateShipmentById();
+
 }

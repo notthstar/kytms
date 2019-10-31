@@ -21,6 +21,12 @@ public class Condition {
      */
     private String id;
 
+    public Condition() {}
+
+    public Condition(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
