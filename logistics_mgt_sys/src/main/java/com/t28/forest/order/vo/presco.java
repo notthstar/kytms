@@ -4,7 +4,7 @@
  * @create 2019/10/31
  * @since 1.0.0
  */
-package com.t28.forest.order.entity.vo;
+package com.t28.forest.order.vo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;

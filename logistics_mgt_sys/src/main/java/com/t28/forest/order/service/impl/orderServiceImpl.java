@@ -7,7 +7,8 @@
 package com.t28.forest.order.service.impl;
 
 import com.t28.forest.order.dao.OrderDao;
-import com.t28.forest.order.entity.vo.presco;
+import com.t28.forest.order.vo.order;
+import com.t28.forest.order.vo.presco;
 import com.t28.forest.order.service.orderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class orderServiceImpl implements orderService {
     @Override
     public List<presco> getPlan(String rc,Object input) {
         return dao.planned(rc,input);
+    }
+
+    @Override
+    public List<order> getOrder(String rc, Object input) {
+        return dao.orders(rc,input);
     }
 }
