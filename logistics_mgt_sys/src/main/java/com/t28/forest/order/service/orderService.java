@@ -6,5 +6,11 @@
  */
 package com.t28.forest.order.service;
 
+import com.t28.forest.order.entity.vo.presco;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 public interface orderService {
+
+    List<presco> getPlan(String rc,Object input);
 }
