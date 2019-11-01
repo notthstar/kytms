@@ -6,7 +6,7 @@
  */
 package com.t28.forest.order;
 
-import com.t28.forest.order.service.orderService;
+import com.t28.forest.order.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class orderTest {
 
     @Autowired
-    orderService service;
+    OrderService service;
     @Test
     public void test(){
         System.out.println(service.getPlan(null,null).get(0));

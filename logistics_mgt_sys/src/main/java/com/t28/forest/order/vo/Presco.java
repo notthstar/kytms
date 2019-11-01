@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 
-public class presco {
+public class Presco {
 
     @TableId(value = "ID", type = IdType.AUTO)
     private String id;
@@ -279,7 +279,7 @@ public class presco {
 
     @Override
     public String toString() {
-        return "presco{" +
+        return "Presco{" +
                 "id='" + id + '\'' +
                 ", organizatilName='" + organizatilName + '\'' +
                 ", status=" + status +

@@ -6,8 +6,7 @@
  */
 package com.t28.forest.order.dao;
 
-import com.t28.forest.order.vo.order;
-import com.t28.forest.order.vo.presco;
+import com.t28.forest.order.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -21,11 +20,27 @@ public interface OrderDao {
        /**
         *获取计划单
         */
-       List<presco> planned(@Param("rc")String rc,@Param("input")Object input);
+       List<Presco> planned(@Param("rc")String rc, @Param("input")Object input);
 
       /**
        *获取订单管理
        */
-      List<order> orders(@Param("rc")String rc, @Param("input")Object input);
+      List<Order> orders(@Param("rc")String rc, @Param("input")Object input);
+
+      /**
+       *分段订单
+       */
+      List<Led> leds(@Param("rc")String rc, @Param("input")Object input);
+
+      /**
+       *订单签收
+       */
+      List<LedSign> ledSign(@Param("rc")String rc, @Param("input")Object input);
+
+      /**
+       *  订单回单
+       */
+      List<OrderBack> orderBack(@Param("rc")String rc, @Param("input")Object input);
+
 
 }

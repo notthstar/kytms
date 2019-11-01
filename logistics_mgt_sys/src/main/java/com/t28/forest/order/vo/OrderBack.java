@@ -1,5 +1,5 @@
 /**
- * @description 订单管理
+ * @description 订单回单
  * @author lcy
  * @create 2019/11/1
  * @since 1.0.0
@@ -12,9 +12,16 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 
-public class order {
+public class OrderBack {
+
+
     @TableId(value = "ID", type = IdType.AUTO)
     private String id;
+
+    private String orderId;
+
+    @TableField("IS_UPLOAD")
+    private Integer isUpload;
 
     private String organizatilName;
 
@@ -45,12 +52,11 @@ public class order {
     @TableField("FEE_TYEP")
     private Integer feeTyep;
 
-    @TableField("IS_INOUTCOME")
-    private Integer isInoutcome;
+    private String zoneName;
 
-    private String zone7Name;
+    private String organizati6Name;
 
-    private String zone9NAME;
+    private String zone2Name;
 
     @TableField("HANDOVER_TYPE")
     private Integer handoverType;
@@ -89,7 +95,7 @@ public class order {
     @TableField("BACK_NUMBER")
     private Integer backNumber;
 
-    private String zonestorer4Name;
+    private String zonestorer5Name;
 
     @TableField("ORDER_MILEAGE")
     private Double orderMileage;
@@ -109,12 +115,70 @@ public class order {
     @TableField("MODIFY_TIME")
     private Date modifyTime;
 
+    @Override
+    public String toString() {
+        return "OrderBack{" +
+                "id='" + id + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", isUpload=" + isUpload +
+                ", organizatilName='" + organizatilName + '\'' +
+                ", code='" + code + '\'' +
+                ", relatebill1='" + relatebill1 + '\'' +
+                ", relatebill2='" + relatebill2 + '\'' +
+                ", time=" + time +
+                ", status=" + status +
+                ", costomerType=" + costomerType +
+                ", isTake=" + isTake +
+                ", costomerName='" + costomerName + '\'' +
+                ", feeTyep=" + feeTyep +
+                ", zoneName='" + zoneName + '\'' +
+                ", organizati6Name='" + organizati6Name + '\'' +
+                ", zone2Name='" + zone2Name + '\'' +
+                ", handoverType=" + handoverType +
+                ", orderproduNAME='" + orderproduNAME + '\'' +
+                ", sumAmount=" + sumAmount +
+                ", number=" + number +
+                ", weight=" + weight +
+                ", volume=" + volume +
+                ", jzWeight=" + jzWeight +
+                ", factArriveTime=" + factArriveTime +
+                ", costomerIsExceed=" + costomerIsExceed +
+                ", salePersion='" + salePersion + '\'' +
+                ", transportPro=" + transportPro +
+                ", isBack=" + isBack +
+                ", backNumber=" + backNumber +
+                ", zonestorer5Name='" + zonestorer5Name + '\'' +
+                ", orderMileage=" + orderMileage +
+                ", description='" + description + '\'' +
+                ", createName='" + createName + '\'' +
+                ", createTime=" + createTime +
+                ", modifyName='" + modifyName + '\'' +
+                ", modifyTime=" + modifyTime +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getIsUpload() {
+        return isUpload;
+    }
+
+    public void setIsUpload(Integer isUpload) {
+        this.isUpload = isUpload;
     }
 
     public String getOrganizatilName() {
@@ -197,28 +261,28 @@ public class order {
         this.feeTyep = feeTyep;
     }
 
-    public Integer getIsInoutcome() {
-        return isInoutcome;
+    public String getZoneName() {
+        return zoneName;
     }
 
-    public void setIsInoutcome(Integer isInoutcome) {
-        this.isInoutcome = isInoutcome;
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
     }
 
-    public String getZone7Name() {
-        return zone7Name;
+    public String getOrganizati6Name() {
+        return organizati6Name;
     }
 
-    public void setZone7Name(String zone7Name) {
-        this.zone7Name = zone7Name;
+    public void setOrganizati6Name(String organizati6Name) {
+        this.organizati6Name = organizati6Name;
     }
 
-    public String getZone9NAME() {
-        return zone9NAME;
+    public String getZone2Name() {
+        return zone2Name;
     }
 
-    public void setZone9NAME(String zone9NAME) {
-        this.zone9NAME = zone9NAME;
+    public void setZone2Name(String zone2Name) {
+        this.zone2Name = zone2Name;
     }
 
     public Integer getHandoverType() {
@@ -325,12 +389,12 @@ public class order {
         this.backNumber = backNumber;
     }
 
-    public String getZonestorer4Name() {
-        return zonestorer4Name;
+    public String getZonestorer5Name() {
+        return zonestorer5Name;
     }
 
-    public void setZonestorer4Name(String zonestorer4Name) {
-        this.zonestorer4Name = zonestorer4Name;
+    public void setZonestorer5Name(String zonestorer5Name) {
+        this.zonestorer5Name = zonestorer5Name;
     }
 
     public Double getOrderMileage() {
@@ -379,45 +443,5 @@ public class order {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    @Override
-    public String toString() {
-        return "order{" +
-                "id='" + id + '\'' +
-                ", organizatilName='" + organizatilName + '\'' +
-                ", code='" + code + '\'' +
-                ", relatebill1='" + relatebill1 + '\'' +
-                ", relatebill2='" + relatebill2 + '\'' +
-                ", time=" + time +
-                ", status=" + status +
-                ", costomerType=" + costomerType +
-                ", isTake=" + isTake +
-                ", costomerName='" + costomerName + '\'' +
-                ", feeTyep=" + feeTyep +
-                ", isInoutcome=" + isInoutcome +
-                ", zone7Name='" + zone7Name + '\'' +
-                ", zone9NAME='" + zone9NAME + '\'' +
-                ", handoverType=" + handoverType +
-                ", orderproduNAME='" + orderproduNAME + '\'' +
-                ", sumAmount=" + sumAmount +
-                ", number=" + number +
-                ", weight=" + weight +
-                ", volume=" + volume +
-                ", jzWeight=" + jzWeight +
-                ", factArriveTime=" + factArriveTime +
-                ", costomerIsExceed=" + costomerIsExceed +
-                ", salePersion='" + salePersion + '\'' +
-                ", transportPro=" + transportPro +
-                ", isBack=" + isBack +
-                ", backNumber=" + backNumber +
-                ", zonestorer4Name='" + zonestorer4Name + '\'' +
-                ", orderMileage=" + orderMileage +
-                ", description='" + description + '\'' +
-                ", createName='" + createName + '\'' +
-                ", createTime=" + createTime +
-                ", modifyName='" + modifyName + '\'' +
-                ", modifyTime=" + modifyTime +
-                '}';
     }
 }
