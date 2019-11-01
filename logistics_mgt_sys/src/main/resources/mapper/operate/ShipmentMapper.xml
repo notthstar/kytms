@@ -23,10 +23,10 @@
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
-                            AND #{condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
                         </when>
                         <otherwise>
-                            AND #{codition.name} LIKE concat('%',#{condition.values[0]},'%')
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
                         </otherwise>
                     </choose>
                 </if>

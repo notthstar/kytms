@@ -9,7 +9,7 @@ package com.t28.forest.core.cond;
  */
 public class Condition {
     /**
-     * 条件名称
+     * 条件名称/需要表明其字段的名称，如果表有别名，需要：表别名.字段名
      */
     private String name;
     /**

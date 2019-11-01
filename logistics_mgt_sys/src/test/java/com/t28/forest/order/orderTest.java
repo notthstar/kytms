@@ -4,7 +4,7 @@
  * @create 2019/10/31
  * @since 1.0.0
  */
-package com.t28.forest;
+package com.t28.forest.order;
 
 import com.t28.forest.order.service.orderService;
 import org.junit.Test;
