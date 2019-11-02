@@ -5,7 +5,7 @@
 <!-- namespace指用户自定义的命名空间 -->
 <mapper namespace="com.t28.forest.order.dao.OrderDao">
 
-    <select id="planned" resultType="com.t28.forest.order.entity.vo.presco">
+    <select id="planned" resultType="com.t28.forest.order.vo.Presco">
         select
         presco0_.ID as col_0_0_,
         organizati1_.NAME as col_1_0_,
@@ -43,4 +43,210 @@
             and #{rc} = '%${input}%'
         </if>
     </select>
+
+    <select id="orders" resultType="com.t28.forest.order.vo.Order">
+        select order0_.ID as col_0_0_,
+        organizati1_.NAME as col_1_0_,
+        order0_.CODE as col_2_0_,
+        order0_.RELATEBILL1 as col_3_0_,
+        order0_.RELATEBILL2 as col_4_0_,
+        order0_.TIME as col_5_0_,
+        order0_.STATUS as col_6_0_,
+        order0_.COSTOMER_TYPE as col_7_0_,
+        order0_.IS_TAKE as col_8_0_,
+        case when order0_.COSTOMER_TYPE=1 then customer2_.NAME when order0_.COSTOMER_TYPE=0 then order0_.COSTOMER_NAME end as col_9_0_,
+        order0_.FEE_TYEP as col_10_0_,
+        order0_.IS_INOUTCOME as col_11_0_,
+        zone7_.NAME as col_12_0_,
+        zone9_.NAME as col_14_0_,
+        order0_.HANDOVER_TYPE as col_15_0_,
+        orderprodu3_.NAME as col_16_0_,
+        (select sum(ledgerdeta11_.AMOUNT) from JC_LEDGER_DETAIL ledgerdeta11_ left outer join JC_ORDER order12_ on ledgerdeta11_.JC_ORDER_ID=order12_.ID where order12_.ID=order0_.ID) as sumAmount,
+        order0_.NUMBER as col_18_0_,
+        order0_.WEIGHT as col_19_0_,
+        order0_.VOLUME as col_20_0_,
+        order0_.JZ_WEIGHT as col_21_0_,
+        order0_.FACT_ARRIVE_TIME as col_22_0_,
+        1 as col_24_0_,
+        order0_.COSTOMER_IS_EXCEED as col_25_0_,
+        order0_.SALE_PERSION as col_26_0_,
+        order0_.TRANSPORT_PRO as col_27_0_,
+        order0_.IS_BACK as col_28_0_,
+        order0_.BACK_NUMBER as col_29_0_,
+        zonestorer4_.NAME as col_30_0_,
+        order0_.ORDER_MILEAGE as col_31_0_,
+        order0_.DESCRIPTION as col_32_0_,
+        order0_.CREATE_NAME as col_33_0_,
+        order0_.CREATE_TIME as col_34_0_,
+        order0_.MODIFY_NAME as col_35_0_,
+        order0_.MODIFY_TIME as col_36_0_
+        from JC_ORDER order0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on order0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_CUSTOMER customer2_ on order0_.JC_CUSTOMER_ID=customer2_.ID
+        left outer join JC_ORDER_PRODUCT orderprodu3_ on order0_.ID=orderprodu3_.JC_ORDER_ID
+        left outer join JC_ZONE_STOREROOM zonestorer4_ on order0_.JC_ZONE_STOREROOM_ID=zonestorer4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on order0_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SERVER_ZONE serverzone6_ on order0_.JC_START_ZONE_ID=serverzone6_.ID
+        left outer join JC_ZONE zone7_ on serverzone6_.JC_ZONE_ID=zone7_.ID
+        left outer join JC_SERVER_ZONE serverzone8_ on order0_.JC_END_ZONE_ID=serverzone8_.ID
+        left outer join JC_ZONE zone9_ on serverzone8_.JC_ZONE_ID=zone9_.ID
+        left outer join JC_LEDGER_DETAIL ledgerdeta10_ on order0_.ID=ledgerdeta10_.JC_ORDER_ID
+        where 1=1
+        and organizati1_.ID='402881a36710579c016710c4e2fb0230'
+        and order0_.STATUS!=0
+        and order0_.STATUS!=99
+        <if test="rc!=null">
+            and #{rc} = '%${input}%'
+        </if>
+        group by led0_.ID , ledproduct4_.FIELD3
+        order by led0_.CREATE_TIME
+        desc limit 5
+    </select>
+
+
+    <select id="leds" resultType="com.t28.forest.order.vo.Led">
+        select
+        led0_.ID as col_0_0_,
+        order1_.ID as col_1_0_,
+        organizati2_.NAME as col_2_0_,
+        led0_.CODE as col_3_0_,
+        led0_.TIME as col_4_0_,
+        led0_.RELATEBILL1 as col_5_0_,
+        led0_.RELATEBILL2 as col_6_0_,
+        led0_.COSTOMER_TYPE as col_7_0_,
+        ledreceivi3_.NAME as col_8_0_,
+        1 as col_9_0_,
+        2 as col_10_0_,
+        led0_.STATUS as col_11_0_,
+        led0_.COSTOMER_IS_EXCEED as col_12_0_,
+        led0_.SALE_PERSION as col_13_0_,
+        led0_.TRANSPORT_PRO as col_14_0_,
+        led0_.IS_BACK as col_15_0_,
+        led0_.BACK_NUMBER as col_16_0_,
+        led0_.NUMBER as col_17_0_,
+        led0_.WEIGHT as col_18_0_,
+        led0_.VOLUME as col_19_0_,
+        led0_.DESCRIPTION as col_20_0_,
+        led0_.CREATE_NAME as col_21_0_,
+        led0_.CREATE_TIME as col_22_0_,
+        led0_.MODIFY_NAME as col_23_0_,
+        led0_.MODIFY_TIME as col_24_0_
+        from JC_LED led0_
+        left outer join JC_ORDER order1_ on led0_.JC_ORDER_ID=order1_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on led0_.JC_ORGANIZATION_ID=organizati2_.ID
+        left outer join JC_LEG_RECEIVINGPARTY ledreceivi3_ on led0_.ID=ledreceivi3_.JC_LED_ID
+        left outer join JC_LEG_PRODUCT ledproduct4_ on led0_.ID=ledproduct4_.JC_LED_ID
+        where 1=1
+        and ledreceivi3_.TYPE=0
+        and organizati2_.ID='402881a36710579c016710c4e2fb0230'
+        <if test="rc!=null">
+            and #{rc} = '%${input}%'
+        </if>
+        group by led0_.ID , ledproduct4_.FIELD3
+        order by led0_.CREATE_TIME
+        desc limit 5
+    </select>
+
+    <select id="ledSign" resultType="com.t28.forest.order.vo.LedSign">
+        SELECT
+        led0_.ID as col_0_0_,
+        organizati5_.NAME as col_1_0_,
+        led0_.CODE as col_3_0_,
+        led0_.TIME as col_4_0_,
+        led0_.RELATEBILL1 as col_5_0_,
+        led0_.COSTOMER_TYPE as col_6_0_,
+        ledreceivi8_.NAME as col_7_0_,
+        1 as col_8_0_, 2 as col_9_0_,
+        led0_.STATUS as col_10_0_,
+        led0_.COSTOMER_IS_EXCEED as col_12_0_,
+        led0_.TRANSPORT_PRO as col_13_0_,
+        led0_.IS_BACK as col_14_0_,
+        led0_.BACK_NUMBER as col_15_0_,
+        led0_.NUMBER as col_16_0_,
+        led0_.WEIGHT as col_17_0_,
+        led0_.VOLUME as col_18_0_,
+        led0_.SALE_PERSION as col_19_0_,
+        led0_.DESCRIPTION as col_20_0_,
+        led0_.CREATE_NAME as col_21_0_,
+        led0_.CREATE_TIME as col_22_0_,
+        led0_.MODIFY_NAME as col_23_0_,
+        led0_.MODIFY_TIME as col_24_0_
+        from JC_LED led0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on led0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_LED_SHIPMENT shipments2_ on led0_.ID=shipments2_.JC_LED_ID
+        left outer join JC_SHIPMENT shipment3_ on shipments2_.JC_SHIPMENT_ID=shipment3_.ID
+        left outer join JC_LEG_PRODUCT ledproduct4_ on led0_.ID=ledproduct4_.JC_LED_ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on led0_.JC_FORM_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on led0_.JC_TO_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SERVER_ZONE serverzone7_ on led0_.JC_END_ZONE_ID=serverzone7_.ID
+        left outer join JC_LEG_RECEIVINGPARTY ledreceivi8_ on led0_.ID=ledreceivi8_.JC_LED_ID
+        where 1=1
+        and ledreceivi8_.TYPE=0
+        and organizati5_.ID='402881a36710579c016710c4e2fb0230'
+        <if test="rc!=null">
+            and #{rc} = '%${input}%'
+        </if>
+        and (led0_.`STATUS` in (1,25)) LIMIT 5
+    </select>
+
+    <select id="orderBack" resultType="com.t28.forest.order.vo.OrderBack">
+        select
+        orderback0_.ID as col_0_0_,
+        order1_.ID as orderId,
+        orderback0_.IS_UPLOAD as col_2_0_,
+        organizati2_.NAME as col_3_0_,
+        order1_.CODE as col_4_0_,
+        order1_.RELATEBILL1 as col_5_0_,
+        order1_.RELATEBILL2 as col_6_0_,
+        order1_.TIME as col_7_0_,
+        order1_.STATUS as col_8_0_,
+        order1_.COSTOMER_TYPE as col_9_0_,
+        order1_.IS_TAKE as col_10_0_,
+        case when order1_.COSTOMER_TYPE=1 then customer3_.NAME when order1_.COSTOMER_TYPE=0 then order1_.COSTOMER_NAME end as col_11_0_,
+        order1_.FEE_TYEP as col_12_0_,
+        zone8_.NAME as col_13_0_,
+        organizati6_.NAME as col_14_0_,
+        zone10_.NAME as col_15_0_,
+        order1_.HANDOVER_TYPE as col_16_0_,
+        orderprodu4_.NAME as col_17_0_,
+        (select sum(ledgerdeta12_.AMOUNT) from JC_LEDGER_DETAIL ledgerdeta12_ left outer join JC_ORDER order13_ on ledgerdeta12_.JC_ORDER_ID=order13_.ID where order13_.ID=order1_.ID) as col_18_0_,
+        order1_.NUMBER as col_19_0_,
+        order1_.WEIGHT as col_20_0_,
+        order1_.VOLUME as col_21_0_,
+        order1_.JZ_WEIGHT as col_22_0_,
+        order1_.FACT_ARRIVE_TIME as col_23_0_,
+        1 as col_25_0_,
+        order1_.COSTOMER_IS_EXCEED as col_26_0_,
+        order1_.SALE_PERSION as col_27_0_,
+        order1_.TRANSPORT_PRO as col_28_0_,
+        order1_.IS_BACK as col_29_0_,
+        order1_.BACK_NUMBER as col_30_0_,
+        zonestorer5_.NAME as col_31_0_,
+        order1_.ORDER_MILEAGE as col_32_0_,
+        order1_.DESCRIPTION as col_33_0_,
+        order1_.CREATE_NAME as col_34_0_,
+        order1_.CREATE_TIME as col_35_0_,
+        order1_.MODIFY_NAME as col_36_0_,
+        order1_.MODIFY_TIME as col_37_0_,
+        order1_.STATUS as col_38_0_
+        from JC_ORDER_BACK orderback0_
+        left outer join JC_ORDER order1_ on orderback0_.JC_ORDER_ID=order1_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on order1_.JC_ORGANIZATION_ID=organizati2_.ID
+        left outer join JC_CUSTOMER customer3_ on order1_.JC_CUSTOMER_ID=customer3_.ID
+        left outer join JC_ORDER_PRODUCT orderprodu4_ on order1_.ID=orderprodu4_.JC_ORDER_ID
+        left outer join JC_ZONE_STOREROOM zonestorer5_ on order1_.JC_ZONE_STOREROOM_ID=zonestorer5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on order1_.JC_TO_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SERVER_ZONE serverzone7_ on order1_.JC_START_ZONE_ID=serverzone7_.ID
+        left outer join JC_ZONE zone8_ on serverzone7_.JC_ZONE_ID=zone8_.ID
+        left outer join JC_SERVER_ZONE serverzone9_ on order1_.JC_END_ZONE_ID=serverzone9_.ID
+        left outer join JC_ZONE zone10_ on serverzone9_.JC_ZONE_ID=zone10_.ID
+        left outer join JC_LEDGER_DETAIL ledgerdeta11_ on order1_.ID=ledgerdeta11_.JC_ORDER_ID
+        where 1=1
+        and organizati2_.ID='402881a36710579c016710c4e2fb0230'
+        <if test="rc!=null">
+            and #{rc} = '%${input}%'
+        </if>
+        group by order1_.ID limit 6
+    </select>
+
 </mapper>

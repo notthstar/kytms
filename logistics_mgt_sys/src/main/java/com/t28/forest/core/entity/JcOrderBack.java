@@ -1,4 +1,4 @@
-package com.t28.forest.order.entity;
+package com.t28.forest.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
