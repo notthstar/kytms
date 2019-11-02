@@ -4,17 +4,17 @@ import java.util.Date;
 
 /**
  * @author XiangYuFeng
- * @description 订单跟踪页面展示对象
- * @create 2019/11/1
+ * @description 货物到站页面展示对象
+ * @create 2019/11/2
  * @since 1.0.0
  */
-public class WayBillTranckVO {
+public class CargoStationVO {
     /**
      * 唯一标识
      */
     private String id;
     /**
-     *所属机构组织
+     * 所属机构组织
      */
     private String name;
     /**
@@ -26,11 +26,11 @@ public class WayBillTranckVO {
      */
     private Date time;
     /**
-     * 运单状态
+     * 状态
      */
     private Integer status;
     /**
-     *是否出入库
+     * 是否出入库
      */
     private Integer isInoutCome;
     /**
@@ -50,7 +50,7 @@ public class WayBillTranckVO {
      */
     private String organName3;
     /**
-     * 目的站
+     * 目的站点
      */
     private String organName4;
     /**
@@ -70,11 +70,11 @@ public class WayBillTranckVO {
      */
     private Integer operationPattern;
     /**
-     * 承包商名称
+     * 承运商名称
      */
     private String carName;
     /**
-     * 承包商类型
+     * 承运商类型
      */
     private Integer carrierType;
     /**
@@ -118,7 +118,7 @@ public class WayBillTranckVO {
      */
     private Date modifyTime;
     /**
-     * 是否有异常
+     * 是否异常
      */
     private Integer isAbnormal;
 
@@ -348,7 +348,7 @@ public class WayBillTranckVO {
 
     @Override
     public String toString() {
-        return "WayBillTranckVO{" +
+        return "CargoStationVO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +

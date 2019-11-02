@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t28.forest.operate.dao.ArrivalVehicleRecordDao">
+
+    <!--查询到货车辆记录信息-->
+    <select id="findArrivalVehicleByPage" resultType="com.t28.forest.operate.vo.ArrivalVehicleRecordVO">
+        select shipment1_.ID as 'id', organizati2_.NAME as 'name', shipment1_.CODE as 'code', shipment1_.TIME as 'time', organizati4_.NAME as 'organName1', organizati6_.NAME as 'organName2', organizati7_.NAME as 'organName3', organizati5_.NAME as 'organName4', shipment1_.ORDER_CODE as 'orderCode', shipment1_.RELATEBILL1 as 'relateBill', shipment1_.STATUS as 'status', shipment1_.OPERATION_PATTERN as 'operationPattern', carrier3_.NAME as 'carName', shipment1_.CARRIER_TYPE as 'carrierType', shipment1_.LIENSE as 'liens', shipment1_.OUT_DRIVER as 'outDriver', shipment1_.CARRIAGE_IS_EXCEED as 'carriageIsExceed', shipment1_.TAN as 'tan', shipment1_.NUMBER as 'number', shipment1_.WEIGHT as 'weight', shipment1_.VOLUME as 'volume', shipment1_.VALUE as 'value', shipment1_.CREATE_NAME as 'createName', shipment1_.CREATE_TIME as 'createTime', shipment1_.MODIFY_NAME as 'modifyName', shipment1_.MODIFY_TIME as 'modifyTime', shipment1_.IS_ABNORMAL as 'isAbnormal'
+        from JC_VEHICLE_ARRIVE vehiclearr0_
+        left outer join JC_SHIPMENT shipment1_ on vehiclearr0_.JC_SHIPMENT_ID=shipment1_.ID
+        left outer join JC_CARRIER carrier3_ on shipment1_.JC_CARRIER_ID=carrier3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment1_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment1_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment1_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SYS_ORGANIZATION organizati7_ on shipment1_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on vehiclearr0_.JC_ORGANIZATION_ID=organizati2_.ID
+        <where>
+            <if test="null != condition">
+                and organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        LIMIT #{page.start},#{page.size};
+    </select>
+
+    <!--查询到货车辆记录数据条数-->
+    <select id="findArrivalVehicleCount" resultType="Integer">
+        select COUNT(1)
+        from JC_VEHICLE_ARRIVE vehiclearr0_
+        left outer join JC_SHIPMENT shipment1_ on vehiclearr0_.JC_SHIPMENT_ID=shipment1_.ID
+        left outer join JC_CARRIER carrier3_ on shipment1_.JC_CARRIER_ID=carrier3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment1_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment1_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment1_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SYS_ORGANIZATION organizati7_ on shipment1_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on vehiclearr0_.JC_ORGANIZATION_ID=organizati2_.ID
+        <where>
+            <if test="null != condition">
+                and organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>;
+    </select>
+
+</mapper>

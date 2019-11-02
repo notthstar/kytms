@@ -4,17 +4,17 @@ import java.util.Date;
 
 /**
  * @author XiangYuFeng
- * @description 订单跟踪页面展示对象
- * @create 2019/11/1
+ * @description 到货车辆记录页面展示对象
+ * @create 2019/11/2
  * @since 1.0.0
  */
-public class WayBillTranckVO {
+public class ArrivalVehicleRecordVO {
     /**
-     * 唯一标识
+     * 唯一ID标识
      */
     private String id;
     /**
-     *所属机构组织
+     * 所属机构组织
      */
     private String name;
     /**
@@ -25,18 +25,6 @@ public class WayBillTranckVO {
      * 运单日期
      */
     private Date time;
-    /**
-     * 运单状态
-     */
-    private Integer status;
-    /**
-     *是否出入库
-     */
-    private Integer isInoutCome;
-    /**
-     * 车牌号
-     */
-    private String liens;
     /**
      * 出发站点
      */
@@ -50,15 +38,11 @@ public class WayBillTranckVO {
      */
     private String organName3;
     /**
-     * 目的站
+     * 目的站点
      */
     private String organName4;
     /**
-     * 总金额
-     */
-    private Integer amount;
-    /**
-     * 订单号
+     *订单号
      */
     private String orderCode;
     /**
@@ -66,17 +50,29 @@ public class WayBillTranckVO {
      */
     private String relateBill;
     /**
+     * 状态
+     */
+    private Integer status;
+    /**
      * 运作模式
      */
     private Integer operationPattern;
     /**
-     * 承包商名称
+     * 承运商名称
      */
     private String carName;
     /**
-     * 承包商类型
+     * 承运商类型
      */
     private Integer carrierType;
+    /**
+     * 车牌号
+     */
+    private String liens;
+    /**
+     * 司机名称
+     */
+    private String outDriver;
     /**
      * 是否超时
      */
@@ -154,30 +150,6 @@ public class WayBillTranckVO {
         this.time = time;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getIsInoutCome() {
-        return isInoutCome;
-    }
-
-    public void setIsInoutCome(Integer isInoutCome) {
-        this.isInoutCome = isInoutCome;
-    }
-
-    public String getLiens() {
-        return liens;
-    }
-
-    public void setLiens(String liens) {
-        this.liens = liens;
-    }
-
     public String getOrganName1() {
         return organName1;
     }
@@ -210,14 +182,6 @@ public class WayBillTranckVO {
         this.organName4 = organName4;
     }
 
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public String getOrderCode() {
         return orderCode;
     }
@@ -232,6 +196,14 @@ public class WayBillTranckVO {
 
     public void setRelateBill(String relateBill) {
         this.relateBill = relateBill;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getOperationPattern() {
@@ -256,6 +228,22 @@ public class WayBillTranckVO {
 
     public void setCarrierType(Integer carrierType) {
         this.carrierType = carrierType;
+    }
+
+    public String getLiens() {
+        return liens;
+    }
+
+    public void setLiens(String liens) {
+        this.liens = liens;
+    }
+
+    public String getOutDriver() {
+        return outDriver;
+    }
+
+    public void setOutDriver(String outDriver) {
+        this.outDriver = outDriver;
     }
 
     public Integer getCarriageIsExceed() {
@@ -348,24 +336,23 @@ public class WayBillTranckVO {
 
     @Override
     public String toString() {
-        return "WayBillTranckVO{" +
+        return "ArrivalVehicleRecordVO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", time=" + time +
-                ", status=" + status +
-                ", isInoutCome=" + isInoutCome +
-                ", liens='" + liens + '\'' +
                 ", organName1='" + organName1 + '\'' +
                 ", organName2='" + organName2 + '\'' +
                 ", organName3='" + organName3 + '\'' +
                 ", organName4='" + organName4 + '\'' +
-                ", amount=" + amount +
                 ", orderCode='" + orderCode + '\'' +
                 ", relateBill='" + relateBill + '\'' +
+                ", status=" + status +
                 ", operationPattern=" + operationPattern +
                 ", carName='" + carName + '\'' +
                 ", carrierType=" + carrierType +
+                ", liens='" + liens + '\'' +
+                ", outDriver='" + outDriver + '\'' +
                 ", carriageIsExceed=" + carriageIsExceed +
                 ", tan='" + tan + '\'' +
                 ", number=" + number +

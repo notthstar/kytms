@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t28.forest.operate.dao.CargoStationDetailedDao">
+
+    <!--查询货物到站右侧数据信息-->
+    <select id="findCargoStationDetailedByPage" resultType="com.t28.forest.operate.vo.CargoStationDetailedVO">
+        select led0_.ID as 'id', organizati1_.NAME as 'name', led0_.CODE as 'code', led0_.TIME as 'time', led0_.RELATEBILL1 as 'relateBill', led0_.COSTOMER_TYPE as 'costomerType', case when led0_.COSTOMER_TYPE=1 then customer4_.NAME when led0_.COSTOMER_TYPE=0 then led0_.COSTOMER_NAME end as 'costomerName', led0_.STATUS as 'status', ledproduct3_.NAME as 'ledName', led0_.NUMBER as 'number', led0_.WEIGHT as 'weight', led0_.VOLUME as 'volume', led0_.COSTOMER_IS_EXCEED as 'costomerIsExceed', organizati6_.NAME as 'organName', led0_.SALE_PERSION as 'salePersion', led0_.TRANSPORT_PRO as 'transportPro', led0_.IS_BACK as 'isBack', led0_.BACK_NUMBER as 'backNumber', led0_.FACT_LEAVE_TIME as 'factLeaveTime', led0_.FACT_ARRIVE_TIME as 'factArriveTime', led0_.DESCRIPTION as 'description', led0_.CREATE_NAME as 'createName', led0_.CREATE_TIME as 'createTime', led0_.MODIFY_NAME as 'modifyName', led0_.MODIFY_TIME as 'modifyTime'
+        from JC_LED led0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on led0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_SHIPMENT shipment2_ on led0_.JC_SHIPMENT_ID=shipment2_.ID
+        left outer join JC_LEG_PRODUCT ledproduct3_ on led0_.ID=ledproduct3_.JC_LED_ID
+        left outer join JC_CUSTOMER customer4_ on led0_.JC_CUSTOMER_ID=customer4_.ID
+        left outer join JC_LEG_PRODUCT ledproduct5_ on led0_.ID=ledproduct5_.JC_LED_ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on led0_.JC_TO_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SERVER_ZONE serverzone7_ on led0_.JC_END_ZONE_ID=serverzone7_.ID
+        <where>
+            and (led0_.STATUS not in  (5, 9, 10, 11))
+            <if test="null != condition">
+                and shipment2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        group by led0_.ID , ledproduct5_.FIELD3 order by led0_.CREATE_TIME desc limit #{page.start},#{page.size};
+    </select>
+
+    <!--查询数据条数-->
+    <select id="findCargoStationDetailedCount" resultType="Integer">
+        select COUNT(1)
+        from JC_LED led0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on led0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_SHIPMENT shipment2_ on led0_.JC_SHIPMENT_ID=shipment2_.ID
+        left outer join JC_LEG_PRODUCT ledproduct3_ on led0_.ID=ledproduct3_.JC_LED_ID
+        left outer join JC_CUSTOMER customer4_ on led0_.JC_CUSTOMER_ID=customer4_.ID
+        left outer join JC_LEG_PRODUCT ledproduct5_ on led0_.ID=ledproduct5_.JC_LED_ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on led0_.JC_TO_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SERVER_ZONE serverzone7_ on led0_.JC_END_ZONE_ID=serverzone7_.ID
+        <where>
+            and (led0_.STATUS not in  (5, 9, 10, 11))
+            <if test="null != condition">
+                and shipment2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>;
+    </select>
+
+</mapper>

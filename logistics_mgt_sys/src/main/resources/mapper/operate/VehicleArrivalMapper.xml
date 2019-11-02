@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t28.forest.operate.dao.VehicleArrivalDao">
+
+    <!--查询车辆到站信息-->
+    <select id="findVehicleArrivalByPage" resultType="com.t28.forest.operate.vo.VehicleArrivalVO">
+        select shipment0_.ID as 'id', organizati1_.NAME as 'name', shipment0_.CODE as 'code', shipment0_.TIME as 'time', organizati3_.NAME as 'organName1', organizati5_.NAME as 'organName2', organizati6_.NAME as 'organName3', organizati4_.NAME as 'organName4', shipment0_.ORDER_CODE as 'orderCode', shipment0_.RELATEBILL1 as 'relateBill', shipment0_.STATUS as 'status', shipment0_.OPERATION_PATTERN as 'operationPattern', carrier2_.NAME as 'carName', shipment0_.CARRIER_TYPE as 'carrierType', shipment0_.LIENSE as 'liens', shipment0_.OUT_DRIVER as 'outDriver', shipment0_.CARRIAGE_IS_EXCEED as 'carriageIsExceed', shipment0_.TAN as 'tan', shipment0_.NUMBER as 'number', shipment0_.WEIGHT as 'weight', shipment0_.VOLUME as 'volume', shipment0_.VALUE as 'value', shipment0_.CREATE_NAME as 'createName', shipment0_.CREATE_TIME as 'createTime', shipment0_.MODIFY_NAME as 'modifyName', shipment0_.MODIFY_TIME as 'modifyTime', shipment0_.IS_ABNORMAL as 'isAbnormal'
+        from JC_SHIPMENT shipment0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on shipment0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_CARRIER carrier2_ on shipment0_.JC_CARRIER_ID=carrier2_.ID
+        left outer join JC_SYS_ORGANIZATION organizati3_ on shipment0_.JC_FROM_ORGANIZATION_ID=organizati3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment0_.JC_TO_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment0_.JC_NEW_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment0_.JC_NEXT_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_BERTH_STAND berthstand7_ on shipment0_.ID=berthstand7_.JC_SHIPMENT_ID
+        left outer join JC_SYS_ORGANIZATION organizati8_ on berthstand7_.JC_ORGANIZATION_ID=organizati8_.ID
+        <where>
+            and berthstand7_.IS_ARRIVE=0)
+            and (shipment0_.STATUS in (4 , 6 , 7))
+            <if test="null != condition">
+                AND (organizati4_.ID=#{condition.id} or (#{condition.id} in (organizati8_.ID))
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        order by shipment0_.CREATE_TIME desc limit #{page.start},#{page.size};
+    </select>
+    <!--这个1不知道是代表什么，所以先留在这里 and shipment0_.OPERATION_PATTERN != 1-->
+
+    <!--查询车辆到站信息数据条数-->
+    <select id="findVehicleArrivalCount" resultType="Integer">
+        select COUNT(1)
+        from JC_SHIPMENT shipment0_
+        left outer join JC_SYS_ORGANIZATION organizati1_ on shipment0_.JC_ORGANIZATION_ID=organizati1_.ID
+        left outer join JC_CARRIER carrier2_ on shipment0_.JC_CARRIER_ID=carrier2_.ID
+        left outer join JC_SYS_ORGANIZATION organizati3_ on shipment0_.JC_FROM_ORGANIZATION_ID=organizati3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment0_.JC_TO_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment0_.JC_NEW_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment0_.JC_NEXT_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_BERTH_STAND berthstand7_ on shipment0_.ID=berthstand7_.JC_SHIPMENT_ID
+        left outer join JC_SYS_ORGANIZATION organizati8_ on berthstand7_.JC_ORGANIZATION_ID=organizati8_.ID
+        <where>
+            and berthstand7_.IS_ARRIVE=0)
+            and (shipment0_.STATUS in (4 , 6 , 7))
+            <if test="null != condition">
+                AND (organizati4_.ID=#{condition.id} or (#{condition.id} in (organizati8_.ID))
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>;
+    </select>
+
+</mapper>
