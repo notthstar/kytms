@@ -27,4 +27,11 @@ public interface ShipmentDao extends BaseMapper<ShipmentVO> {
      */
     public List<ShipmentVO> findShipmentsByPage(@Param("page")PageVO pageVO, @Param("condition") Condition condition);
 
+    /**
+     * 通过条件查询运单数据条数
+     * @param condition
+     * @return Integer
+     */
+    public Integer findShipmentCount(@Param("condition") Condition condition);
+
 }

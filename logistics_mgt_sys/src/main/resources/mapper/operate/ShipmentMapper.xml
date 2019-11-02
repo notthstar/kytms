@@ -35,4 +35,35 @@
         GROUP BY shipment0_.ID ORDER BY shipment0_.CREATE_TIME DESC LIMIT #{page.start},#{page.size};
     </select>
 
+    <!--通过添加查询运单信息数据条数-->
+    <select id="findShipmentCount" resultType="Integer">
+        SELECT COUNT(1)
+        FROM JC_SHIPMENT shipment0_
+        LEFT OUTER JOIN JC_VEHICLE_HEAD vehiclehea1_ ON shipment0_.JC_VEHICLE_HEAD_ID=vehiclehea1_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ ON shipment0_.JC_ORGANIZATION_ID=organizati2_.ID
+        LEFT OUTER JOIN JC_CARRIER carrier3_ ON shipment0_.JC_CARRIER_ID=carrier3_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati4_ ON shipment0_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati5_ ON shipment0_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati6_ ON shipment0_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati7_ ON shipment0_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        LEFT OUTER JOIN JC_LEDGER_DETAIL ledgerdeta8_ ON shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
+        <where>
+            AND shipment0_.STATUS != 0
+            AND shipment0_.STATUS != 99
+            <if test="null != condition">
+                AND organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>;
+    </select>
+
 </mapper>

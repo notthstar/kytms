@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t28.forest.operate.dao.WaybillTrackDao">
+
+    <!--运单跟踪信息查询-->
+    <select id="findWayBillByPage" resultType="com.t28.forest.operate.vo.WayBillTranckVO">
+        select shipment0_.ID as 'id', organizati2_.NAME as 'name', shipment0_.CODE as 'code', shipment0_.TIME as 'time', shipment0_.STATUS as 'status', shipment0_.IS_INOUTCOME as 'isInoutCome', case when vehiclehea1_.CODE is not null then vehiclehea1_.CODE else shipment0_.LIENSE end as 'liens', organizati4_.NAME as 'organName1', organizati6_.NAME as 'organName2', organizati7_.NAME as 'organName3', organizati5_.NAME as 'organName4', sum(ledgerdeta8_.AMOUNT) as 'amount', shipment0_.ORDER_CODE as 'orderCode', shipment0_.RELATEBILL1 as 'relateBill', shipment0_.OPERATION_PATTERN as 'operationPattern', carrier3_.NAME as 'carName', shipment0_.CARRIER_TYPE as 'carrierType', shipment0_.CARRIAGE_IS_EXCEED as 'carriageIsExceed', shipment0_.TAN as 'tan', shipment0_.NUMBER as 'number', shipment0_.WEIGHT as 'weight', shipment0_.VOLUME as 'volume', shipment0_.VALUE as 'value', shipment0_.CREATE_NAME as 'createName', shipment0_.CREATE_TIME as 'createTime', shipment0_.MODIFY_NAME as 'modifyName', shipment0_.MODIFY_TIME as 'modifyTime', shipment0_.IS_ABNORMAL as 'isAbnormal'
+        from JC_SHIPMENT shipment0_
+        left outer join JC_VEHICLE_HEAD vehiclehea1_ on shipment0_.JC_VEHICLE_HEAD_ID=vehiclehea1_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on shipment0_.JC_ORGANIZATION_ID=organizati2_.ID
+        left outer join JC_CARRIER carrier3_ on shipment0_.JC_CARRIER_ID=carrier3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment0_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment0_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment0_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SYS_ORGANIZATION organizati7_ on shipment0_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        left outer join JC_LEDGER_DETAIL ledgerdeta8_ on shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
+        <where>
+            and shipment0_.STATUS != 0
+            and shipment0_.STATUS != 99
+            <if test="null != condition">
+                AND organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        group by shipment0_.ID order by shipment0_.CREATE_TIME desc limit #{page.start},#{page.size};
+    </select>
+
+    <!--运单跟踪数据条数查询-->
+    <select id="findWayBillCount" resultType="Integer">
+        select COUNT(1)
+        from JC_SHIPMENT shipment0_
+        left outer join JC_VEHICLE_HEAD vehiclehea1_ on shipment0_.JC_VEHICLE_HEAD_ID=vehiclehea1_.ID
+        left outer join JC_SYS_ORGANIZATION organizati2_ on shipment0_.JC_ORGANIZATION_ID=organizati2_.ID
+        left outer join JC_CARRIER carrier3_ on shipment0_.JC_CARRIER_ID=carrier3_.ID
+        left outer join JC_SYS_ORGANIZATION organizati4_ on shipment0_.JC_FROM_ORGANIZATION_ID=organizati4_.ID
+        left outer join JC_SYS_ORGANIZATION organizati5_ on shipment0_.JC_TO_ORGANIZATION_ID=organizati5_.ID
+        left outer join JC_SYS_ORGANIZATION organizati6_ on shipment0_.JC_NEW_ORGANIZATION_ID=organizati6_.ID
+        left outer join JC_SYS_ORGANIZATION organizati7_ on shipment0_.JC_NEXT_ORGANIZATION_ID=organizati7_.ID
+        left outer join JC_LEDGER_DETAIL ledgerdeta8_ on shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
+        <where>
+            and shipment0_.STATUS != 0
+            and shipment0_.STATUS != 99
+            <if test="null != condition">
+                AND organizati2_.ID=#{condition.id}
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>;
+    </select>
+
+</mapper>
