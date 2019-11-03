@@ -3,9 +3,11 @@ package com.t28.forest.core.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author xyf
@@ -25,7 +27,12 @@ public class Single implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
-    private LocalDateTime createTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date createTime;
 
     @TableField("DESCRIPTION")
     private String description;
@@ -43,7 +50,12 @@ public class Single implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
-    private LocalDateTime modifyTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date modifyTime;
 
     @TableField("NAME")
     private String name;
@@ -55,7 +67,12 @@ public class Single implements Serializable {
     private Integer accountType;
 
     @TableField("DATE_BILLING")
-    private LocalDateTime dateBilling;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date dateBilling;
 
     @TableField("DRIVER_IPHONE")
     private String driverIphone;
@@ -82,16 +99,36 @@ public class Single implements Serializable {
     private String driverIphoneTemporary;
 
     @TableField("PLAN_CILCK_END_TIME")
-    private LocalDateTime planCilckEndTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date planCilckEndTime;
 
     @TableField("PLAN_CILCK_START_TIME")
-    private LocalDateTime planCilckStartTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date planCilckStartTime;
 
     @TableField("PLAN_END_TIME")
-    private LocalDateTime planEndTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date planEndTime;
 
     @TableField("PLAN_START_TIME")
-    private LocalDateTime planStartTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date planStartTime;
 
     @TableField("DRIVER")
     private String driver;
@@ -172,11 +209,11 @@ public class Single implements Serializable {
         return this;
     }
 
-    public LocalDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public Single setCreateTime(LocalDateTime createTime) {
+    public Single setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }
@@ -226,11 +263,11 @@ public class Single implements Serializable {
         return this;
     }
 
-    public LocalDateTime getModifyTime() {
+    public Date getModifyTime() {
         return modifyTime;
     }
 
-    public Single setModifyTime(LocalDateTime modifyTime) {
+    public Single setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
         return this;
     }
@@ -262,11 +299,11 @@ public class Single implements Serializable {
         return this;
     }
 
-    public LocalDateTime getDateBilling() {
+    public Date getDateBilling() {
         return dateBilling;
     }
 
-    public Single setDateBilling(LocalDateTime dateBilling) {
+    public Single setDateBilling(Date dateBilling) {
         this.dateBilling = dateBilling;
         return this;
     }
@@ -343,38 +380,38 @@ public class Single implements Serializable {
         return this;
     }
 
-    public LocalDateTime getPlanCilckEndTime() {
+    public Date getPlanCilckEndTime() {
         return planCilckEndTime;
     }
 
-    public Single setPlanCilckEndTime(LocalDateTime planCilckEndTime) {
+    public Single setPlanCilckEndTime(Date planCilckEndTime) {
         this.planCilckEndTime = planCilckEndTime;
         return this;
     }
 
-    public LocalDateTime getPlanCilckStartTime() {
+    public Date getPlanCilckStartTime() {
         return planCilckStartTime;
     }
 
-    public Single setPlanCilckStartTime(LocalDateTime planCilckStartTime) {
+    public Single setPlanCilckStartTime(Date planCilckStartTime) {
         this.planCilckStartTime = planCilckStartTime;
         return this;
     }
 
-    public LocalDateTime getPlanEndTime() {
+    public Date getPlanEndTime() {
         return planEndTime;
     }
 
-    public Single setPlanEndTime(LocalDateTime planEndTime) {
+    public Single setPlanEndTime(Date planEndTime) {
         this.planEndTime = planEndTime;
         return this;
     }
 
-    public LocalDateTime getPlanStartTime() {
+    public Date getPlanStartTime() {
         return planStartTime;
     }
 
-    public Single setPlanStartTime(LocalDateTime planStartTime) {
+    public Single setPlanStartTime(Date planStartTime) {
         this.planStartTime = planStartTime;
         return this;
     }

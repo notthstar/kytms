@@ -3,6 +3,8 @@ package com.t28.forest.core.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,6 +27,11 @@ public class Shipment implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     @TableField("DESCRIPTION")
@@ -43,6 +50,11 @@ public class Shipment implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
     @TableField("NAME")
@@ -61,9 +73,19 @@ public class Shipment implements Serializable {
     private Integer carrierType;
 
     @TableField("FACT_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factArriveTime;
 
     @TableField("FACT_LEAVER_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factLeaverTime;
 
     @TableField("FEE_TYPE")
@@ -97,6 +119,11 @@ public class Shipment implements Serializable {
     private String outDriver;
 
     @TableField("PLAN_LEAVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date planLeaveTime;
 
     @TableField("REFUSE")
@@ -106,6 +133,11 @@ public class Shipment implements Serializable {
     private String relatebill1;
 
     @TableField("REQUIRE_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date requireArriveTime;
 
     @TableField("SHIPMENT_METHOD")
@@ -115,6 +147,11 @@ public class Shipment implements Serializable {
     private String tan;
 
     @TableField("TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date time;
 
     @TableField("TRANSPORT_PRO")
@@ -148,6 +185,11 @@ public class Shipment implements Serializable {
     private String jcVehicleHeadId;
 
     @TableField("ACTION_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date actionTime;
 
     @TableField("JC_FROM_ORGANIZATION_ID")

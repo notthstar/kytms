@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -31,6 +34,11 @@ public class JcSysOrganization implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     @TableField("DESCRIPTION")
@@ -49,6 +57,11 @@ public class JcSysOrganization implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
     @TableField("NAME")

@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -31,6 +34,11 @@ public class JcLed implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     @TableField("DESCRIPTION")
@@ -49,6 +57,11 @@ public class JcLed implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
     @TableField("NAME")
@@ -70,9 +83,19 @@ public class JcLed implements Serializable {
     private Integer costomerType;
 
     @TableField("FACT_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factArriveTime;
 
     @TableField("FACT_LEAVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factLeaveTime;
 
     @TableField("FEE_TYPE")
@@ -94,9 +117,19 @@ public class JcLed implements Serializable {
     private Double orderMileage;
 
     @TableField("PLAN_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date planArriveTime;
 
     @TableField("PLAN_LEAVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date planLeaveTime;
 
     @TableField("RELATEBILL1")
@@ -121,6 +154,11 @@ public class JcLed implements Serializable {
     private Integer shipmentMethod;
 
     @TableField("TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date time;
 
     @TableField("TRANSPORT_PRO")
@@ -172,6 +210,11 @@ public class JcLed implements Serializable {
     private Double agent;
 
     @TableField("QS_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date qsTime;
 
     @TableField("QS_PERSON")

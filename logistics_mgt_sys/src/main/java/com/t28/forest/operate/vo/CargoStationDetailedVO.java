@@ -1,5 +1,8 @@
 package com.t28.forest.operate.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -24,6 +27,11 @@ public class CargoStationDetailedVO {
     /**
      * 订单时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date time;
     /**
      * 客户订单号
@@ -84,10 +92,20 @@ public class CargoStationDetailedVO {
     /**
      * 实际发运日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factLeaveTime;
     /**
      * 实际抵运日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factArriveTime;
     /**
      * 备注
@@ -100,6 +118,11 @@ public class CargoStationDetailedVO {
     /**
      * 创建日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
     /**
      * 修改人
@@ -108,6 +131,11 @@ public class CargoStationDetailedVO {
     /**
      * 修改日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
     public String getId() {

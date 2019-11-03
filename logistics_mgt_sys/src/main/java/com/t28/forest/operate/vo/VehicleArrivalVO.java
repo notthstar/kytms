@@ -1,5 +1,8 @@
 package com.t28.forest.operate.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -24,6 +27,11 @@ public class VehicleArrivalVO {
     /**
      * 运单日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date time;
     /**
      * 出发站点
@@ -104,6 +112,11 @@ public class VehicleArrivalVO {
     /**
      * 创建日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
     /**
      * 修改人
@@ -112,6 +125,11 @@ public class VehicleArrivalVO {
     /**
      * 修改日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
     /**
      * 是否有异常

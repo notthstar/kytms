@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -30,6 +33,11 @@ public class JcPresco implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     @TableField("DESCRIPTION")
@@ -44,8 +52,6 @@ public class JcPresco implements Serializable {
     @TableField("FIELD3")
     private String field3;
 
-
-
     @TableField("NAME")
     private String name;
 
@@ -59,6 +65,11 @@ public class JcPresco implements Serializable {
     private Integer costomerTpye;
 
     @TableField("DATE_ACCEPTED")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date dateAccepted;
 
     @TableField("PICK_MILEAGE")
@@ -149,6 +160,11 @@ public class JcPresco implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
 

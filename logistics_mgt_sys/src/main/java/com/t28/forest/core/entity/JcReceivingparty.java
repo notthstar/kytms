@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -28,6 +31,11 @@ public class JcReceivingparty implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     @TableField("DESCRIPTION")
@@ -46,6 +54,11 @@ public class JcReceivingparty implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date modifyTime;
 
     @TableField("NAME")
@@ -61,9 +74,19 @@ public class JcReceivingparty implements Serializable {
     private String contactperson;
 
     @TableField("FACT_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factArriveTime;
 
     @TableField("FACT_LEAVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date factLeaveTime;
 
     @TableField("IPHONE")
@@ -76,9 +99,19 @@ public class JcReceivingparty implements Serializable {
     private Integer orderby;
 
     @TableField("PLAN_LEAVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date planLeaveTime;
 
     @TableField("REQUIRE_ARRIVE_TIME")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date requireArriveTime;
 
     @TableField("JC_ORGANIZATION_ID")

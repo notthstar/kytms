@@ -3,9 +3,11 @@ package com.t28.forest.core.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author xyf
@@ -22,7 +24,12 @@ public class ShipmentTrack implements Serializable {
     private String createName;
 
     @TableField("CREATE_TIME")
-    private LocalDateTime createTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date createTime;
 
     @TableField("DESCRIPTION")
     private String description;
@@ -40,7 +47,12 @@ public class ShipmentTrack implements Serializable {
     private String modifyName;
 
     @TableField("MODIFY_TIME")
-    private LocalDateTime modifyTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date modifyTime;
 
     @TableField("NAME")
     private String name;
@@ -55,7 +67,12 @@ public class ShipmentTrack implements Serializable {
     private String person;
 
     @TableField("TIME")
-    private LocalDateTime time;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
+    private Date time;
 
     @TableField("TYPE")
     private Integer type;
@@ -82,11 +99,11 @@ public class ShipmentTrack implements Serializable {
         return this;
     }
 
-    public LocalDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public ShipmentTrack setCreateTime(LocalDateTime createTime) {
+    public ShipmentTrack setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }
@@ -136,11 +153,11 @@ public class ShipmentTrack implements Serializable {
         return this;
     }
 
-    public LocalDateTime getModifyTime() {
+    public Date getModifyTime() {
         return modifyTime;
     }
 
-    public ShipmentTrack setModifyTime(LocalDateTime modifyTime) {
+    public ShipmentTrack setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
         return this;
     }
@@ -181,11 +198,11 @@ public class ShipmentTrack implements Serializable {
         return this;
     }
 
-    public LocalDateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public ShipmentTrack setTime(LocalDateTime time) {
+    public ShipmentTrack setTime(Date time) {
         this.time = time;
         return this;
     }
