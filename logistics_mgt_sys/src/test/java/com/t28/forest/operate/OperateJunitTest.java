@@ -36,7 +36,7 @@ public class OperateJunitTest {
     @Test
     public void findShipmentByPageTest() {
         Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
-//        condition.setName("time");
+//        condition.setName("shipment0_.TIME");
 //        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
         condition.setName("organizati2_.NAME");
         condition.setValues(new Object[]{"广州"});
@@ -54,8 +54,6 @@ public class OperateJunitTest {
     @Test
     public void findDispatchTest() {
         Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
-//        condition.setName("time");
-//        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
         condition.setName("organizati2_.NAME");
         condition.setValues(new Object[]{"广州"});
         Integer count = dispatchDao.findDispatchCount(condition);

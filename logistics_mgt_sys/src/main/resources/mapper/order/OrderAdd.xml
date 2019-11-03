@@ -3,5 +3,5 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace指用户自定义的命名空间 -->
-<mapper namespace="">
+<mapper namespace="com.t28.forest.order.dao.OrderAdd">
 </mapper>

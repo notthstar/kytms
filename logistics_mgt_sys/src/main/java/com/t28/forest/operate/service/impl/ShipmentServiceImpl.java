@@ -1,6 +1,7 @@
 package com.t28.forest.operate.service.impl;
 
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.dao.ShipmentDao;
 import com.t28.forest.operate.service.ShipmentService;
@@ -27,12 +28,12 @@ public class ShipmentServiceImpl implements ShipmentService {
     }
 
     @Override
-    public Integer addShipment() {
-        return null;
+    public Integer addShipment(Shipment shipment) {
+        return shipmentDao.insert(shipment);
     }
 
     @Override
-    public Integer updateShipmentById() {
-        return null;
+    public Integer updateShipmentById(Shipment shipment) {
+        return shipmentDao.updateById(shipment);
     }
 }

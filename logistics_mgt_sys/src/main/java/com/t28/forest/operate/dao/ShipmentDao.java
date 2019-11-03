@@ -3,6 +3,7 @@ package com.t28.forest.operate.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.vo.ShipmentVO;
 import org.apache.ibatis.annotations.Param;
@@ -17,7 +18,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Repository
-public interface ShipmentDao extends BaseMapper<ShipmentVO> {
+public interface ShipmentDao extends BaseMapper<Shipment> {
 
     /**
      * 条件分页查询运单信息

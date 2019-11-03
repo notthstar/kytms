@@ -4,6 +4,7 @@ package com.t28.forest.operate.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.vo.ShipmentVO;
 
@@ -28,14 +29,16 @@ public interface ShipmentService {
 
     /**
      * 保存运单信息
+     * @param shipment
      * @return integer
      */
-    public Integer addShipment();
+    public Integer addShipment(Shipment shipment);
 
     /**
      * 通过ID修改运单信息
+     * @param shipment
      * @return Integer
      */
-    public Integer updateShipmentById();
+    public Integer updateShipmentById(Shipment shipment);
 
 }

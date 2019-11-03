@@ -12,8 +12,12 @@
         ->operate : 运营管理
         ->order : 订单管理
         ->core : 核心公共包
+            ->entity : 公共实体类包
+            ->utils : 公共工具类包
+            ->vo : 公共页面展示对象包
+            ->cond : 存放公共的保存查询条件信息的类
         ->stock : 库存管理
-        ->config : 配置类
+        ->config : 配置类（异常配置）
         ->interceptor : 拦截器（用户登录验证）
     src/main/resources
         ->mapper : mybatis : Mapper映射的XML文件
