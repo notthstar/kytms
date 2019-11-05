@@ -27,9 +27,7 @@ public class DispatchOrderServiceImpl implements DispatchOrderService {
     public List<DispatchVO> getDispatchsByPage(PageVO page, Condition condition) {
         // 获得当前数据总条数
         int count = dispatchOrderDao.findDispatchCount(condition);
-        // 通过数据总条数计算总页数
-        int totalPage = count % page.getSize() == 0 ? count / page.getSize() : count / page.getSize() + 1;
-        page.setTotal(totalPage);
+        page.calaTotalPage(count);
         return dispatchOrderDao.findDispatchByPage(page, condition);
     }
 

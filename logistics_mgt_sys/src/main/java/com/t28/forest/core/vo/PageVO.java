@@ -68,4 +68,14 @@ public class PageVO {
     public void setTotal(Integer total) {
         this.total = total;
     }
+
+    /**
+     * 计算总页数的方法
+     * @param count 数据总条数
+     */
+    public void calaTotalPage(int count) {
+        int totalPage = count % getSize() == 0 ? count / getSize() : count / getSize() + 1;
+        setTotal(totalPage);
+    }
+
 }

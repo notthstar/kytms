@@ -26,9 +26,8 @@ public class ShipmentServiceImpl implements ShipmentService {
     public List<ShipmentVO> getShipmentsByPage(PageVO page, Condition condition) {
         // 获得当前数据总条数
         int count = shipmentDao.findShipmentCount(condition);
-        // 通过数据总条数计算总页数
-        int totalPage = count % page.getSize() == 0 ? count / page.getSize() : count / page.getSize() + 1;
-        page.setTotal(totalPage);
+        // 调用PageVO类的计算总页数的方法
+        page.calaTotalPage(count);
         return shipmentDao.findShipmentsByPage(page, condition);
     }
 
