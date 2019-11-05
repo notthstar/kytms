@@ -15,18 +15,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class orderTest {
+public class OrderTest {
 
     @Autowired
     OrderService service;
     @Test
-    public void test(){
-        System.out.println(service.getPlan(null,null).get(0));
-    }
-
-    @Test
     public void testPlan(){
-        System.out.println(service.getPlan(null,null).get(0));
+        String rc = "CREATE_NAME";
+        System.out.println(service.getPlan(rc,"小明").get(0));
     }
 
     @Test
@@ -48,4 +44,5 @@ public class orderTest {
     public void testOrderBack(){
         System.out.println(service.getOrderBack(null,null).get(0));
     }
+
 }

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * <p>
@@ -238,6 +238,10 @@ public class JcPresco implements Serializable {
         return createTime;
     }
 
+    public JcPresco() {
+        super();
+    }
+
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
@@ -287,14 +291,18 @@ public class JcPresco implements Serializable {
         return this;
     }
 
+    public Date getDateAccepted() {
+        return dateAccepted;
+    }
+
     public Double getPickMileage() {
         return pickMileage;
     }
 
-    public JcPresco setPickMileage(Double pickMileage) {
+    public void setPickMileage(Double pickMileage) {
         this.pickMileage = pickMileage;
-        return this;
     }
+
     public String getJcSingleId() {
         return jcSingleId;
     }

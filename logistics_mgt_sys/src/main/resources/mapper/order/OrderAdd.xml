@@ -4,4 +4,35 @@
 
 <!-- namespace指用户自定义的命名空间 -->
 <mapper namespace="com.t28.forest.order.dao.OrderAdd">
+    <insert id="insertOrder" parameterType="com.t28.forest.core.entity.JcPresco">
+        insert into JC_PRESCO
+        (CODE, CREATE_NAME, CREATE_TIME, DESCRIPTION,
+         FIELD1, FIELD2, FIELD3, MODIFY_NAME, MODIFY_TIME,NAME, STATUS,
+         FH_ADDRESS, FH_DETAILEADDRESS, FH_IPHONE, FH_LTL, FH_NAME, FH_PERSON,
+         SH_ADDRESS, SH_DETAILEADDRESS, SH_IPHONE, SH_LTL, SH_NAME, SH_PERSON,
+         ADDRESS, COSTOMER_NAME_LS, COSTOMER_TPYE, JC_COSTOMER_ID, DATE_ACCEPTED,
+         JZ_WEIGHT, NUMBER, JC_ORGANIZATION_ID, PICK_MILEAGE, RELATEBILL1,
+         JC_SERVER_ZONE_ID, JC_SINGLE_ID, VALUE, VOLUME, WEIGHT, ID)
+         values (#{presco.code}, '测试账号', #{presco.createTime}, #{presco.description},
+         null, null, null, '测试账号', #{presco.createTime}, null, 1,
+          #{presco.fhAddress}, #{presco.fhDetaileaddress}, #{presco.fhIphone}, #{presco.fhLtl},
+          #{presco.fhName}, #{presco.fhPerson}, #{presco.shAddress}, #{presco.shDetaileaddress},
+          #{presco.shIphone}, #{presco.shLtl},#{presco.shName}, #{presco.shPerson},
+           null, '测试', #{presco.costomerTpye}, '402881a767153e1c016715cd3bd70141', #{presco.createTime},
+            #{presco.jzWeight}, 1, '402881a36710579c016710c4e2fb0230', #{presco.pickMileage}, #{presco.relatebill1},
+            '297edff8679616a2016796d8849d02c1', null, #{presco.value}, #{presco.volume}, #{presco.weight}, #{presco.id})
+    </insert>
+    
+    <insert id="insertReceiving" parameterType="com.t28.forest.core.entity.JcReceivingparty">
+        insert into JC_RECEIVINGPARTY
+       (CREATE_NAME, CREATE_TIME, DESCRIPTION, FIELD1, FIELD2, FIELD3,
+        MODIFY_NAME, MODIFY_TIME, NAME, STATUS, ADDRESS, CONTACTPERSON,
+        DETAILE_ADDRESS, FACT_ARRIVE_TIME, FACT_LEAVE_TIME, IPHONE, LTL,
+        ORDERBY, JC_ORGANIZATION_ID, PLAN_LEAVE_TIME,
+        REQUIRE_ARRIVE_TIME, JC_ZONE_ID, ID)
+        values ('测试账号', #{receivingparty.createTime},#{receivingparty.description} ,
+        null, null, null, null, null,#{receivingparty.name}, 1, #{receivingparty.address},
+        #{receivingparty.contactperson}, #{receivingparty.detaileAddress}, null, null, #{receivingparty.iphone},
+        #{receivingparty.ltl}, 0, '402881a36710579c016710c4e2fb0230', null, null, null, #{receivingparty.id})
+    </insert>
 </mapper>
