@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用户自定义的命名空间 -->
+<mapper namespace="com.t28.forest.stock.dao.StuotkInquiryDao">
+    <!-- 所以显示查询 -->
+    <select id="getAllStuotkInquiry" resultType="com.t28.forest.stock.vo.StockInquiryVO">
+          SELECT
+          t1.ID,-- 产品id
+          t2.ID 'orderid',
+          t5.NAME,-- 组织机构
+          t2.CODE,-- 分段订单号
+          t2.TIME,-- 订单日期
+          t2.RELATEBILL1,-- 客户订单号
+          t2.COSTOMER_TYPE,-- 客户类型
+          t4.NAME 'customerName',-- 客户名称
+          t2.STATUS,-- 订单状态
+          t2.COSTOMER_IS_EXCEED,-- 是否超期
+          t2.TRANSPORT_PRO,-- 运输性质
+          t2.IS_BACK,-- 是否回单
+          t2.BACK_NUMBER,-- 回单份数
+          t6.NAME 'goodsName',-- 货名
+          t1.NUMBER,-- 件数
+          t1.WEIGHT,-- 重量
+          t1.VOLUME,-- 体积
+          t2.SALE_PERSION, -- 销售负责人
+          t2.DESCRIPTION, -- 备注
+          t2.CREATE_NAME,-- 创建人
+          t2.CREATE_TIME,-- 创建时间
+          t2.MODIFY_NAME,-- 修改人
+          t2.MODIFY_TIME -- 修改时间
+          FROM
+          JC_LED t1 LEFT OUTER JOIN JC_ORDER t2 ON
+          t1.JC_ORDER_ID=t2.ID
+          LEFT OUTER JOIN JC_CUSTOMER t3 ON
+          t2.JC_CUSTOMER_ID=t3.ID
+          LEFT OUTER JOIN JC_ORDER_RECEIVINGPARTY t4 ON
+          t2.ID=t4.JC_ORDER_ID
+          LEFT OUTER JOIN JC_SYS_ORGANIZATION t5 ON
+          t1.JC_ORGANIZATION_ID=t5.ID
+          LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
+          t1.ID=t6.JC_LED_ID
+          WHERE
+          t4.TYPE=#{condition.type}
+          AND t5.ID=#{condition.id}
+          AND t2.STATUS=5
+          GROUP BY
+          t2.CODE LIMIT 1;
+    </select>
+    <!-- 查询总条数 -->
+    <select id="getAllCount" resultType="Integer" >
+        SELECT  COUNT(1) FROM
+        JC_LED t1 LEFT OUTER JOIN JC_ORDER t2 ON
+        t1.JC_ORDER_ID=t2.ID
+        LEFT OUTER JOIN JC_CUSTOMER t3 ON
+        t2.JC_CUSTOMER_ID=t3.ID
+        LEFT OUTER JOIN JC_ORDER_RECEIVINGPARTY t4 ON
+        t2.ID=t4.JC_ORDER_ID
+        LEFT OUTER JOIN JC_SYS_ORGANIZATION t5 ON
+        t1.JC_ORGANIZATION_ID=t5.ID
+        LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
+        t1.ID=t6.JC_LED_ID
+        WHERE
+        t4.TYPE=#{condition.type}
+        AND t5.ID=#{condition.id}
+        AND t2.STATUS=5;
+    </select>
+    <!-- 出入库页面显示  -->
+    <select id="getAllInOutRecords" resultType="com.t28.forest.stock.vo.InOutRecordsVO">
+        SELECT
+        t1.id,
+        t2.name 'distributing',
+        t3.NAME,
+        t4.CODE,
+        t1.TYPE,
+        t1.TIME ,
+        t1.NUMBER,
+        t1.VOLUME,
+        t1.WEIGHT,
+        t1.DESCRIPTION,
+        t1.CREATE_NAME,
+        t1.CREATE_TIME,
+        t1.MODIFY_NAME,
+        t1.MODIFY_TIME
+        FROM
+        jc_inoroutrecord t1 LEFT OUTER JOIN JC_SYS_ORGANIZATION t2
+        ON t1.jc_organization_id=t2.ID
+        LEFT OUTER JOIN JC_ZONE_STOREROOM t3
+        ON t1.JC_ZONE_STOREROOM_ID=t3.ID
+        LEFT OUTER JOIN jc_led t4
+        ON t1.JC_LED_ID=t4.ID
+        WHERE
+        t1.STATUS=1
+        AND t2.ID=#{condition.id}
+        ORDER BY t1.CREATE_TIME
+        DESC LIMIT 3;
+    </select>
+    <!-- 查询出入库数据总条数  -->
+    <select id="getCountInOutRecords" resultType="Integer">
+        SELECT count(1) FROM
+        JC_INOROUTRECORD t1 LEFT OUTER JOIN JC_SYS_ORGANIZATION t2
+        ON t1.JC_ORGANIZATION_ID=t2.ID
+        LEFT OUTER JOIN JC_ZONE_STOREROOM t3
+        ON t1.JC_ZONE_STOREROOM_ID=t3.ID
+        LEFT OUTER JOIN JC_LED t4
+        ON t1.JC_LED_ID=t4.ID
+        WHERE t1.STATUS=1
+        AND t2.ID=#{condition.id};
+    </select>
+</mapper>
