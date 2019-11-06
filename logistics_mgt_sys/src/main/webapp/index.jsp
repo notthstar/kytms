@@ -1,16 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
-  User: admin
-  Date: 2019/10/29
-  Time: 17:38
+  User: 臧英明
+  Date: 2017/1/11
+  Time: 13:541
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>测试页面</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>捷畅物流专线TMS系统</title>
+    <script type="text/javascript">
+        function fullwin() {
+            window.location.href = "jsp/login/index.jsp";
+            return false;
+        }
+    </script>
 </head>
-<body>
-    <h2>Hello JSP!</h2>
+<body onload="fullwin()">
 </body>
 </html>
