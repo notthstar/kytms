@@ -4,11 +4,11 @@
  * @create 2019/10/29
  * @since 1.0.0
  */
-package com.t28.forest.stock.entity;
+package com.t28.forest.core.entity;
 
 import java.util.Date;
 
-public class CustomerDTO {
+public class JcCustomer {
  private   String id;
    private  String code;
    private String crateName;
@@ -345,7 +345,7 @@ public class CustomerDTO {
 
    @Override
    public String toString() {
-      return "CustomerDTO{" +
+      return "JcCustomer{" +
               "id='" + id + '\'' +
               ", code='" + code + '\'' +
               ", crateName='" + crateName + '\'' +

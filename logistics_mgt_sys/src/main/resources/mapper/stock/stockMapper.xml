@@ -44,7 +44,7 @@
           AND t5.ID=#{condition.id}
           AND t2.STATUS=5
           GROUP BY
-          t2.CODE LIMIT 1;
+          t2.CODE LIMIT #{page.start},#{page.size};
     </select>
     <!-- 查询总条数 -->
     <select id="getAllCount" resultType="Integer" >
@@ -92,7 +92,7 @@
         t1.STATUS=1
         AND t2.ID=#{condition.id}
         ORDER BY t1.CREATE_TIME
-        DESC LIMIT 3;
+        DESC LIMIT #{page.start},#{page.size};
     </select>
     <!-- 查询出入库数据总条数  -->
     <select id="getCountInOutRecords" resultType="Integer">

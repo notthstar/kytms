@@ -8,6 +8,7 @@ package com.t28.forest.stock.dao;
 
 
 import com.baomidou.mybatisplus.core.mapper.Mapper;
+import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.stock.condition.Condition;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
@@ -26,7 +27,7 @@ public interface StuotkInquiryDao extends Mapper<StockInquiryVO> {
     * @Author:
     * @Date:   2019/10/29
     */
-    public List<StockInquiryVO> getAllStuotkInquiry(@Param("condition") Condition condition);
+    public List<StockInquiryVO> getAllStuotkInquiry(@Param("condition") Condition condition,@Param("pageVO") PageVO pageVO);
 
     /**
      * 功能描述: 查询总条数
@@ -45,7 +46,7 @@ public interface StuotkInquiryDao extends Mapper<StockInquiryVO> {
      * @Author: HF
      * @Date:
      */
-    public  List<InOutRecordsVO> getAllInOutRecords(@Param("condition") Condition condition);
+    public  List<InOutRecordsVO> getAllInOutRecords(@Param("condition") Condition condition,@Param("pageVO") PageVO pageVO);
     /**
      * 功能描述:
      * @param: condition

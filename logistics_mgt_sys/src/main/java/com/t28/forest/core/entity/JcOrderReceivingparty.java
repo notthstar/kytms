@@ -4,11 +4,11 @@
  * @create 2019/10/29
  * @since 1.0.0
  */
-package com.t28.forest.stock.entity;
+package com.t28.forest.core.entity;
 
 import java.util.Date;
 
-public class ReceivingpartyDTO {
+public class JcOrderReceivingparty {
    private String id;
     private String createName;
     private Date createTime;
@@ -228,7 +228,7 @@ public class ReceivingpartyDTO {
 
     @Override
     public String toString() {
-        return "ReceivingpartyDTO{" +
+        return "JcOrderReceivingparty{" +
                 "id='" + id + '\'' +
                 ", createName='" + createName + '\'' +
                 ", createTime=" + createTime +
