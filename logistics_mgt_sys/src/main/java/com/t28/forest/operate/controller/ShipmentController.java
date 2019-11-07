@@ -18,4 +18,10 @@ public class ShipmentController {
     @Autowired
     ShipmentService shipmentService;
 
+    @RequestMapping("/test")
+    public String hello() {
+        System.out.println("----------------------");
+        return "index";
+    }
+
 }

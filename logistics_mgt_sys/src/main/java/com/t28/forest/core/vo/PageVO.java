@@ -62,6 +62,9 @@ public class PageVO {
     }
 
     public Integer getTotal() {
+        if (Objects.isNull(total)) {
+            return 1;
+        }
         return total;
     }
 
@@ -74,8 +77,10 @@ public class PageVO {
      * @param count 数据总条数
      */
     public void calaTotalPage(int count) {
-        int totalPage = count % getSize() == 0 ? count / getSize() : count / getSize() + 1;
-        setTotal(totalPage);
+        if (count > 0) {
+            int totalPage = count % getSize() == 0 ? count / getSize() : count / getSize() + 1;
+            setTotal(totalPage);
+        }
     }
 
 }
