@@ -9,7 +9,7 @@ package com.t28.forest.stock.service.impl;
 
 
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.Condition;
+import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.dao.StuotkInquiryDao;
 import com.t28.forest.stock.service.StockService;
 import com.t28.forest.stock.vo.InOutRecordsVO;
@@ -23,14 +23,14 @@ public class StockServiceImpl  implements StockService {
     @Autowired
     private StuotkInquiryDao stuotkInquiryDao;
     @Override
-    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, Condition condition) {
-        page.calaTotalPage(stuotkInquiryDao.getAllCount(condition));
-        return stuotkInquiryDao.getAllStuotkInquiry(condition,page);
+    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, MyCondition myCondition) {
+        page.calaTotalPage(stuotkInquiryDao.getAllCount(myCondition));
+        return stuotkInquiryDao.getAllStuotkInquiry(page,myCondition);
     }
 
     @Override
-    public List<InOutRecordsVO> getAllInOutRecords(PageVO page, Condition condition) {
-        page.calaTotalPage(stuotkInquiryDao.getCountInOutRecords(condition));
-        return stuotkInquiryDao.getAllInOutRecords(condition,page);
+    public List<InOutRecordsVO> getAllInOutRecords(PageVO page, MyCondition myCondition) {
+        page.calaTotalPage(stuotkInquiryDao.getCountInOutRecords(myCondition));
+        return stuotkInquiryDao.getAllInOutRecords(page,myCondition);
     }
 }

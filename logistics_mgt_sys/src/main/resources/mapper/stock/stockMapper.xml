@@ -39,12 +39,12 @@
           t1.JC_ORGANIZATION_ID=t5.ID
           LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
           t1.ID=t6.JC_LED_ID
-          WHERE
-          t4.TYPE=#{condition.type}
-          AND t5.ID=#{condition.id}
+          where
+          t4.TYPE=#{myCondition.type}
+          AND t5.ID=#{myCondition.id}
           AND t2.STATUS=5
-          GROUP BY
-          t2.CODE LIMIT #{page.start},#{page.size};
+          GROUP BY t2.CODE
+           LIMIT #{pageVO.start} , #{pageVO.size};
     </select>
     <!-- 查询总条数 -->
     <select id="getAllCount" resultType="Integer" >
@@ -60,8 +60,8 @@
         LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
         t1.ID=t6.JC_LED_ID
         WHERE
-        t4.TYPE=#{condition.type}
-        AND t5.ID=#{condition.id}
+        t4.TYPE=#{myCondition.type}
+        AND t5.ID=#{myCondition.id}
         AND t2.STATUS=5;
     </select>
     <!-- 出入库页面显示  -->
@@ -90,9 +90,9 @@
         ON t1.JC_LED_ID=t4.ID
         WHERE
         t1.STATUS=1
-        AND t2.ID=#{condition.id}
+        AND t2.ID=#{myCondition.id}
         ORDER BY t1.CREATE_TIME
-        DESC LIMIT #{page.start},#{page.size};
+        DESC LIMIT #{pageVO.start},#{pageVO.size};
     </select>
     <!-- 查询出入库数据总条数  -->
     <select id="getCountInOutRecords" resultType="Integer">
@@ -104,6 +104,6 @@
         LEFT OUTER JOIN JC_LED t4
         ON t1.JC_LED_ID=t4.ID
         WHERE t1.STATUS=1
-        AND t2.ID=#{condition.id};
+        AND t2.ID=#{myCondition.id};
     </select>
 </mapper>

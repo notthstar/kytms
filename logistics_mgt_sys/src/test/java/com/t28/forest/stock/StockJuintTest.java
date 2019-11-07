@@ -6,7 +6,8 @@
  */
 package com.t28.forest.stock;
 
-import com.t28.forest.stock.condition.Condition;
+import com.t28.forest.core.vo.PageVO;
+import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.dao.StuotkInquiryDao;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
@@ -31,10 +32,13 @@ public class StockJuintTest {
      */
     @Test
     public void select(){
-        Condition condition=new Condition();
-        condition.setId("402881a36710579c016710c4e2fb0230");
-        condition.setType(0);
-        List<StockInquiryVO> allStuotkInquiry = stuotkInquiryDao.getAllStuotkInquiry(condition);
+        MyCondition myCondition=new MyCondition();
+        myCondition.setId("402881a36710579c016710c4e2fb0230");
+        myCondition.setType(1);
+        PageVO pageVO = new PageVO();
+        pageVO.setCurrent(1);
+        pageVO.setSize(1);
+        List<StockInquiryVO> allStuotkInquiry = stuotkInquiryDao.getAllStuotkInquiry(pageVO,myCondition);
         for (StockInquiryVO stockInquiryDTO : allStuotkInquiry) {
             System.out.println(stockInquiryDTO);
         }
@@ -49,27 +53,27 @@ public class StockJuintTest {
      */
     @Test
     public void selectcount(){
-        Condition condition=new Condition();
-        condition.setId("402881a36710579c016710c4e2fb0230");
-        condition.setType(0);
-        Integer allCount = stuotkInquiryDao.getAllCount(condition);
+        MyCondition myCondition=new MyCondition();
+        myCondition.setId("402881a36710579c016710c4e2fb0230");
+        myCondition.setType(0);
+        Integer allCount = stuotkInquiryDao.getAllCount(myCondition);
         System.out.println(allCount);
     }
 
     @Test
     public void  selectInout(){
-        Condition condition=new Condition();
-        condition.setId("402881a36710579c016710c4e2fb0230");
-        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(condition);
+        MyCondition myCondition=new MyCondition();
+        myCondition.setId("402881a36710579c016710c4e2fb0230");
+        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(new PageVO(1,3),myCondition);
         for (InOutRecordsVO allInOutRecord : allInOutRecords) {
             System.out.println(allInOutRecord);
         }
     }
     @Test
     public void selectCount(){
-        Condition condition=new Condition();
-        condition.setId("402881a36710579c016710c4e2fb0230");
-        Integer countInOutRecords = stuotkInquiryDao.getCountInOutRecords(condition);
+        MyCondition myCondition=new MyCondition();
+        myCondition.setId("402881a36710579c016710c4e2fb0230");
+        Integer countInOutRecords = stuotkInquiryDao.getCountInOutRecords(myCondition);
         System.out.println(countInOutRecords);
     }
 }

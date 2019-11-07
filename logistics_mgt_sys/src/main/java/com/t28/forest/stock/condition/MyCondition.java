@@ -6,7 +6,7 @@
  */
 package com.t28.forest.stock.condition;
 
-public class Condition {
+public class MyCondition {
      private Integer type;
      private String  id;
 
@@ -28,7 +28,7 @@ public class Condition {
 
     @Override
     public String toString() {
-        return "Condition{" +
+        return "MyCondition{" +
                 "type=" + type +
                 ", id='" + id + '\'' +
                 '}';
