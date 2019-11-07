@@ -1,3 +1,12 @@
+# tomcat端口配置
+server:
+  port: 8085
+  tomcat:
+    # 配置Tomcat编码,默认为UTF-8
+    uri-encoding: UTF-8
+    # 配置最大线程数
+    max-threads: 1000
+
 # 数据源基本配置
 spring:
   datasource:
@@ -8,11 +17,11 @@ spring:
   mvc:
     view:
       suffix: .jsp
+      prefix: /
 
 # mybatis 映射文件位置配置
 mybatis:
   mapper-locations: classpath*:mapper/*/*.xml
-  type-aliases-package: com.t28.forest
 
 # 日志输出级别
 logging:
