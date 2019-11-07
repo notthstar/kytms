@@ -3,45 +3,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace指用户自定义的命名空间 -->
-<mapper namespace="com.t28.forest.order.dao.OrderDao">
-
+    <mapper namespace="com.t28.forest.order.dao.OrderDao">
     <select id="planned" resultType="com.t28.forest.order.vo.Presco">
         select
-        presco0_.ID as col_0_0_,
-        organizati1_.NAME as col_1_0_,
-        presco0_.STATUS as col_2_0_,
-        zone4_.NAME as col_3_0_,
-        presco0_.FH_NAME as col_4_0_,
-        presco0_.FH_ADDRESS as col_5_0_,
-        presco0_.WEIGHT as col_6_0_,
-        presco0_.NUMBER as col_7_0_,
-        presco0_.VOLUME as col_8_0_,
-        presco0_.FH_PERSON as col_9_0_,
-        presco0_.FH_IPHONE as col_10_0_,
-        presco0_.CODE as col_11_0_,
-        presco0_.COSTOMER_TPYE as col_12_0_,
-        presco0_.RELATEBILL1 as col_13_0_,
-        presco0_.DATE_ACCEPTED as col_14_0_,
-        presco0_.SH_NAME as col_15_0_,
-        presco0_.SH_PERSON as col_16_0_,
-        presco0_.SH_IPHONE as col_17_0_,
-        presco0_.SH_ADDRESS as col_18_0_,
-        presco0_.DESCRIPTION as col_19_0_,
-        presco0_.CREATE_NAME as col_20_0_,
-        presco0_.CREATE_TIME as col_21_0_,
-        presco0_.MODIFY_NAME as col_22_0_,
-        presco0_.MODIFY_TIME as col_23_0_,
-        presco0_.STATUS as col_24_0_
+        presco0_.ID as id,
+        organizati1_.NAME as organizatilName,
+        presco0_.STATUS as status,
+        zone4_.NAME as zoneName,
+        presco0_.FH_NAME as fhName,
+        presco0_.FH_ADDRESS as fhAddress,
+        presco0_.WEIGHT as weight,
+        presco0_.NUMBER as number,
+        presco0_.VOLUME as volume,
+        presco0_.FH_PERSON as fhPerson,
+        presco0_.FH_IPHONE as fhIphone,
+        presco0_.CODE as code,
+        presco0_.COSTOMER_TPYE as costomerTpye,
+        presco0_.RELATEBILL1 as relatebill1,
+        presco0_.DATE_ACCEPTED as dateAccepted,
+        presco0_.SH_NAME as shName,
+        presco0_.SH_PERSON as shPerson,
+        presco0_.SH_IPHONE as shIphone,
+        presco0_.SH_ADDRESS as shAddress,
+        presco0_.DESCRIPTION as description,
+        presco0_.CREATE_NAME as createName,
+        presco0_.CREATE_TIME as createTime,
+        presco0_.MODIFY_NAME as modifyName,
+        presco0_.MODIFY_TIME as modifyTime
         from JC_PRESCO presco0_
         left outer join JC_SYS_ORGANIZATION organizati1_ on presco0_.JC_ORGANIZATION_ID=organizati1_.ID
         left outer join JC_SERVER_ZONE serverzone3_ on presco0_.JC_SERVER_ZONE_ID=serverzone3_.ID
         left outer join JC_ZONE zone4_ on serverzone3_.JC_ZONE_ID=zone4_.ID
         where 1=1
         and organizati1_.ID='402881a36710579c016710c4e2fb0230'
-        and presco0_.STATUS != 99 and presco0_.STATUS != 100 order by presco0_.CREATE_TIME desc limit 5
+        and presco0_.STATUS != 99
         <if test="rc!=null">
-            and #{rc} = '%${input}%'
+            and presco0_.${rc} LIKE '%${input}%'
         </if>
+        order by presco0_.CREATE_TIME desc limit 5
     </select>
 
     <select id="orders" resultType="com.t28.forest.order.vo.Order">
@@ -96,13 +95,12 @@
         and order0_.STATUS!=0
         and order0_.STATUS!=99
         <if test="rc!=null">
-            and #{rc} = '%${input}%'
+            and order0_.${rc} like '%${input}%'
         </if>
         group by led0_.ID , ledproduct4_.FIELD3
         order by led0_.CREATE_TIME
         desc limit 5
     </select>
-
 
     <select id="leds" resultType="com.t28.forest.order.vo.Led">
         select
@@ -140,7 +138,7 @@
         and ledreceivi3_.TYPE=0
         and organizati2_.ID='402881a36710579c016710c4e2fb0230'
         <if test="rc!=null">
-            and #{rc} = '%${input}%'
+            and led0_.${rc} like '%${input}%'
         </if>
         group by led0_.ID , ledproduct4_.FIELD3
         order by led0_.CREATE_TIME
@@ -184,7 +182,7 @@
         and ledreceivi8_.TYPE=0
         and organizati5_.ID='402881a36710579c016710c4e2fb0230'
         <if test="rc!=null">
-            and #{rc} = '%${input}%'
+            and led0_.${rc} like '%\${input}%'
         </if>
         and (led0_.`STATUS` in (1,25)) LIMIT 5
     </select>
@@ -244,7 +242,7 @@
         where 1=1
         and organizati2_.ID='402881a36710579c016710c4e2fb0230'
         <if test="rc!=null">
-            and #{rc} = '%${input}%'
+            and order1_.${rc} like '%${input}%'
         </if>
         group by order1_.ID limit 6
     </select>
