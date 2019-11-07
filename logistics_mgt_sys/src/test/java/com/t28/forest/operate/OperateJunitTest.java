@@ -40,12 +40,12 @@ public class OperateJunitTest {
 //        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
         condition.setName("organizati2_.NAME");
         condition.setValues(new Object[]{"广州"});
-        Integer count = shipmentDao.findShipmentCount(condition);
-        System.out.println(count);
-//        List<ShipmentVO> shipments = shipmentDao.findShipmentsByPage(new PageVO(1, 4), condition);
-//        for (ShipmentVO shipment : shipments) {
-//            System.out.println(shipment);
-//        }
+//        Integer count = shipmentDao.findShipmentCount(condition);
+//        System.out.println(count);
+        List<ShipmentVO> shipments = shipmentDao.findShipmentsByPage(new PageVO(1, 4), condition);
+        for (ShipmentVO shipment : shipments) {
+            System.out.println(shipment);
+        }
     }
 
     @Autowired

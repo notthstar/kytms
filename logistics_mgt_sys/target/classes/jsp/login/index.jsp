@@ -165,7 +165,7 @@
             var username = $.trim($("#username").val());
             var password = $.trim($("#password").val());
             $.ajax({
-                url: contentPath + "login/login.action",
+                url: contentPath + "/user/login",
                 data: { code: $.trim(username), password:  $.md5($.trim(password))},
                 type: "post",
                 dataType: "JSON",
