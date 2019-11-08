@@ -25,7 +25,7 @@ public class OrderController {
     public String OrderSelect(Model model){
         List<Presco> plan = service.getPlan(null,null);
         model.addAttribute("plan",plan);
-       return "retailmanagement/storage";
+       return "Order/PrescoIndex";
     }
 
 

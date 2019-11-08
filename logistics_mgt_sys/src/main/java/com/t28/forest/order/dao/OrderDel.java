@@ -32,6 +32,15 @@ public interface OrderDel {
      * @Date: 2019/11/5 9:37
      */
     void deleteSFh(@Param("id") String id);
-
+    
+    /**
+     * 功能描述: 删除订单管理
+     * @param: No such property: code for class: Script1
+     * @return: 
+     * @since: 1.0.0
+     * @Author: lcy
+     * @Date: 2019/11/7 22:24
+     */
+    void deleteBill(@Param("id") String id);
 
 }

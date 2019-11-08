@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace指用户自定义的命名空间 -->
+<mapper namespace="com.t28.forest.order.dao.BillAdd">
+    
+    <select id="selectZone" resultType="com.t28.forest.order.vo.ServerZone">
+      select
+      serverzone0_.ID as id, organizati1_.NAME as organizatilName, zone2_.NAME as zoneName,
+			serverzone0_.TYPE as serverType, serverzone0_.MILEAGE as serverMileage, serverzone0_.MIN_MONEY as minMoney,
+			serverzone0_.SONG_HF as serverSong, serverzone0_.WEIGHT_PRICES as serverWeight,
+			serverzone0_.VOLUME_PRICES as serverVolume, 1 as col_9_0_, serverzone0_.CREATE_NAME as createName,
+			serverzone0_.CREATE_TIME as createTime, serverzone0_.MODIFY_NAME as modifyName,
+			serverzone0_.MODIFY_TIME as modifyTime, serverzone0_.STATUS as status
+			from JC_SERVER_ZONE serverzone0_
+			left outer join JC_SYS_ORGANIZATION organizati1_ on serverzone0_.JC_ORGANIZATION_ID=organizati1_.ID
+			left outer join JC_ZONE zone2_ on serverzone0_.JC_ZONE_ID=zone2_.ID
+			where 1=1
+			and organizati1_.ID='402881a36710579c016710c4e2fb0230'
+			order by serverzone0_.CREATE_TIME desc limit 5
+    </select>
+</mapper>

@@ -8,9 +8,12 @@ package com.t28.forest.order.dao;
 
 import com.t28.forest.core.entity.JcPresco;
 import com.t28.forest.core.entity.JcReceivingparty;
+import com.t28.forest.order.vo.ServerZone;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Mapper
 @Component

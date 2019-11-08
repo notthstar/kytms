@@ -11,4 +11,8 @@
     <delete id="deleteSFh">
        UPDATE jc_receivingparty set `STATUS` = 99 where id = #{id};
     </delete>
+
+    <delete id="deleteBill">
+        UPDATE jc_order SET `STATUS`=0 WHERE ID = #{id};
+    </delete>
 </mapper>
