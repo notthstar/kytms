@@ -1,6 +1,4 @@
 package com.t28.forest.core.cond;
-
-
 /**
  * @author XiangYuFeng
  * @description 查询条件封装

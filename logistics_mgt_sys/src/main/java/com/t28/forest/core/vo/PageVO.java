@@ -37,7 +37,7 @@ public class PageVO {
     }
 
     /**
-     * 获取开始列信息，mybatis的属性映射是通过getxxx方法进行匹配的
+     * 获取开始列信息，mybatis的属性映射是通过gx方法进etxx行匹配的
      * 所有可以直接在Mapper文件中#{start}方式引用
      * @return Integer
      */
