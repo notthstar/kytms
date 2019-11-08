@@ -166,12 +166,12 @@
             var password = $.trim($("#password").val());
             $.ajax({
                 url: contentPath + "/user/login",
-                data: { code: $.trim(username), password:  $.md5($.trim(password))},
+                data: { code: $.trim(username), password:  $.trim(password)},
                 type: "post",
                 dataType: "JSON",
                 success: function (data) {
                     if (data.type) {
-                        window.location.href = contentPath + 'jsp/home/adminDefault.jsp';
+                        window.location.href = '/jsp/home/adminDefault.jsp';
                     }
                     else{
                         alert(data.obj, 0)

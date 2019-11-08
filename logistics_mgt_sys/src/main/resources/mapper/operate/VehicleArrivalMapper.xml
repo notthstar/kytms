@@ -19,7 +19,7 @@
             and berthstand7_.IS_ARRIVE=0)
             and (shipment0_.STATUS in (4 , 6 , 7))
             <if test="null != condition">
-                AND (organizati4_.ID=#{condition.id} or (#{condition.id} in (organizati8_.ID))
+                AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -52,7 +52,7 @@
             and berthstand7_.IS_ARRIVE=0)
             and (shipment0_.STATUS in (4 , 6 , 7))
             <if test="null != condition">
-                AND (organizati4_.ID=#{condition.id} or (#{condition.id} in (organizati8_.ID))
+                AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">

@@ -1,6 +1,8 @@
 package com.t28.forest.user.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.t28.forest.core.entity.SysUser;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.user.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,9 @@ public class UserController {
         SysUser user = userService.login(sysUser.getCode(), DigestUtils.md5Hex(sysUser.getPassword()));
 
         if (Objects.isNull(user) || Objects.isNull(user.getId())) {
-            return "{\"status\":\"fail\"}";
+            return SimpleUtils.objectToJSON("fail");
         }
-        return user.toString();
+        return SimpleUtils.objectToJSON(user);
     }
 
 }

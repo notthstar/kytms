@@ -87,9 +87,9 @@
         }
     }
     function GetGrid() {
-        var url="/single/getSingleList.action"
+        var url="/dispatch/show"
         if(status !=null && status != undefined && status != ""){
-            url="/single/getSingleList.action?status=20"
+            url="/dispatch/show?status=20"
         }
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
@@ -100,10 +100,11 @@
             autowidth: true,
             colModel: [
                 {label: '主键', name: 'id', hidden: true},
-                {label: '隐藏状态', name: 'statusValue', hidden: true,
-                    formatter: function (cellvalue, options, rowObject) {
-                        return rowObject[1]
-                    }},
+                {label: '隐藏状态', name: 'status', hidden: true
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return rowObject[1]
+                    // }
+                    },
                 {label: '单号', name: 'code', width: 200, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
                         if(rowObject[23] ==1){
@@ -113,17 +114,18 @@
                         }
 
                     }},
-                {label: '计划时间', name: 'dateBilling', width: 80, align: 'center',
+                {label: '计划时间', name: 'dateBill', width: 80, align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '当前状态', name: 'status', width: 80, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.TPDZT['' + cellvalue + '']
-                    }},
+                {label: '当前状态', name: 'status', width: 80, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.TPDZT['' + cellvalue + '']
+                    // }
+                    },
                 {label: '件数', name: 'number', width: 80, align: 'center'},
                 {label: '重量', name: 'weight', width: 80, align: 'center'},
                 {label: '体积', name: 'volume', width: 80, align: 'center'},
@@ -132,7 +134,7 @@
                     formatter: function (cellvalue, options, rowObject) {
                         return top.clientdataItem.Cytp['' + cellvalue + '']
                     }},
-                {label: '承运商', name: 'carrier.name', width: 150, align: 'center'},
+                {label: '承运商', name: 'name', width: 150, align: 'center'},
                 {label: '承运商是否超期', name: 'isOverdueCarrier', width: 70, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
                             if(cellvalue ==1){
@@ -142,19 +144,20 @@
                             }
 
                 }},
-                {label: '车型', name: 'vehicle.code', width: 70, align: 'center'},
+                {label: '车型', name: 'vCode1', width: 70, align: 'center'},
                 {label: '车牌号', name: 'vehicleHead', width: 70, align: 'center'},
                 {label: '司机姓名', name: 'driver', width: 70, align: 'center'},
                 {label: '司机电话', name: 'driverIphone', width: 110, align: 'center'},
 //                {label: '临时车牌号', name: 'vehicleHeadTemporary', width: 150, align: 'center'},
 //                {label: '临时司机姓名', name: 'driverTemporary', width: 150, align: 'center'},
 //                {label: '临时司机电话', name: 'driverIphoneTemporary', width: 150, align: 'center'},
-                {label: '重泡比', name: 'reBubbleRatio', width: 80, align: 'center'},
-                {label: '代收代付', name: 'height', width: 80, align: 'center'},
-                {label: '结算方式', name: 'accountType', width: 80, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.Clearing['' + cellvalue + '']
-                    }},
+                {label: '重泡比', name: 'rebubbleRatio', width: 80, align: 'center'},
+                {label: '代收代付', name: 'agent', width: 80, align: 'center'},
+                {label: '结算方式', name: 'accountType', width: 80, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.Clearing['' + cellvalue + '']
+                    // }
+                    },
                 {label: '实际出发时间', name: 'planStartTime', width: 90, align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
@@ -187,16 +190,16 @@
                     formatter: function (cellvalue, options, rowObject) {
                         return top.clientdataItem.CommIsNot['' + cellvalue + '']
                     }},
-                {label: '创建人', name: 'create_Name', width: 120,align: 'center'},
-                {label: '创建时间', name: 'create_Time',type:"date", width: 150,align: 'center',
+                {label: '创建人', name: 'createName', width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime',type:"date", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'modify_Name', width: 120,align: 'center'},
-                {label: '修改时间', name: 'modify_Time',type:"date", width: 150,align: 'center',
+                {label: '修改人', name: 'modifyName', width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime',type:"date", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";

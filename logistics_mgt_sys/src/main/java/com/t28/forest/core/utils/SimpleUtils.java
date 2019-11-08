@@ -1,6 +1,9 @@
 package com.t28.forest.core.utils;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import java.lang.reflect.Field;
 import java.util.Objects;
 
@@ -29,6 +32,7 @@ public class SimpleUtils {
      * @param obj
      * @return String
      */
+    @Deprecated
     public static final String ObjectToJson(Object obj) throws IllegalAccessException {
         if (Objects.isNull(obj)) {return null;}
 
@@ -49,6 +53,15 @@ public class SimpleUtils {
         String json = appendJson.substring(0, appendJson.lastIndexOf(","));
         json += "}";
         return json;
+    }
+
+    /**
+     * Object转JSON方法
+     * @param object
+     * @return String
+     */
+    public static String objectToJSON(Object object) {
+        return JSONObject.toJSONString(object, SerializerFeature.DisableCircularReferenceDetect);
     }
 
 }

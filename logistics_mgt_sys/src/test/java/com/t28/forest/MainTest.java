@@ -30,8 +30,11 @@ public class MainTest {
 
     @Test
     public void userTest() {
-        SysUser user = userService.login("test", DigestUtils.md5Hex("123456"));
-        System.out.println(user);
+//        SysUser user = userService.login("test", DigestUtils.md5Hex("123456"));
+//        System.out.println(user);
+
+        String fail = SimpleUtils.objectToJSON(new SysUser());
+        System.out.println(fail);
     }
 
 }

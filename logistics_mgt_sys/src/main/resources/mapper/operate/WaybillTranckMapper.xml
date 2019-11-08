@@ -19,7 +19,7 @@
             and shipment0_.STATUS != 0
             and shipment0_.STATUS != 99
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
+                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -35,7 +35,9 @@
         group by shipment0_.ID order by shipment0_.CREATE_TIME desc limit #{page.start},#{page.size};
     </select>
 
-    <!--运单跟踪数据条数查询-->
+    <!--运单跟踪数据条数查询
+    AND organizati2_.ID=#{condition.id}
+    -->
     <select id="findWayBillCount" resultType="Integer">
         select COUNT(1)
         from JC_SHIPMENT shipment0_
@@ -51,7 +53,7 @@
             and shipment0_.STATUS != 0
             and shipment0_.STATUS != 99
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
+                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">

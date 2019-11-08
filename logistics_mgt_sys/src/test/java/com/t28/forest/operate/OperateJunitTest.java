@@ -38,8 +38,8 @@ public class OperateJunitTest {
         Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
 //        condition.setName("shipment0_.TIME");
 //        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
-        condition.setName("organizati2_.NAME");
-        condition.setValues(new Object[]{"广州"});
+//        condition.setName("organizati2_.NAME");
+//        condition.setValues(new Object[]{"广州"});
 //        Integer count = shipmentDao.findShipmentCount(condition);
 //        System.out.println(count);
         List<ShipmentVO> shipments = shipmentDao.findShipmentsByPage(new PageVO(1, 4), condition);
@@ -54,8 +54,8 @@ public class OperateJunitTest {
     @Test
     public void findDispatchTest() {
         Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
-        condition.setName("organizati2_.NAME");
-        condition.setValues(new Object[]{"广州"});
+//        condition.setName("organizati2_.NAME");
+//        condition.setValues(new Object[]{"广州"});
         Integer count = dispatchDao.findDispatchCount(condition);
         System.out.println(count);
     }

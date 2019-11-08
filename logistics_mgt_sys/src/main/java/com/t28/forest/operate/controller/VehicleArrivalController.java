@@ -4,8 +4,8 @@ import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.model.CommModel;
 import com.t28.forest.core.model.JgGridListModel;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.operate.service.ShipmentService;
-import com.t28.forest.operate.vo.ShipmentVO;
+import com.t28.forest.operate.service.VehicleArrivalService;
+import com.t28.forest.operate.vo.VehicleArrivalVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,23 +15,22 @@ import java.util.List;
 
 /**
  * @author XiangYuFeng
- * @description 运单控制类
- * @create 2019/11/4
+ * @description 车辆到站控制层
+ * @create 2019/11/8
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/shipment")
-public class ShipmentController {
+@RequestMapping("/vehicle")
+public class VehicleArrivalController {
 
     @Autowired
-    ShipmentService shipmentService;
+    VehicleArrivalService vehicleArrivalService;
 
     @RequestMapping("/show")
     @ResponseBody
-    public String getShipments(CommModel model) {
-        List<ShipmentVO> shipments = shipmentService.getShipmentsByPage(new PageVO(1, 5), new Condition());
-        JgGridListModel jgGridListModel = new JgGridListModel();
-        jgGridListModel.setRows(shipments);
+    public String getVehicleArrivals(CommModel model) {
+        List<VehicleArrivalVO> arrivals = vehicleArrivalService.getVehicleArrivalsByPage(new PageVO(1, 5), new Condition());
+        JgGridListModel jgGridListModel = new JgGridListModel(arrivals);
         return jgGridListModel.toJSONString();
     }
 
