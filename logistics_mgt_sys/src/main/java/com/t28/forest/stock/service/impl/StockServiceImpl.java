@@ -15,22 +15,28 @@ import com.t28.forest.stock.service.StockService;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class StockServiceImpl  implements StockService {
 
     @Autowired
     private StuotkInquiryDao stuotkInquiryDao;
     @Override
     public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, MyCondition myCondition) {
-        page.calaTotalPage(stuotkInquiryDao.getAllCount(myCondition));
+        MyCondition myCondition1=new MyCondition();
+        myCondition1.setId("402881a36710579c016710c4e2fb0230");
+        myCondition1.setType(1);
+        page.calaTotalPage(stuotkInquiryDao.getAllCount(myCondition1));
         return stuotkInquiryDao.getAllStuotkInquiry(page,myCondition);
     }
 
     @Override
-    public List<InOutRecordsVO> getAllInOutRecords(PageVO page, MyCondition myCondition) {
+    public List<InOutRecordsVO> getAllInOutRecords(PageVO page) {
+        MyCondition myCondition=new MyCondition();
+        myCondition.setId("402881a36710579c016710c4e2fb0230");
         page.calaTotalPage(stuotkInquiryDao.getCountInOutRecords(myCondition));
-        return stuotkInquiryDao.getAllInOutRecords(page,myCondition);
+        return stuotkInquiryDao.getAllInOutRecords(page);
     }
 }

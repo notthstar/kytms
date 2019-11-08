@@ -9,6 +9,15 @@ package com.t28.forest.stock.condition;
 public class MyCondition {
      private Integer type;
      private String  id;
+     private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getType() {
         return type;
@@ -31,6 +40,7 @@ public class MyCondition {
         return "MyCondition{" +
                 "type=" + type +
                 ", id='" + id + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

@@ -6,6 +6,9 @@
  */
 package com.t28.forest.stock.vo;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import java.util.Date;
 
 public class StockInquiryVO {
@@ -314,4 +317,5 @@ public class StockInquiryVO {
                 ", modifyTime=" + modifyTime +
                 '}';
     }
+
 }

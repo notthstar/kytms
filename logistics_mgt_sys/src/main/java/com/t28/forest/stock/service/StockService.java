@@ -34,6 +34,6 @@ public interface StockService {
      * @Author: HF
      * @Date:
      */
-    public List<InOutRecordsVO> getAllInOutRecords(PageVO page, MyCondition myCondition);
+    public List<InOutRecordsVO> getAllInOutRecords(PageVO page);
 }
 
