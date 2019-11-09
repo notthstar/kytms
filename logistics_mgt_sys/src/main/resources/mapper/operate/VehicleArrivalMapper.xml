@@ -16,10 +16,10 @@
         left outer join JC_BERTH_STAND berthstand7_ on shipment0_.ID=berthstand7_.JC_SHIPMENT_ID
         left outer join JC_SYS_ORGANIZATION organizati8_ on berthstand7_.JC_ORGANIZATION_ID=organizati8_.ID
         <where>
-            and berthstand7_.IS_ARRIVE=0)
-            and (shipment0_.STATUS in (4 , 6 , 7))
+            AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
+            and (berthstand7_.IS_ARRIVE=0)
+            and (shipment0_.STATUS in (4,6,7)))
             <if test="null != condition">
-                AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -49,10 +49,10 @@
         left outer join JC_BERTH_STAND berthstand7_ on shipment0_.ID=berthstand7_.JC_SHIPMENT_ID
         left outer join JC_SYS_ORGANIZATION organizati8_ on berthstand7_.JC_ORGANIZATION_ID=organizati8_.ID
         <where>
-            and berthstand7_.IS_ARRIVE=0)
-            and (shipment0_.STATUS in (4 , 6 , 7))
+            AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
+            and (berthstand7_.IS_ARRIVE=0)
+            and (shipment0_.STATUS in (4 , 6 , 7)))
             <if test="null != condition">
-                AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -66,5 +66,7 @@
             </if>
         </where>;
     </select>
+                   <!--AND (organizati4_.ID='402881a36710579c016710c4e2fb0230' or ('402881a36710579c016710c4e2fb0230' in (organizati8_.ID))-->
+
 
 </mapper>

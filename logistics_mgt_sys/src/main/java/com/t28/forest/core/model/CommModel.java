@@ -2,6 +2,8 @@ package com.t28.forest.core.model;
 
 import org.apache.log4j.Logger;
 
+import java.util.Objects;
+
 
 public class CommModel {
     /**ID*/
@@ -50,6 +52,9 @@ public class CommModel {
     }
 
     public int getPage() {
+        if (Objects.isNull(page) || page < 0) {
+            return 1;
+        }
         return page;
     }
 

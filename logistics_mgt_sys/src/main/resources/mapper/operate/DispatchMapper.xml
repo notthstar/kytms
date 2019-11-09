@@ -13,8 +13,8 @@
         LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ on single0_.JC_ORGANIZATION_ID=organizati2_.ID
         LEFT OUTER JOIN JC_VEHICLE vehicle3_ on single0_.JC_VEHICLE_ID=vehicle3_.ID
         <where>
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -29,6 +29,8 @@
         </where>
         ORDER BY single0_.CREATE_TIME DESC LIMIT #{page.start},#{page.size};
     </select>
+     <!--AND organizati2_.ID='402881a36710579c016710c4e2fb0230'-->
+
 
     <!--查询派车单数据条数-->
     <select id="findDispatchCount" resultType="Integer">
@@ -38,8 +40,8 @@
         LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ on single0_.JC_ORGANIZATION_ID=organizati2_.ID
         LEFT OUTER JOIN JC_VEHICLE vehicle3_ on single0_.JC_VEHICLE_ID=vehicle3_.ID
         <where>
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">

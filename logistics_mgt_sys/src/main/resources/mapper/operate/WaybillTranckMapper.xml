@@ -18,8 +18,8 @@
         <where>
             and shipment0_.STATUS != 0
             and shipment0_.STATUS != 99
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -52,8 +52,8 @@
         <where>
             and shipment0_.STATUS != 0
             and shipment0_.STATUS != 99
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -67,5 +67,6 @@
             </if>
         </where>;
     </select>
+    <!--AND organizati2_.ID='402881a36710579c016710c4e2fb0230'-->
 
 </mapper>
