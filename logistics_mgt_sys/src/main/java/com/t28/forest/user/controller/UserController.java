@@ -2,6 +2,7 @@ package com.t28.forest.user.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.t28.forest.core.entity.SysUser;
+import com.t28.forest.core.model.ReturnInfoModel;
 import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.user.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -31,9 +33,11 @@ public class UserController {
         SysUser user = userService.login(sysUser.getCode(), DigestUtils.md5Hex(sysUser.getPassword()));
 
         if (Objects.isNull(user) || Objects.isNull(user.getId())) {
-            return SimpleUtils.objectToJSON("fail");
+            HashMap<String, Object> map = new HashMap<String, Object>(2);
+            map.put("msg", "用户名或密码错误");
+            return SimpleUtils.objectToJSON(map);
         }
-        return SimpleUtils.objectToJSON(user);
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(user));
     }
 
 }

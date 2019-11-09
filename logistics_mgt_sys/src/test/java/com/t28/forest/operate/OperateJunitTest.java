@@ -1,6 +1,7 @@
 package com.t28.forest.operate;
 
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.dao.DispatchOrderDao;
 import com.t28.forest.operate.dao.ShipmentDao;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author XiangYuFeng
@@ -66,13 +69,18 @@ public class OperateJunitTest {
 
     @Test
     public void findWayBillTest() {
-        Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
-//        condition.setName("time");
-//        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
-        condition.setName("organizati2_.NAME");
-        condition.setValues(new Object[]{"广州"});
-        Integer count = waybillTrackDao.findWayBillCount(condition);
-        System.out.println(count);
+        Map<String,Object> map = new HashMap<>();
+        map.put("msg", "aa");
+        Object obj = map;
+        String s = SimpleUtils.objectToJSON(obj);
+        System.out.println(s);
+//        Condition condition = new Condition("402881a36710579c016710c4e2fb0230");
+////        condition.setName("time");
+////        condition.setValues(new Object[]{"2019-01-11", "2019-12-12"});
+//        condition.setName("organizati2_.NAME");
+//        condition.setValues(new Object[]{"广州"});
+//        Integer count = waybillTrackDao.findWayBillCount(condition);
+//        System.out.println(count);
     }
 
 }
