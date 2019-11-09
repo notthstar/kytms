@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="col col-md-12">
+    <div class="col col-md-12" style="margin-top: 80px;">
         <table class="table table-bordered">
             <tr>
                 <td><a href="/jsp/Shipment/ShipmentIndex.jsp">运单管理</a></td>

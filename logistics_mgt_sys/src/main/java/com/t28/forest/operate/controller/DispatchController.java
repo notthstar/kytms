@@ -30,8 +30,7 @@ public class DispatchController {
     @ResponseBody
     public String getDispatchs(CommModel model) {
         List<DispatchVO> dispatchs = dispatchOrderService.getDispatchsByPage(new PageVO(1, 5), new Condition());
-        JgGridListModel jgGridListModel = new JgGridListModel();
-        jgGridListModel.setRows(dispatchs);
+        JgGridListModel jgGridListModel = new JgGridListModel(dispatchs);
         return jgGridListModel.toJSONString();
     }
 
