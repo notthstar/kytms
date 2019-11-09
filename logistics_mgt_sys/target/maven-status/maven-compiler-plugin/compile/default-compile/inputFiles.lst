@@ -53,6 +53,7 @@ D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\operate\controller\ArrivalVehicleRecordController.java
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\operate\service\impl\DispatchOrderServiceImpl.java
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\order\controller\OrderController.java
+D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\core\model\ReturnInfoModel.java
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\order\service\OrderService.java
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\order\dao\OrderDel.java
 D:\Object\idea_object\item-project\kytms\logistics_mgt_sys\src\main\java\com\t28\forest\operate\service\impl\VehicleArrivalServiceImpl.java
