@@ -94,7 +94,7 @@
                 postData: {
 //                    whereName: "a.status",
 //                    whereValue:"2",
-                    id:"operational"
+                    id:"2"
                 },
                 page: 1
             }).trigger('reloadGrid');
@@ -104,7 +104,7 @@
                 postData: {
 //                    whereName: "a.status",
 //                    whereValue:"9",
-                    id:"since"
+                    id:"9"
                 },
                 page: 1
             }).trigger('reloadGrid');
@@ -114,7 +114,7 @@
                 postData: {
 //                    whereName: "a.status",
 //                    whereValue:"10",
-                    id:"dispatching"
+                    id:"10"
                 },
                 page: 1
             }).trigger('reloadGrid');
@@ -124,7 +124,7 @@
                 postData: {
 //                    whereName: "a.status",
 //                    whereValue:"5",
-                    id:"ransfer"
+                    id:"5"
                 },
                 page: 1
             }).trigger('reloadGrid');
@@ -134,7 +134,7 @@
                 postData: {
 //                    whereName: "a.status",
 //                    whereValue:"12",
-                    id:"tomention"
+                    id:"12"
                 },
                 page: 1
             }).trigger('reloadGrid');
@@ -143,7 +143,7 @@
     }
 
     function GetGrid(){
-        var url = "/showSctock?size=4&id=402881a36710579c016710c4e2fb0230&type=1";
+        var url = "/showSctock";
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
         $gridTable.jqGrid({
@@ -170,27 +170,32 @@
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
                 {label: '客户订单号', selectDefault:true,name: 'relatebill1',index:"a.relatebill1", width: 80,frozen:true, align: 'center'},
-                {label: '客户类型', name: 'costomerType',index:"a.costomerType",  type:"DD&CustomerType",width: 40, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CustomerType['' + cellvalue + '']
-                    }},
+                {label: '客户类型', name: 'costomerType',index:"a.costomerType",  type:"DD&CustomerType",width: 40, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CustomerType['' + cellvalue + '']
+                    // }
+                    },
                 {label: '客户名称', name: 'customerName',index:"c.name", width: 200, align: 'center'},
-                {label: '订单状态', name: 'status',type:"DD&OrderStatus",index:"a.status", width: 40, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OrderStatus['' + cellvalue + '']
-                    }},
-                {label: '是否超期',name :'costomerIsExceed', type:"DD&CommIsNot",index:"a.costomerIsExceed",  width: 40, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
-                {label: '运输性质', name: 'transportPro',type:"DD&TransportPro", width:40,index:"a.transportPro", align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.TransportPro['' + cellvalue + '']
-                    }},
-                {label: '是否回单', name: 'isBack', type:"DD&CommIsNot",index:"a.isBack",width:40, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
+                {label: '订单状态', name: 'status',type:"DD&OrderStatus",index:"a.status", width: 40, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OrderStatus['' + cellvalue + '']
+                    // }
+                    },
+                {label: '是否超期',name :'costomerIsExceed', type:"DD&CommIsNot",index:"a.costomerIsExceed",  width: 40, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
+                {label: '运输性质', name: 'transportPro',type:"DD&TransportPro", width:40,index:"a.transportPro", align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.TransportPro['' + cellvalue + '']
+                    // }
+                    },
+                {label: '是否回单', name: 'isBack', type:"DD&CommIsNot",index:"a.isBack",width:40, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
                 {label: '回单份数', name: 'backNumber', width:40, align: 'center',index:"a.backNumber"},
                 {label: '货名',name:'goodsName',width: 40,index:"f.name",align: 'center'},
                 {label: '件数', name: 'number',index:"a.number", width: 80, align: 'center'},
