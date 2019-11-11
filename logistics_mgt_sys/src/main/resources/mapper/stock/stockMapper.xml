@@ -42,7 +42,7 @@
         where
         t4.TYPE=1
         AND t5.ID='402881a36710579c016710c4e2fb0230'
-        <if test="myCondition.status>=5">
+        <if test="myCondition.status!=0">
             AND t2.STATUS=#{myCondition.status}
         </if>
         GROUP BY t2.CODE
@@ -93,45 +93,6 @@
         WHERE
         t1.STATUS=1
         AND t2.ID='402881a36710579c016710c4e2fb0230'
-        <!--<if test="inOutRecordsVO.distributing!=null">-->
-            <!--AND t2.name=#{inOutRecordsVO.distributing}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.name!=null">-->
-            <!--AND t3.NAME=#{inOutRecordsVO.name}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.code!=null">-->
-            <!--AND t4.CODE=#{inOutRecordsVO.code}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.type!=0">-->
-            <!--AND t1.TYPE=#{inOutRecordsVO.type}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.time!=null">-->
-            <!--AND t1.TIME=#{inOutRecordsVO.time}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.number!=0">-->
-            <!--AND t1.NUMBER=#{inOutRecordsVO.number}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.volume!=0">-->
-            <!--AND t1.VOLUME=#{inOutRecordsVO.volume}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.weight!=0">-->
-            <!--AND t1.WEIGHT=#{inOutRecordsVO.weight}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.description!=null">-->
-            <!--AND t1.DESCRIPTION=#{inOutRecordsVO.description}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.createName!=null">-->
-        <!--AND t1.CREATE_NAME=#{inOutRecordsVO.createName}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.createTime!=null">-->
-            <!--AND t1.CREATE_TIME=#{inOutRecordsVO.createTime}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.modifyName!=null">-->
-            <!--AND t1.MODIFY_NAME=#{inOutRecordsVO.modifyName}-->
-        <!--</if>-->
-        <!--<if test="inOutRecordsVO.modifyTime!=null">-->
-            <!--AND t1.MODIFY_TIME=#{inOutRecordsVO.modifyTime}-->
-        <!--</if>-->
         ORDER BY t1.CREATE_TIME DESC
         LIMIT #{pageVO.start},#{pageVO.size};
     </select>
