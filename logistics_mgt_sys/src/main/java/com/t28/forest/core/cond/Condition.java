@@ -25,6 +25,11 @@ public class Condition {
         this.id = id;
     }
 
+    public Condition(String name, Object[] values) {
+        this.name = name;
+        this.values = values;
+    }
+
     public String getId() {
         return id;
     }

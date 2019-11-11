@@ -3,7 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.t28.forest.operate.dao.DispatchOrderDao">
 
-    <!--查询派车单信息-->
+    <!--查询派车单信息
+                    AND organizati2_.ID=#{condition.id}
+    -->
     <select id="findDispatchByPage" resultType="com.t28.forest.operate.vo.DispatchVO">
         SELECT single0_.ID as 'id', single0_.STATUS as 'status', single0_.CODE as 'code', single0_.DATE_BILLING as 'dateBill', single0_.NUMBER as 'number', single0_.WEIGHT as 'weight', single0_.VOLUME as 'volume', single0_.TO_SEND_INFO as 'toSendInfo', single0_.CARRIER_TYPE as 'carrierType', carrier1_.NAME as 'name', single0_.IS_OVERDUE_CARRIER as 'isOverdueCarrier', vehicle3_.CODE as 'vCode1', single0_.VEHICLE_HEAD as 'vehicleHead', single0_.DRIVER as 'driver', single0_.DRIVER_IPHONE as 'driverIphone', single0_.REBUBBLE_RATIO as 'rebubbleRatio', single0_.AGENT as 'agent', single0_.ACCOUNT_TYPE as 'accountType', single0_.PLAN_START_TIME as 'planStartTime', single0_.PLAN_END_TIME as 'planEndTime', single0_.PLAN_CILCK_START_TIME as 'planCilckStartTime', single0_.PLAN_CILCK_END_TIME as 'planCilckEndTime', single0_.IS_ABNORMAIL as 'isAbnormail', single0_.CREATE_NAME as 'createName', single0_.CREATE_TIME as 'createTime', single0_.MODIFY_NAME as 'modifyName', single0_.MODIFY_TIME as 'modifyTime'
         FROM JC_SINGLE single0_
@@ -11,8 +13,8 @@
         LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ on single0_.JC_ORGANIZATION_ID=organizati2_.ID
         LEFT OUTER JOIN JC_VEHICLE vehicle3_ on single0_.JC_VEHICLE_ID=vehicle3_.ID
         <where>
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -25,8 +27,10 @@
                 </if>
             </if>
         </where>
-        ORDER BY single0_.CREATE_TIME DESC LIMIT #{start},#{size};
+        ORDER BY single0_.CREATE_TIME DESC LIMIT #{page.start},#{page.size};
     </select>
+     <!--AND organizati2_.ID='402881a36710579c016710c4e2fb0230'-->
+
 
     <!--查询派车单数据条数-->
     <select id="findDispatchCount" resultType="Integer">
@@ -36,8 +40,8 @@
         LEFT OUTER JOIN JC_SYS_ORGANIZATION organizati2_ on single0_.JC_ORGANIZATION_ID=organizati2_.ID
         LEFT OUTER JOIN JC_VEHICLE vehicle3_ on single0_.JC_VEHICLE_ID=vehicle3_.ID
         <where>
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">

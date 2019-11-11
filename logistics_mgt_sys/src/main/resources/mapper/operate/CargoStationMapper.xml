@@ -17,8 +17,8 @@
         left outer join JC_LEDGER_DETAIL ledgerdeta8_ on shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
         <where>
             and (shipment0_.STATUS in (5 , 6))
+            and organizati6_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                and organizati6_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -49,8 +49,8 @@
         left outer join JC_LEDGER_DETAIL ledgerdeta8_ on shipment0_.ID=ledgerdeta8_.JC_SHIPMENT_ID
         <where>
             and (shipment0_.STATUS in (5 , 6))
+            and organizati6_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                and organizati6_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -64,5 +64,6 @@
             </if>
         </where>;
     </select>
+    <!--and organizati6_.ID='402881a36710579c016710c4e2fb0230'-->
 
 </mapper>
