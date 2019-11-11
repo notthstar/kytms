@@ -7,7 +7,6 @@
 package com.t28.forest.stock.dao;
 
 
-import com.baomidou.mybatisplus.core.mapper.Mapper;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.vo.InOutRecordsVO;
@@ -19,7 +18,7 @@ import java.util.List;
 @Repository
 public interface StuotkInquiryDao {
    /**
-    * 功能描述: 所有显示页面的查询
+    * 功能描述: 所有在线查询显示页面
     * @param:
     * @return:// STOPSHIP:
     * @since: 1.0.0
@@ -27,7 +26,6 @@ public interface StuotkInquiryDao {
     * @Date:   2019/10/29
     */
     public List<StockInquiryVO> getAllStuotkInquiry(@Param("pageVO")PageVO pageVO,@Param("myCondition") MyCondition myCondition);
-
     /**
      * 功能描述: 查询总条数
      * @param:stockInquiryDTO
@@ -38,7 +36,7 @@ public interface StuotkInquiryDao {
      */
     public Integer getAllCount(@Param("myCondition") MyCondition myCondition);
     /**
-     * 功能描述:
+     * 功能描述:查询出入库
      * @param: condition
      * @return: List
      * @since: 1.0.0
@@ -47,7 +45,7 @@ public interface StuotkInquiryDao {
      */
     public  List<InOutRecordsVO> getAllInOutRecords(@Param("pageVO")PageVO pageVO);
     /**
-     * 功能描述:
+     * 功能描述: 查询出入库总条数
      * @param: condition
      * @return: Integer
      * @since: 1.0.0

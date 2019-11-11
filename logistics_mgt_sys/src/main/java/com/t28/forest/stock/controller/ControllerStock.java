@@ -41,7 +41,7 @@ public class ControllerStock {
 
     @RequestMapping("/showInoutRecords")
     @ResponseBody
-    public String showInOutRecords() {
+    public String showInOutRecords(){
         List<InOutRecordsVO> allInOutRecords = stockService.getAllInOutRecords(new PageVO(1, 4));
         JgGridListModel jgGridListModel = new JgGridListModel();
         jgGridListModel.setRows(allInOutRecords);
