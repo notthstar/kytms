@@ -124,14 +124,14 @@
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
         $gridTable.jqGrid({
-            url: "/shipment/getDZShipmentList.action",
+            url: "/cargoStation/left",
             datatype: "json",
             height: $(window).height() - 136.5,
             autowidth: true,
             colModel: [
-                {label: '主键', name: 'ship.id', hidden: true},
-                {label: '所属组织机构', name: 'org.name', width: 100, align: 'center'},
-                {label: '运单号',selectDefault:true, name: 'ship.code', width: 150, align: 'center',
+                {label: '主键', name: 'id', hidden: true},
+                {label: '所属组织机构', name: 'name', width: 100, align: 'center'},
+                {label: '运单号',selectDefault:true, name: 'code', width: 150, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
 
                         if(rowObject[24] ==1){
@@ -141,54 +141,58 @@
                         }
 
                     }},
-                {label: '运单日期', name: 'ship.time', width: 80,align: 'center', type:"date",
+                {label: '运单日期', name: 'time', width: 80,align: 'center', type:"date",
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: "状态", name: "status", index:"ship.status",width: 70, align: "center",type:"DD&OrderStatus",
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OrderStatus['' + cellvalue + '']
-                    }},
-                {label: '车牌号', name: 'cph', width: 100,align: 'center'},
-                {label: '出发站点', name: 'forg.name', width: 80,align: 'center'},
-                {label: '当前站', name: 'norg.name', width: 80,align: 'center'},
-                {label: '下一站', name: 'ntorg.name', width: 80,align: 'center'},
-                {label: '目的站点', name: 'torg.name', width: 80,align: 'center'},
-                {label: '订单号', name: 'ship.orderCode', width: 230, align: 'center'},
-                {label: '客户订单号', name: 'ship.relatebill1', width: 200, align: 'center'},
-                {label: '运作模式', name: 'ship.operationPattern', width: 90,align: 'center',type:"DD&OperationPattern",
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OperationPattern['' + cellvalue + '']
-                    }},
-                {label: '承运商名称', name: 'carr.name', width: 150,align: 'center'},
-                {label: '承运商类型', name: 'carrierType', width: 90,align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CarrierType['' + cellvalue + '']
-                    }},
-                {label: '是否超期', name: 'carriageIsExceed', width: 70,align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
-                {label: '运输协议号', name: 'ship.tan', width: 120,align: 'center'},
+                {label: "状态", name: "status", index:"status",width: 70, align: "center",type:"DD&OrderStatus"
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OrderStatus['' + cellvalue + '']
+                    // }
+                    },
+                {label: '车牌号', name: 'liens', width: 100,align: 'center'},
+                {label: '出发站点', name: 'organName1', width: 80,align: 'center'},
+                {label: '当前站', name: 'organName2', width: 80,align: 'center'},
+                {label: '下一站', name: 'organName3', width: 80,align: 'center'},
+                {label: '目的站点', name: 'organName4', width: 80,align: 'center'},
+                {label: '订单号', name: 'orderCode', width: 230, align: 'center'},
+                {label: '客户订单号', name: 'relateBill', width: 200, align: 'center'},
+                {label: '运作模式', name: 'operationPattern', width: 90,align: 'center',type:"DD&OperationPattern"
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OperationPattern['' + cellvalue + '']
+                    // }
+                    },
+                {label: '承运商名称', name: 'carName', width: 150,align: 'center'},
+                {label: '承运商类型', name: 'carrierType', width: 90,align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CarrierType['' + cellvalue + '']
+                    // }
+                    },
+                {label: '是否超期', name: 'carriageIsExceed', width: 70,align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
+                {label: '运输协议号', name: 'tan', width: 120,align: 'center'},
                 /* {label: '线路', name: 'line.name', width: 120,align: 'center'},*/
 //                {label: '装卸信息', name: 'ship.loadingInfo', width: 100,align: 'center'},
-                {label: '数量', name: 'ship.number', width: 80,align: 'center'},
-                {label: '重量', name: 'ship.weight', width: 80,align: 'center'},
-                {label: '体积', name: 'ship.volume', width: 80,align: 'center'},
-                {label: '货值', name: 'ship.value', width: 80,align: 'center'},
-                {label: '创建人', name: 'ship.create_Name', width: 120,align: 'center'},
-                {label: '创建时间', name: 'ship.create_Time', width: 150,align: 'center',
+                {label: '数量', name: 'number', width: 80,align: 'center'},
+                {label: '重量', name: 'weight', width: 80,align: 'center'},
+                {label: '体积', name: 'volume', width: 80,align: 'center'},
+                {label: '货值', name: 'value', width: 80,align: 'center'},
+                {label: '创建人', name: 'createName', width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime', width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'ship.modify_Name', width: 120,align: 'center'},
-                {label: '修改时间', name: 'ship.modify_Time', width: 150,align: 'center',
+                {label: '修改人', name: 'modifyName', width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime', width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
@@ -198,7 +202,7 @@
 
 
                 {label: '异常', name: 'isAbnormal', hidden: true},
-                {label: "状态", name: "st",hidden: true},
+                {label: "状态", name: "status",hidden: true},
             ],
             viewrecords: true,
             rowNum: 30,
@@ -224,7 +228,7 @@
                 $("#" + this.id).setSelection(selectedRowIndex, false);
             },
             ondblClickRow:function(a,b,c){
-                GetGrid1( $gridTable.getCell(a,"ship.id"))
+                GetGrid1( $gridTable.getCell(a,"id"))
             },
         });
 
@@ -233,7 +237,7 @@
         $gridTable.jqGrid('setFrozenColumns');
     }
     function GetGrid1(id) {
-        var url="/transportorder/getDZLedList.action";
+        var url="/cargoStation/right";
         var selectedRowIndex = 0;
         var $gridTable1 = $('#gridTable1');
         $gridTable1.jqGrid({
@@ -242,58 +246,63 @@
             height: $(window).height()-135,
             autowidth: true,
             colModel: [
-                {label: '主键', name: 'a.id', hidden: true,frozen:true},
-                {label: '组织机构', name: 'organization.name',index:"b.name" ,width: 120, align: 'center',frozen:true},
-                {label: '订单号',selectDefault:true, name: 'code', index:"a.code", type:"text",width: 150, align: 'center',frozen:true,
+                {label: '主键', name: 'id', hidden: true,frozen:true},
+                {label: '组织机构', name: 'name',index:"name" ,width: 120, align: 'center',frozen:true},
+                {label: '订单号',selectDefault:true, name: 'code', index:"code", type:"text",width: 150, align: 'center',frozen:true,
                     cellattr:function addCellAttr(rowId, val, rawObject, cm, rdata) {
                         if(rawObject[26] == 1 ){
                             return "style='color:red'";
                         }
                     }},
-                {label: '订单日期', name: 'time', index:"a.time", type:"date",width: 80, align: 'center',frozen:true,
+                {label: '订单日期', name: 'time', index:"time", type:"date",width: 80, align: 'center',frozen:true,
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '客户订单号', name: 'relatebill1',index:"a.relatebill1", width: 80,frozen:true, align: 'center'},
-                {label: '客户类型', name: 'costomerType',index:"a.costomerType",  type:"DD&CustomerType",width: 60, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CustomerType['' + cellvalue + '']
-                    }},
-                {label: '客户名称', name: 'customer.name',index:"c.name", width: 200, align: 'center'},
-                {label: '订单状态', name: 'status',type:"DD&OrderStatus",index:"a.status", width: 60, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OrderStatus['' + cellvalue + '']
-                    }},
-                {label: '货名', name: 'als.name',index:"als.name", width: 70,align: 'center'},
-                {label: '数量', name: 'a.number',index:"a.number", width: 70,align: 'center'},
-                {label: '重量', name: 'a.weight',index:"a.weight", width: 70,align: 'center'},
-                {label: '体积', name: 'a.volume',index:"a.volume", width: 70,align: 'center'},
-                {label: '是否超期',name :'costomerIsExceed', type:"DD&CommIsNot",index:"a.costomerIsExceed",  width: 80, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
-                {label: '目的网点', name: 'torg.name', index:"torg.name", width: 100, align: 'center'},
+                {label: '客户订单号', name: 'relateBill',index:"relateBill", width: 80,frozen:true, align: 'center'},
+                {label: '客户类型', name: 'costomerType',index:"costomerType",  type:"DD&CustomerType",width: 60, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CustomerType['' + cellvalue + '']
+                    // }
+                    },
+                {label: '客户名称', name: 'costomerName',index:"costomerName", width: 200, align: 'center'},
+                {label: '订单状态', name: 'status',type:"DD&OrderStatus",index:"status", width: 60, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OrderStatus['' + cellvalue + '']
+                    // }
+                    },
+                {label: '货名', name: 'ledName',index:"als.name", width: 70,align: 'center'},
+                {label: '数量', name: 'number',index:"a.number", width: 70,align: 'center'},
+                {label: '重量', name: 'weight',index:"a.weight", width: 70,align: 'center'},
+                {label: '体积', name: 'volume',index:"a.volume", width: 70,align: 'center'},
+                {label: '是否超期',name :'costomerIsExceed', type:"DD&CommIsNot",index:"a.costomerIsExceed",  width: 80, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
+                {label: '目的网点', name: 'organName', index:"torg.name", width: 100, align: 'center'},
                 {label: '销售负责人', name: 'salePersion',index:"a.salePersion",  width: 100, align: 'center'},
-                {label: '运输性质', name: 'transportPro',type:"DD&TransportPro", width: 100,index:"a.transportPro", align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.TransportPro['' + cellvalue + '']
-                    }},
-                {label: '是否回单', name: 'isBack', type:"DD&CommIsNot",index:"a.isBack",width: 60, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
+                {label: '运输性质', name: 'transportPro',type:"DD&TransportPro", width: 100,index:"a.transportPro", align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.TransportPro['' + cellvalue + '']
+                    // }
+                    },
+                {label: '是否回单', name: 'isBack', type:"DD&CommIsNot",index:"a.isBack",width: 60, align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
                 {label: '回单份数', name: 'backNumber', width: 80, align: 'center',index:"a.backNumber"},
-                {label: '实际发运日期', name: 'fyTime',index:"a.fyTime", width: 100,frozen:true, align: 'center',
+                {label: '实际发运日期', name: 'factLeaveTime',index:"a.fyTime", width: 100,frozen:true, align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '实际运抵日期', name: 'ydTime',index:"a.ydTime", width: 100,frozen:true, align: 'center',
+                {label: '实际运抵日期', name: 'factArriveTime',index:"a.ydTime", width: 100,frozen:true, align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
@@ -301,16 +310,16 @@
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
                 {label: "备注", name: "description",index:"a.description", index: "description", width: 200, align: "center"},
-                {label: '创建人', name: 'create_Name',index:"a.create_Name", width: 120,align: 'center'},
-                {label: '创建时间', name: 'create_Time',index:"a.create_Time", width: 150,align: 'center',
+                {label: '创建人', name: 'createName',index:"a.create_Name", width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime',index:"a.create_Time", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'modify_Name', index:"a.modify_Name",width: 120,align: 'center'},
-                {label: '修改时间', name: 'modify_Time', index:"a.modify_Time",width: 150,align: 'center',
+                {label: '修改人', name: 'modifyName', index:"a.modify_Name",width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime', index:"a.modify_Time",width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
@@ -320,10 +329,10 @@
                 {label: '异常', name: 'isAbnormal',index:"a.isAbnormal", hidden: true},
                 {label: "状态", name: "st",hidden: true},
                 {label: '货品单位',  width: 0,hidden: true,index:"f.unit",isIndex:true},
-                {label: '货品数量', width: 0, hidden: true,index:"f.number",isIndex:true},
-                {label: '货品重量', width: 0, hidden: true,index:"f.weight",isIndex:true},
-                {label: '货品体积',  width: 0,hidden: true,index:"f.volume",isIndex:true},
-                {label: '货品货值', width: 0, hidden: true,index:"f.value",isIndex:true}
+                {label: '货品数量', width: 0, hidden: true,index:"number",isIndex:true},
+                {label: '货品重量', width: 0, hidden: true,index:"weight",isIndex:true},
+                {label: '货品体积',  width: 0,hidden: true,index:"volume",isIndex:true},
+                {label: '货品货值', width: 0, hidden: true,index:"value",isIndex:true}
             ],
             viewrecords: true,
             rowNum: 30,

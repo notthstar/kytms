@@ -18,8 +18,8 @@
         <where>
             AND shipment0_.STATUS != 0
             AND shipment0_.STATUS != 99
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -34,6 +34,8 @@
         </where>
         GROUP BY shipment0_.ID ORDER BY shipment0_.CREATE_TIME DESC LIMIT #{page.start},#{page.size};
     </select>
+      <!--AND organizati2_.ID='402881a36710579c016710c4e2fb0230'-->
+
 
     <!--通过添加查询运单信息数据条数-->
     <select id="findShipmentCount" resultType="Integer">
@@ -50,8 +52,8 @@
         <where>
             AND shipment0_.STATUS != 0
             AND shipment0_.STATUS != 99
+            AND organizati2_.ID='402881a36710579c016710c4e2fb0230'
             <if test="null != condition">
-                AND organizati2_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
@@ -65,5 +67,6 @@
             </if>
         </where>;
     </select>
+    <!--                AND organizati2_.ID=#{condition.id}-->
 
 </mapper>

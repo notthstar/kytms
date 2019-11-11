@@ -69,7 +69,7 @@
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
         $gridTable.jqGrid({
-            url: "/single/getAbnormalList.action?id="+id,
+            url: "/vehicle/show?id="+id,
             datatype: "json",
             height: $(window).height() - 100,
             autowidth: true,
@@ -77,7 +77,7 @@
                 {label: '主键', name: 'id', hidden: true},
                 {label: '异常时间', name: 'time', width: 150, align: 'center'},
                 {label: '修改数量', name: 'number', width: 80, align: 'center'},
-                {label: '修改人', name: 'create_Name', width: 150, align: 'center'},
+                {label: '修改人', name: 'createName', width: 150, align: 'center'},
                 {label: '修改原因', name: 'description', width: 200, align: 'center'},
                 {label: '备注', name: '1', width: 150, align: 'center'}
             ],

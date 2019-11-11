@@ -78,68 +78,72 @@
     function GetGrid() {
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
-        var url="/vehicleArrive/getDZShipmentInfo.action";
+        var url="/vehicleRecord/show";
         $gridTable.jqGrid({
             url:url ,
             datatype: "json",
             height: $(window).height() - 136.5,
             autowidth: true,
             colModel: [
-                {label: '主键', name: 'ship.id', hidden: true},
-                {label: '所属组织机构', name: 'org.name', width: 100, align: 'center'},
-                {label: '运单号',selectDefault:true, name: 'ship.code', width: 150, align: 'center',
+                {label: '主键', name: 'id', hidden: true},
+                {label: '所属组织机构', name: 'name', width: 100, align: 'center'},
+                {label: '运单号',selectDefault:true, name: 'code', width: 150, align: 'center',
                     cellattr:function addCellAttr(rowId, val, rawObject, cm, rdata) {
                         if(rawObject[24] == 1 ){
                             return "style='color:red'";
                         }
                     }},
-                {label: '运单日期', name: 'ship.time', width: 80,align: 'center', type:"date",
+                {label: '运单日期', name: 'time', width: 80,align: 'center', type:"date",
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '出发站点', name: 'forg.name', width: 80,align: 'center'},
-                {label: '当前站', name: 'norg.name', width: 80,align: 'center'},
-                {label: '下一站', name: 'ntorg.name', width: 80,align: 'center'},
-                {label: '目的站点', name: 'torg.name', width: 80,align: 'center'},
-                {label: '订单号', name: 'ship.orderCode', width: 230, align: 'center'},
-                {label: '客户订单号', name: 'ship.relatebill1', width: 200, align: 'center'},
-                {label: "状态", name: "ship.status", index:"ship.status",width: 70, align: "center",type:"DD&OrderStatus",
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OrderStatus['' + cellvalue + '']
-                    }},
-                {label: '运作模式', name: 'ship.operationPattern', width: 90,align: 'center',type:"DD&OperationPattern",
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.OperationPattern['' + cellvalue + '']
-                    }},
-                {label: '承运商名称', name: 'carr.name', width: 150,align: 'center'},
-                {label: '承运商类型', name: 'carrierType', width: 90,align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CarrierType['' + cellvalue + '']
-                    }},
-                {label: '车牌号', name: 'ship.liense', width: 120,align: 'center'},
-                {label: '司机名称', name: 'ship.outDriver', width: 120,align: 'center'},
-                {label: '是否超期', name: 'carriageIsExceed', width: 70,align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                        return top.clientdataItem.CommIsNot['' + cellvalue + '']
-                    }},
-                {label: '运输协议号', name: 'ship.tan', width: 120,align: 'center'},
-                {label: '数量', name: 'ship.number', width: 80,align: 'center'},
-                {label: '重量', name: 'ship.weight', width: 80,align: 'center'},
-                {label: '体积', name: 'ship.volume', width: 80,align: 'center'},
-                {label: '货值', name: 'ship.value', width: 80,align: 'center'},
-                {label: '创建人', name: 'ship.create_Name', width: 120,align: 'center'},
-                {label: '创建时间', name: 'ship.create_Time', width: 150,align: 'center',
+                {label: '出发站点', name: 'organName1', width: 80,align: 'center'},
+                {label: '当前站', name: 'organName2', width: 80,align: 'center'},
+                {label: '下一站', name: 'organName3', width: 80,align: 'center'},
+                {label: '目的站点', name: 'organName4', width: 80,align: 'center'},
+                {label: '订单号', name: 'orderCode', width: 230, align: 'center'},
+                {label: '客户订单号', name: 'relateBill', width: 200, align: 'center'},
+                {label: "状态", name: "status", index:"ship.status",width: 70, align: "center",type:"DD&OrderStatus"
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OrderStatus['' + cellvalue + '']
+                    // }
+                    },
+                {label: '运作模式', name: 'operationPattern', width: 90,align: 'center',type:"DD&OperationPattern"
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.OperationPattern['' + cellvalue + '']
+                    // }
+                    },
+                {label: '承运商名称', name: 'carName', width: 150,align: 'center'},
+                {label: '承运商类型', name: 'carrierType', width: 90,align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CarrierType['' + cellvalue + '']
+                    // }
+                    },
+                {label: '车牌号', name: 'liens', width: 120,align: 'center'},
+                {label: '司机名称', name: 'outDriver', width: 120,align: 'center'},
+                {label: '是否超期', name: 'carriageIsExceed', width: 70,align: 'center'
+                    // formatter: function (cellvalue, options, rowObject) {
+                    //     return top.clientdataItem.CommIsNot['' + cellvalue + '']
+                    // }
+                    },
+                {label: '运输协议号', name: 'tan', width: 120,align: 'center'},
+                {label: '数量', name: 'number', width: 80,align: 'center'},
+                {label: '重量', name: 'weight', width: 80,align: 'center'},
+                {label: '体积', name: 'volume', width: 80,align: 'center'},
+                {label: '货值', name: 'value', width: 80,align: 'center'},
+                {label: '创建人', name: 'createName', width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime', width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'ship.modify_Name', width: 120,align: 'center'},
-                {label: '修改时间', name: 'ship.modify_Time', width: 150,align: 'center',
+                {label: '修改人', name: 'modifyName', width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime', width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
@@ -149,7 +153,7 @@
 
 
                 {label: '异常', name: 'isAbnormal', hidden: true},
-                {label: "状态", name: "st",hidden: true},
+                {label: "状态", name: "status",hidden: true},
             ],
             viewrecords: true,
             rowNum: 30,
@@ -167,7 +171,7 @@
                 $("#" + this.id).setSelection(selectedRowIndex, false);
             },
             ondblClickRow:function(a,b,c){
-                btn_edit(  $gridTable.getCell(a,"ship.id"));
+                btn_edit(  $gridTable.getCell(a,"id"));
             },
         });
 
@@ -178,7 +182,7 @@
     function btn_print(id){
         var keyValue = undefined;
         if(id == undefined){
-            keyValue = $("#gridTable").jqGridRowValue("ship.id");
+            keyValue = $("#gridTable").jqGridRowValue("id");
         }else {
             keyValue = id
         }
