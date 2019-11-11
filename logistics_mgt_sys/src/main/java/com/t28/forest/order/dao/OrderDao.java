@@ -35,7 +35,7 @@ public interface OrderDao {
       /**
        *订单签收
        */
-      List<LedSign> ledSign(@Param("rc")String rc, @Param("input")Object input);
+      List<OrderSign> ledSign(@Param("rc")String rc, @Param("input")Object input);
 
       /**
        *  订单回单

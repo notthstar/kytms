@@ -19,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderDao dao;
     @Override
-    public List<Presco> getPlan(String rc, Object input) {
+    public List<Presco> getPresco(String rc, Object input) {
         return dao.planned(rc,input);
     }
 
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<LedSign> getLedSign(String rc, Object input) {
+    public List<OrderSign> getOrderSign(String rc, Object input) {
         return dao.ledSign(rc,input);
     }
 

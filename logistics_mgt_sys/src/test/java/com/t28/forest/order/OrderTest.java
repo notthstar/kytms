@@ -22,7 +22,7 @@ public class OrderTest {
     @Test
     public void testPlan(){
         String rc = "CREATE_NAME";
-        System.out.println(service.getPlan(rc,"小明").get(0));
+        System.out.println(service.getPresco(rc,"小明").get(0));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class OrderTest {
 
     @Test
     public void testLedSign(){
-        System.out.println(service.getLedSign(null,null));
+        System.out.println(service.getOrderSign(null,null));
     }
 
     @Test

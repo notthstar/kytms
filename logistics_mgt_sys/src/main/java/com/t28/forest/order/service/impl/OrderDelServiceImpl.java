@@ -10,6 +10,7 @@ import com.t28.forest.order.dao.OrderDel;
 import com.t28.forest.order.service.OrderDelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderDelServiceImpl implements OrderDelService{
@@ -17,12 +18,20 @@ public class OrderDelServiceImpl implements OrderDelService{
     OrderDel del;
 
     @Override
-    public void delPlan(String id) {
+    @Transactional
+    public void delPersco(String id) {
         del.deletePlan(id);
     }
 
     @Override
+    @Transactional
     public void delSFh(String id) {
         del.deleteSFh(id);
+    }
+
+    @Override
+    @Transactional
+    public void delOrder(String id) {
+        del.deleteBill(id);
     }
 }

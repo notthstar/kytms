@@ -1,5 +1,5 @@
 /**
- * @description 分段订单
+ * @description 订单签收
  * @author lcy
  * @create 2019/11/1
  * @since 1.0.0
@@ -12,23 +12,21 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.sql.Date;
 
-public class Led {
+public class OrderSign {
+
     @TableId(value = "ID", type = IdType.AUTO)
     private String id;
 
+    private String organizationName;
+
     @TableField("CODE")
     private String code;
-
-    private String organizatilName;
 
     @TableField("TIME")
     private Date time;
 
     @TableField("RELATEBILL1")
     private String relatebill1;
-
-    @TableField("RELATEBILL2")
-    private String relatebill2;
 
     @TableField("COSTOMER_TYPE")
     private Integer costomerType;
@@ -38,13 +36,8 @@ public class Led {
     @TableField("STATUS")
     private Integer status;
 
-    private String costomerName;
-
     @TableField("COSTOMER_IS_EXCEED")
     private Integer costomerIsExceed;
-
-    @TableField("SALE_PERSION")
-    private String salePersion;
 
     @TableField("TRANSPORT_PRO")
     private Integer transportPro;
@@ -64,6 +57,9 @@ public class Led {
     @TableField("VOLUME")
     private Double volume;
 
+    @TableField("SALE_PERSION")
+    private String salePersion;
+
     @TableField("DESCRIPTION")
     private String description;
 
@@ -81,25 +77,23 @@ public class Led {
 
     @Override
     public String toString() {
-        return "Led{" +
+        return "OrderSign{" +
                 "id='" + id + '\'' +
+                ", organizationName='" + organizationName + '\'' +
                 ", code='" + code + '\'' +
-                ", organizatilName='" + organizatilName + '\'' +
                 ", time=" + time +
                 ", relatebill1='" + relatebill1 + '\'' +
-                ", relatebill2='" + relatebill2 + '\'' +
                 ", costomerType=" + costomerType +
                 ", ledreceiviName='" + ledreceiviName + '\'' +
                 ", status=" + status +
-                ", costomerName='" + costomerName + '\'' +
                 ", costomerIsExceed=" + costomerIsExceed +
-                ", salePersion='" + salePersion + '\'' +
                 ", transportPro=" + transportPro +
                 ", isBack=" + isBack +
                 ", backNumber=" + backNumber +
                 ", number=" + number +
                 ", weight=" + weight +
                 ", volume=" + volume +
+                ", salePersion='" + salePersion + '\'' +
                 ", description='" + description + '\'' +
                 ", createName='" + createName + '\'' +
                 ", createTime=" + createTime +
@@ -116,20 +110,20 @@ public class Led {
         this.id = id;
     }
 
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getOrganizatilName() {
-        return organizatilName;
-    }
-
-    public void setOrganizatilName(String organizatilName) {
-        this.organizatilName = organizatilName;
     }
 
     public Date getTime() {
@@ -146,14 +140,6 @@ public class Led {
 
     public void setRelatebill1(String relatebill1) {
         this.relatebill1 = relatebill1;
-    }
-
-    public String getRelatebill2() {
-        return relatebill2;
-    }
-
-    public void setRelatebill2(String relatebill2) {
-        this.relatebill2 = relatebill2;
     }
 
     public Integer getCostomerType() {
@@ -180,28 +166,12 @@ public class Led {
         this.status = status;
     }
 
-    public String getCostomerName() {
-        return costomerName;
-    }
-
-    public void setCostomerName(String costomerName) {
-        this.costomerName = costomerName;
-    }
-
     public Integer getCostomerIsExceed() {
         return costomerIsExceed;
     }
 
     public void setCostomerIsExceed(Integer costomerIsExceed) {
         this.costomerIsExceed = costomerIsExceed;
-    }
-
-    public String getSalePersion() {
-        return salePersion;
-    }
-
-    public void setSalePersion(String salePersion) {
-        this.salePersion = salePersion;
     }
 
     public Integer getTransportPro() {
@@ -250,6 +220,14 @@ public class Led {
 
     public void setVolume(Double volume) {
         this.volume = volume;
+    }
+
+    public String getSalePersion() {
+        return salePersion;
+    }
+
+    public void setSalePersion(String salePersion) {
+        this.salePersion = salePersion;
     }
 
     public String getDescription() {
