@@ -45,7 +45,7 @@ public interface StuotkInquiryDao {
      * @Author: HF
      * @Date:
      */
-    public  List<InOutRecordsVO> getAllInOutRecords(@Param("pageVO")PageVO pageVO,@Param("myCondition") MyCondition myCondition);
+    public  List<InOutRecordsVO> getAllInOutRecords(@Param("pageVO")PageVO pageVO);
     /**
      * 功能描述:
      * @param: condition

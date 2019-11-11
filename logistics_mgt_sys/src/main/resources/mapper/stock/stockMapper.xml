@@ -40,11 +40,13 @@
           LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
           t1.ID=t6.JC_LED_ID
           where
-          t4.TYPE=#{myCondition.type}
-          AND t5.ID=#{myCondition.id}
-          AND t2.STATUS=5
+          t4.TYPE=1
+          AND t5.ID='402881a36710579c016710c4e2fb0230'
+          <if test="myCondition.status>=5">
+              AND t2.STATUS=#{myCondition.status}
+          </if>
           GROUP BY t2.CODE
-           LIMIT #{pageVO.start} , #{pageVO.size};
+           LIMIT #{pageVO.start},#{pageVO.size};
     </select>
     <!-- 查询总条数 -->
     <select id="getAllCount" resultType="Integer" >
@@ -90,7 +92,7 @@
         ON t1.JC_LED_ID=t4.ID
         WHERE
         t1.STATUS=1
-        AND t2.ID=#{myCondition.id}
+        AND t2.ID='402881a36710579c016710c4e2fb0230'
         ORDER BY t1.CREATE_TIME
         DESC LIMIT #{pageVO.start},#{pageVO.size};
     </select>

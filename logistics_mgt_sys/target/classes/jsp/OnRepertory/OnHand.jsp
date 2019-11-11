@@ -143,7 +143,7 @@
     }
 
     function GetGrid(){
-        var url = "/transportorder/getOrderDy.action";
+        var url = "/showSctock?size=4&id=402881a36710579c016710c4e2fb0230&type=1";
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
         $gridTable.jqGrid({
@@ -154,8 +154,8 @@
             width:1195,
             colModel: [
                 {label: '主键', name: 'id', hidden: true,frozen:true},
-                {label: '订单主键', name: 'aor.id', hidden: true,frozen:true},
-                {label: '组织机构', name: 'organization.name',index:"b.name" ,width: 80, align: 'center',frozen:true},
+                {label: '订单主键', name: 'orderid', hidden: true,frozen:true},
+                {label: '组织机构', name: 'name',index:"b.name" ,width: 80, align: 'center',frozen:true},
                 {label: '分段订单号', name: 'code', index:"a.code", type:"text",width: 160, align: 'center',frozen:true,
                     cellattr:function addCellAttr(rowId, val, rawObject, cm, rdata) {
                         if(rawObject[25] == 1 ){
@@ -174,7 +174,7 @@
                     formatter: function (cellvalue, options, rowObject) {
                         return top.clientdataItem.CustomerType['' + cellvalue + '']
                     }},
-                {label: '客户名称', name: 'customer.name',index:"c.name", width: 200, align: 'center'},
+                {label: '客户名称', name: 'customerName',index:"c.name", width: 200, align: 'center'},
                 {label: '订单状态', name: 'status',type:"DD&OrderStatus",index:"a.status", width: 40, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
                         return top.clientdataItem.OrderStatus['' + cellvalue + '']
@@ -192,22 +192,22 @@
                         return top.clientdataItem.CommIsNot['' + cellvalue + '']
                     }},
                 {label: '回单份数', name: 'backNumber', width:40, align: 'center',index:"a.backNumber"},
-                {label: '货名',name:'f.name',width: 40,index:"f.name",align: 'center'},
+                {label: '货名',name:'goodsName',width: 40,index:"f.name",align: 'center'},
                 {label: '件数', name: 'number',index:"a.number", width: 80, align: 'center'},
                 {label: '重量', name: 'weight',index:"a.weight", width: 80, align: 'center'},
                 {label: '体积', name: 'volume',index:"a.volume", width:80, align: 'center'},
                 {label: '销售负责人', name: 'salePersion',index:"a.salePersion",  width: 100, align: 'center'},
                 {label: "备注", name: "description",index:"a.description", index: "description", width: 200, align: "center"},
-                {label: '创建人', name: 'create_Name',index:"a.create_Name", width: 120,align: 'center'},
-                {label: '创建时间', name: 'create_Time',index:"a.create_Time", width: 150,align: 'center',
+                {label: '创建人', name: 'createName',index:"a.create_Name", width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime',index:"a.create_Time", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'modify_Name', index:"a.modify_Name",width: 120,align: 'center'},
-                {label: '修改时间', name: 'modify_Time', index:"a.modify_Time",width: 150,align: 'center',
+                {label: '修改人', name: 'modeifyName', index:"a.modify_Name",width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime', index:"a.modify_Time",width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";

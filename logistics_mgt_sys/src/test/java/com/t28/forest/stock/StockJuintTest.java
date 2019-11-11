@@ -33,11 +33,10 @@ public class StockJuintTest {
     @Test
     public void select(){
         MyCondition myCondition=new MyCondition();
-        myCondition.setId("402881a36710579c016710c4e2fb0230");
-        myCondition.setType(1);
+        myCondition.setStatus(5);
         PageVO pageVO = new PageVO();
         pageVO.setCurrent(1);
-        pageVO.setSize(1);
+        pageVO.setSize(4);
         List<StockInquiryVO> allStuotkInquiry = stuotkInquiryDao.getAllStuotkInquiry(pageVO,myCondition);
         for (StockInquiryVO stockInquiryDTO : allStuotkInquiry) {
             System.out.println(stockInquiryDTO);
@@ -62,9 +61,7 @@ public class StockJuintTest {
 
     @Test
     public void  selectInout(){
-        MyCondition myCondition=new MyCondition();
-        myCondition.setId("402881a36710579c016710c4e2fb0230");
-        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(new PageVO(1,3),myCondition);
+        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(new PageVO(1,3));
         for (InOutRecordsVO allInOutRecord : allInOutRecords) {
             System.out.println(allInOutRecord);
         }
