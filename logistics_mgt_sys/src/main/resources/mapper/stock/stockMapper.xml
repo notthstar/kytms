@@ -39,14 +39,23 @@
         t1.JC_ORGANIZATION_ID=t5.ID
         LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
         t1.ID=t6.JC_LED_ID
-        where
-        t4.TYPE=1
-        AND t5.ID='402881a36710579c016710c4e2fb0230'
-        <if test="myCondition.status!=0">
-            AND t2.STATUS=#{myCondition.status}
-        </if>
-        GROUP BY t2.CODE
-        LIMIT #{pageVO.start},#{pageVO.size};
+        <where>
+            t4.TYPE=1
+            AND t5.ID='402881a36710579c016710c4e2fb0230'
+            <if test="null != condition">
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        GROUP BY t2.CODE LIMIT #{pageVO.start},#{pageVO.size};
     </select>
     <!-- 查询总条数 -->
     <select id="getAllCount" resultType="Integer">
@@ -62,8 +71,8 @@
         LEFT OUTER JOIN JC_LEG_PRODUCT t6 ON
         t1.ID=t6.JC_LED_ID
         WHERE
-        t4.TYPE=#{myCondition.type}
-        AND t5.ID=#{myCondition.id}
+        t4.TYPE=1
+        AND t5.ID='402881a36710579c016710c4e2fb0230'
         AND t2.STATUS=5;
     </select>
     <!-- 出入库页面显示  -->
@@ -90,11 +99,23 @@
         ON t1.JC_ZONE_STOREROOM_ID=t3.ID
         LEFT OUTER JOIN jc_led t4
         ON t1.JC_LED_ID=t4.ID
-        WHERE
-        t1.STATUS=1
-        AND t2.ID='402881a36710579c016710c4e2fb0230'
-        ORDER BY t1.CREATE_TIME DESC
-        LIMIT #{pageVO.start},#{pageVO.size};
+        <where>
+            t1.STATUS=1
+            AND t2.ID='402881a36710579c016710c4e2fb0230'
+            <if test="null != condition">
+                <if test="null != condition.values">
+                    <choose>
+                        <when test="condition.values.length > 1">
+                            AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
+                        </when>
+                        <otherwise>
+                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                        </otherwise>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        ORDER BY t1.CREATE_TIME DESC LIMIT #{pageVO.start},#{pageVO.size};
     </select>
     <!-- 查询出入库数据总条数  -->
     <select id="getCountInOutRecords" resultType="Integer">
@@ -106,6 +127,6 @@
         LEFT OUTER JOIN JC_LED t4
         ON t1.JC_LED_ID=t4.ID
         WHERE t1.STATUS=1
-        AND t2.ID=#{myCondition.id};
+        AND t2.ID='402881a36710579c016710c4e2fb0230';
     </select>
 </mapper>

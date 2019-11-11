@@ -9,8 +9,8 @@
 package com.t28.forest.stock.service;
 
 
+import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
 
@@ -25,7 +25,7 @@ public interface StockService {
      * @Author:
      * @Date:   2019/10/29
      */
-    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, MyCondition myCondition);
+    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, Condition condition);
     /**
      * 功能描述:出入库查询
      * @param: condition
@@ -34,6 +34,6 @@ public interface StockService {
      * @Author: HF
      * @Date:
      */
-    public List<InOutRecordsVO> getAllInOutRecords(PageVO page);
+    public List<InOutRecordsVO> getAllInOutRecords(PageVO page,Condition condition);
 }
 

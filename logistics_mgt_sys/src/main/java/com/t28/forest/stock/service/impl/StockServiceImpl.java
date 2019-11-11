@@ -5,11 +5,8 @@
  * @since 1.0.0
  */
 package com.t28.forest.stock.service.impl;
-
-
-
+import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.dao.StuotkInquiryDao;
 import com.t28.forest.stock.service.StockService;
 import com.t28.forest.stock.vo.InOutRecordsVO;
@@ -24,19 +21,14 @@ public class StockServiceImpl  implements StockService {
     @Autowired
     private StuotkInquiryDao stuotkInquiryDao;
     @Override
-    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, MyCondition myCondition) {
-        MyCondition myCondition1=new MyCondition();
-        myCondition1.setId("402881a36710579c016710c4e2fb0230");
-        myCondition1.setType(1);
-        page.calaTotalPage(stuotkInquiryDao.getAllCount(myCondition1));
-        return stuotkInquiryDao.getAllStuotkInquiry(page,myCondition);
+    public List<StockInquiryVO> getAllStuotkInquiry(PageVO page, Condition condition) {
+        page.calaTotalPage(stuotkInquiryDao.getAllCount());
+        return stuotkInquiryDao.getAllStuotkInquiry(page,condition);
     }
 
     @Override
-    public List<InOutRecordsVO> getAllInOutRecords(PageVO page) {
-        MyCondition myCondition=new MyCondition();
-        myCondition.setId("402881a36710579c016710c4e2fb0230");
-        page.calaTotalPage(stuotkInquiryDao.getCountInOutRecords(myCondition));
-        return stuotkInquiryDao.getAllInOutRecords(page);
+    public List<InOutRecordsVO> getAllInOutRecords(PageVO page,Condition condition) {
+        page.calaTotalPage(stuotkInquiryDao.getCountInOutRecords());
+        return stuotkInquiryDao.getAllInOutRecords(page,condition);
     }
 }

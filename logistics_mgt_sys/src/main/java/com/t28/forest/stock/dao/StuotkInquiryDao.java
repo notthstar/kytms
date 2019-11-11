@@ -7,8 +7,8 @@
 package com.t28.forest.stock.dao;
 
 
+import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
 import org.apache.ibatis.annotations.Param;
@@ -25,7 +25,7 @@ public interface StuotkInquiryDao {
     * @Author:
     * @Date:   2019/10/29
     */
-    public List<StockInquiryVO> getAllStuotkInquiry(@Param("pageVO")PageVO pageVO,@Param("myCondition") MyCondition myCondition);
+    public List<StockInquiryVO> getAllStuotkInquiry(@Param("pageVO")PageVO pageVO,@Param("condition")Condition condition);
     /**
      * 功能描述: 查询总条数
      * @param:stockInquiryDTO
@@ -34,7 +34,7 @@ public interface StuotkInquiryDao {
      * @Author:
      * @Date:
      */
-    public Integer getAllCount(@Param("myCondition") MyCondition myCondition);
+    public Integer getAllCount();
     /**
      * 功能描述:查询出入库
      * @param: condition
@@ -43,7 +43,7 @@ public interface StuotkInquiryDao {
      * @Author: HF
      * @Date:
      */
-    public  List<InOutRecordsVO> getAllInOutRecords(@Param("pageVO")PageVO pageVO);
+    public  List<InOutRecordsVO> getAllInOutRecords(@Param("pageVO")PageVO pageVO,@Param("condition")Condition condition);
     /**
      * 功能描述: 查询出入库总条数
      * @param: condition
@@ -52,5 +52,5 @@ public interface StuotkInquiryDao {
      * @Author: HF
      * @Date:
      */
-    public  Integer getCountInOutRecords(@Param("myCondition") MyCondition myCondition);
+    public  Integer getCountInOutRecords();
 }
