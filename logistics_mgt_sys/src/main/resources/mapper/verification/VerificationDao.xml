@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace指用户自定义的命名空间 -->
+<mapper namespace="com.t28.forest.verification.dao.VerificationDao">
+    <select id="selectBill" resultType="com.t28.forest.verification.vo.VerificationVo">
+    select
+         verificati0_.ID as id, organizati1_.NAME as organizatilName, shipment2_.LIENSE as shipmentLiense,
+          carrier5_.NAME as carrierName, shipment2_.OUT_DRIVER as shipmentOutDriver,
+		 shipment2_.CODE as shipmentCode, verificati0_.HX_STATUS as hxStatus,
+		  shipment2_.TIME as shipmentTime, shipment2_.RELATEBILL1 as shipmentRelatebill, 1 as col_9_0_,
+		 1 as col_10_0_, verificati0_.Z_MONEY as zmoney, verificati0_.HX_MONEY as hxmoney,
+		  verificati0_.WHX_MONEY as whxmoney, verificati0_.Z_INPUT as zinput,
+		 verificati0_.HX_COUNT as hxcount, verificati0_.TZ_SOURCE as tzsource,
+		 organizati3_.NAME as organizatilName, organizati4_.NAME as organizatilName2,
+		 verificati0_.DESCRIPTION as description, verificati0_.CREATE_NAME as createName,
+		 verificati0_.CREATE_TIME as createTime, verificati0_.MODIFY_NAME as modifyName,
+		 verificati0_.MODIFY_TIME as modifyTime, shipment2_.ID as shipmentId
+		 from JC_VERIFICATION_ZB verificati0_
+		 left outer join JC_SYS_ORGANIZATION organizati1_ on verificati0_.JC_ORGANIZATION_ID=organizati1_.ID
+		 left outer join JC_SHIPMENT shipment2_ on verificati0_.JC_SHIPMENT_ID=shipment2_.ID
+		 left outer join JC_SYS_ORGANIZATION organizati3_ on shipment2_.JC_ORGANIZATION_ID=organizati3_.ID
+		 left outer join JC_SYS_ORGANIZATION organizati4_ on shipment2_.JC_TO_ORGANIZATION_ID=organizati4_.ID
+		 left outer join JC_CARRIER carrier5_ on shipment2_.JC_CARRIER_ID=carrier5_.ID
+		 where 1=1
+		 and organizati1_.ID='402881a36710579c016710c4e2fb0230'
+		 and verificati0_.HX_STATUS=#{status}
+		 and verificati0_.TYPE=1
+		 and (verificati0_.JC_SHIPMENT_ID is not null)
+		 order by verificati0_.CREATE_TIME desc limit 5
+    </select>
+	
+
+</mapper>

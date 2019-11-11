@@ -28,6 +28,10 @@ public class Presco {
     @TableField("FH_NAME")
     private String fhName;
 
+    private String fhDetaileaddress;
+
+    private String shDetaileaddress;
+
     @TableField("FH_ADDRESS")
     private String fhAddress;
 
@@ -84,6 +88,22 @@ public class Presco {
 
     @TableField("MODIFY_TIME")
     private Date modifyTime;
+
+    public String getFhDetaileaddress() {
+        return fhDetaileaddress;
+    }
+
+    public void setFhDetaileaddress(String fhDetaileaddress) {
+        this.fhDetaileaddress = fhDetaileaddress;
+    }
+
+    public String getShDetaileaddress() {
+        return shDetaileaddress;
+    }
+
+    public void setShDetaileaddress(String shDetaileaddress) {
+        this.shDetaileaddress = shDetaileaddress;
+    }
 
     public String getId() {
         return id;

@@ -50,7 +50,7 @@ public class Order {
 
     private String zone7Name;
 
-    private String zone9NAME;
+    private String zone9Name;
 
     @TableField("HANDOVER_TYPE")
     private Integer handoverType;
@@ -213,12 +213,12 @@ public class Order {
         this.zone7Name = zone7Name;
     }
 
-    public String getZone9NAME() {
-        return zone9NAME;
+    public String getZone9Name() {
+        return zone9Name;
     }
 
-    public void setZone9NAME(String zone9NAME) {
-        this.zone9NAME = zone9NAME;
+    public void setZone9Name(String zone9Name) {
+        this.zone9Name = zone9Name;
     }
 
     public Integer getHandoverType() {
@@ -397,7 +397,7 @@ public class Order {
                 ", feeTyep=" + feeTyep +
                 ", isInoutcome=" + isInoutcome +
                 ", zone7Name='" + zone7Name + '\'' +
-                ", zone9NAME='" + zone9NAME + '\'' +
+                ", zone9Name='" + zone9Name + '\'' +
                 ", handoverType=" + handoverType +
                 ", orderproduNAME='" + orderproduNAME + '\'' +
                 ", sumAmount=" + sumAmount +

@@ -33,3 +33,5 @@ gen
 logistics_mgt_sys/target/
 
 # other config
+# 这里写限制上传的文件。例如：log4j
+

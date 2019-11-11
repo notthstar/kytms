@@ -7,7 +7,7 @@
 package com.t28.forest.order.service;
 
 public interface OrderDelService {
-    public void delPlan(String id);
-    public void delSFh(String id);
-
+    void delPersco(String id);
+    void delSFh(String id);
+    void delOrder(String id);
 }

@@ -17,18 +17,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class OrderDelTest {
 
-    @Autowired
-    OrderDelService service;
+//    @Autowired
+//    OrderDelService service;
 
-    @Test
-    public void testDelPlan(){
-        String id = "1";
-        service.delPlan(id);
-    }
-
-    @Test
-    public void testDelSFh(){
-        String id = "id";
-        service.delSFh(id);
-    }
+//    @Test
+//    public void testDelPlan(){
+//        String id = "1";
+//        service.delPlan(id);
+//    }
+//
+//    @Test
+//    public void testDelSFh(){
+//        String id = "id";
+//        service.delSFh(id);
+//    }
 }
