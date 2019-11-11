@@ -18,18 +18,24 @@ public class ReturnInfoModel {
     /**
      * 是否请求成功
      */
-    private Boolean isSuccess;
+    private Boolean success;
 
-    public ReturnInfoModel(Object data, String msg, Boolean isSuccess) {
+    public ReturnInfoModel(String msg, Boolean success) {
+        this.data = null;
+        this.msg = msg;
+        this.success = success;
+    }
+
+    public ReturnInfoModel(Object data, String msg, Boolean success) {
         this.data = data;
         this.msg = msg;
-        this.isSuccess = isSuccess;
+        this.success = success;
     }
 
     public ReturnInfoModel(Object data) {
         this.data = data;
         this.msg = "请求成功";
-        this.isSuccess = true;
+        this.success = true;
     }
 
     public Object getData() {
@@ -49,10 +55,10 @@ public class ReturnInfoModel {
     }
 
     public Boolean getSuccess() {
-        return isSuccess;
+        return success;
     }
 
     public void setSuccess(Boolean success) {
-        isSuccess = success;
+        this.success = success;
     }
 }

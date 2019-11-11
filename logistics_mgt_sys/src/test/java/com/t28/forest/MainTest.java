@@ -1,6 +1,7 @@
 package com.t28.forest;
 
 import com.t28.forest.core.entity.SysUser;
+import com.t28.forest.core.model.ReturnInfoModel;
 import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.user.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -33,7 +34,7 @@ public class MainTest {
 //        SysUser user = userService.login("test", DigestUtils.md5Hex("123456"));
 //        System.out.println(user);
 
-        String fail = SimpleUtils.objectToJSON(new SysUser());
+        String fail = SimpleUtils.objectToJSON(new ReturnInfoModel(null, "ss", false));
         System.out.println(fail);
     }
 

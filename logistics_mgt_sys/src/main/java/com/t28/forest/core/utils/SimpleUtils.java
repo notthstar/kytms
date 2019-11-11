@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author XiangYuFeng
@@ -18,6 +21,11 @@ public class SimpleUtils {
     private SimpleUtils() {}
 
     /**
+     * 保存响应信息的Map对象
+     */
+    public static Map<String, Object> SAVE_RESPONSE_MSG = new HashMap<>(1);
+
+    /**
      * 生成唯一订单号的工具
      * @param prefix 订单前缀
      * @return java.lang.String
@@ -25,6 +33,14 @@ public class SimpleUtils {
     public static synchronized String generateUniqueCode(String prefix) {
         Long timestamp = System.currentTimeMillis();
         return prefix + timestamp.toString();
+    }
+
+    /**
+     * 生成唯一ID号的方法
+     * @return String
+     */
+    public static synchronized String generateId() {
+        return UUID.randomUUID().toString().substring(0, 8);
     }
 
     /**

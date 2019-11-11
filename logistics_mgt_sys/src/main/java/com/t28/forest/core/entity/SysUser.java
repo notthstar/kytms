@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author xyf
@@ -176,6 +177,9 @@ public class SysUser implements Serializable {
     }
 
     public Integer getStatus() {
+        if (Objects.isNull(status)) {
+            return 1;
+        }
         return status;
     }
 
