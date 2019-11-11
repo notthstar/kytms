@@ -70,7 +70,7 @@
     }
     //加载表格
     function GetGrid() {
-        var url="/inOrOutRecord/getInOrOutRecordList.action"
+        var url="/showInoutRecords"
         var selectedRowIndex = 0;
         var $gridTable = $('#gridTable');
         $gridTable.jqGrid({
@@ -79,35 +79,36 @@
             height: $(window).height() - 136.5,
             autowidth: true,
             colModel: [
-                {label: '主键', name: 'a.id', hidden: true},
-                {label: '组织机构', name: 'b.name', index:"b.name",width: 150, align: 'center'},
-                {label: '库位名称', name: 'c.name',index:"c.name", width: 80, align: 'center'},
-                {label: '分段订单号', name: 'd.code',index:"d.code", width: 200, align: 'center'},
-                {label: '出入库标志', name: 'a.type',index:"a.type", type:"DD&InOutRecord",width: 100, align: 'center',
-                    formatter: function (cellvalue, options, rowObject) {
-                    return top.clientdataItem.InOutRecord['' + cellvalue + '']
-                }},
-                {label: '时间', name: 'a.time',index:"a.time",type:"date", width: 150, align: 'center',
+                {label: '主键', name: 'id', hidden: true},
+                {label: '组织机构', name: 'distributing', index:"distributing",width: 150, align: 'center'},
+                {label: '库位名称', name: 'name',index:"name", width: 80, align: 'center'},
+                {label: '分段订单号', name: 'code',index:"code", width: 200, align: 'center'},
+                {label: '出入库标志', name: 'type',index:"type", type:"DD&InOutRecord",width: 100, align: 'center'
+                //     formatter: function (cellvalue, options, rowObject) {
+                //     return top.clientdataItem.InOutRecord['' + cellvalue + '']
+                // }
+                },
+                {label: '时间', name: 'time',index:"time",type:"date", width: 150, align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '数量', name: 'a.number',index:"a.number", width: 50, align: 'center'},
-                {label: '体积', name: 'a.volume',index:"a.volume", width:50, align: 'center'},
-                {label: '重量', name: 'a.weight',index:"a.weight", width: 50, align: 'center'},
-                {label: '备注', name: 'a.description',index:"a.description", width: 150, align: 'center'},
-                {label: '创建人', name: 'a.create_Name',index:"a.create_Name", width: 120,align: 'center'},
-                {label: '创建时间', name: 'a.create_Time',index:"a.create_Time",type:"date", width: 150,align: 'center',
+                {label: '数量', name: 'number',index:"number", width: 50, align: 'center'},
+                {label: '体积', name: 'volume',index:"volume", width:50, align: 'center'},
+                {label: '重量', name: 'weight',index:"weight", width: 50, align: 'center'},
+                {label: '备注', name: 'description',index:"description", width: 150, align: 'center'},
+                {label: '创建人', name: 'createName',index:"createName", width: 120,align: 'center'},
+                {label: '创建时间', name: 'createTime',index:"createTime",type:"date", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
                         }
                         return new Date(cellvalue).format("yyyy-MM-dd hh:mm:ss")
                     }},
-                {label: '修改人', name: 'a.modify_Name',index:"a.modify_Name", width: 120,align: 'center'},
-                {label: '修改时间', name: 'a.modify_Time',index:"a.modify_Time",type:"date", width: 150,align: 'center',
+                {label: '修改人', name: 'modifyName',index:"modifyName", width: 120,align: 'center'},
+                {label: '修改时间', name: 'modifyTime',index:"modifyTime",type:"date", width: 150,align: 'center',
                     formatter:function(cellvalue, options, row){
                         if(cellvalue == null || cellvalue == undefined || cellvalue ==""){
                             return "";
