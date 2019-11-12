@@ -24,6 +24,13 @@ public interface DispatchOrderService {
     public List<DispatchVO> getDispatchsByPage(PageVO page, Condition condition);
 
     /**
+     * 通过ID获取派车单信息
+     * @param id
+     * @return DispatchVO
+     */
+    public Single getDispatchById(String id);
+
+    /**
      * 添加派车单信息
      * @param single
      * @return Integer

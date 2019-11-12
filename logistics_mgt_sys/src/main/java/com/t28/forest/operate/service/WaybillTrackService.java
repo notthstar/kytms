@@ -1,6 +1,7 @@
 package com.t28.forest.operate.service;
 
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.ShipmentTrack;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.vo.WayBillTranckVO;
 
@@ -21,5 +22,12 @@ public interface WaybillTrackService {
      * @return List<WayBillTranckVO>
      */
     public List<WayBillTranckVO> getWayBillTrancksByPage(PageVO page, Condition condition);
+
+    /**
+     * 通过ID获取运单跟踪在途信息
+     * @param id
+     * @return ShipmentTrack
+     */
+    public ShipmentTrack getShipmentTrackById(String id);
 
 }

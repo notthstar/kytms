@@ -32,6 +32,11 @@ public class DispatchOrderServiceImpl implements DispatchOrderService {
     }
 
     @Override
+    public Single getDispatchById(String id) {
+        return dispatchOrderDao.selectById(id);
+    }
+
+    @Override
     public Integer addDispatch(Single single) {
         return dispatchOrderDao.insert(single);
     }

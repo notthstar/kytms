@@ -28,6 +28,13 @@ public interface ShipmentService {
     public List<ShipmentVO> getShipmentsByPage(PageVO page, Condition condition);
 
     /**
+     * 通过ID获取运单信息
+     * @param id
+     * @return Shipment
+     */
+    public Shipment getShipmentById(String id);
+
+    /**
      * 保存运单信息
      * @param shipment
      * @return integer

@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
-
 public class CommModel {
     /**ID*/
     private String id;

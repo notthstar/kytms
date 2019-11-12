@@ -3,11 +3,13 @@ package com.t28.forest.core.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 
-
+/**
+ * @deprecated 返回响应数据模型。已经被ReturnInfoModel代替
+ */
+@Deprecated
 public class JgGridListModel {
     /**对象数据*/
     private List rows;

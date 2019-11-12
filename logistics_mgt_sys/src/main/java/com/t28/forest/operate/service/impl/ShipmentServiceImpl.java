@@ -32,6 +32,11 @@ public class ShipmentServiceImpl implements ShipmentService {
     }
 
     @Override
+    public Shipment getShipmentById(String id) {
+        return shipmentDao.selectById(id);
+    }
+
+    @Override
     public Integer addShipment(Shipment shipment) {
         return shipmentDao.insert(shipment);
     }

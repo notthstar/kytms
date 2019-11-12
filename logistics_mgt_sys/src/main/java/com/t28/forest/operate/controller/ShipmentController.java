@@ -1,13 +1,17 @@
 package com.t28.forest.operate.controller;
 
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.model.CommModel;
 import com.t28.forest.core.model.JgGridListModel;
+import com.t28.forest.core.model.ReturnInfoModel;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.service.ShipmentService;
 import com.t28.forest.operate.vo.ShipmentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,62 +33,47 @@ public class ShipmentController {
 
     @RequestMapping("/show")
     @ResponseBody
-    public String getShipments(CommModel model) {
-        Condition condition = new Condition();
-        if (!Objects.isNull(model.getWhereValue()) && !"".equals(model.getWhereValue())) {
-            String nameUpd = model.getWhereName();
-            switch (model.getWhereName()) {
-                case "code":
-                case "time":
-                case "status":
-                case "isInoutCome":
-                case "liens":
-                case "orderCode":
-                case "relateBill":
-                case "operationPattern":
-                case "carrierType":
-                case "carriageIsExceed":
-                case "tan":
-                case "number":
-                case "weight":
-                case "volume":
-                case "value":
-                case "createName":
-                case "createTime":
-                case "modifyName":
-                case "modifyTime":
-                case "isAbnormal":
-                    nameUpd = "shipment0_." + model.getWhereName();
-                    break;
-                case "name":
-                    nameUpd = "organizati2_." + model.getWhereName();
-                    break;
-                case "organName1":
-                    nameUpd = "organizati4_." + model.getWhereName();
-                    break;
-                case "organName2":
-                    nameUpd = "organizati6_." + model.getWhereName();
-                    break;
-                case "organName3":
-                    nameUpd = "organizati7_." + model.getWhereName();
-                    break;
-                case "organName4":
-                    nameUpd = "organizati5_." + model.getWhereName();
-                    break;
-                case "amount":
-                    nameUpd = "ledgerdeta8_." + model.getWhereName();
-                    break;
-                case "carName":
-                    nameUpd = "carrier3_." + model.getWhereName();
-                    break;
-            }
-            model.setWhereName(nameUpd);
-            condition.setName(model.getWhereName());
-            condition.setValues(new Object[]{model.getWhereValue()});
+    public String showShipments(Condition condition) {
+        List<ShipmentVO> shipments = shipmentService.getShipmentsByPage(new PageVO(1, 100), condition);
+
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(shipments));
+    }
+
+    @RequestMapping("/show/{id}")
+    public String showShipmentById(@PathVariable String id) {
+        Shipment shipment = shipmentService.getShipmentById(id);
+
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(shipment));
+    }
+
+
+    @RequestMapping("/add")
+    @ResponseBody
+    public String addShipment(Shipment shipment) {
+        int result = shipmentService.addShipment(shipment);
+
+        return resultReturn(result, "运单添加");
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public String updateShipmentById(Shipment shipment) {
+        int result = shipmentService.updateShipmentById(shipment);
+
+        return resultReturn(result, "运单修改");
+    }
+
+    /**
+     * 返回响应结果信息的方法
+     * @param result
+     * @param msg
+     * @return String
+     */
+    private String resultReturn(int result, String msg) {
+        if (result > 0) {
+            return SimpleUtils.objectToJSON(new ReturnInfoModel(msg + "成功！", true));
         }
-        List<ShipmentVO> shipments = shipmentService.getShipmentsByPage(new PageVO(1, 5), condition);
-        JgGridListModel jgGridListModel = new JgGridListModel(shipments);
-        return jgGridListModel.toJSONString();
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(msg + "失败！", false));
     }
 
 }

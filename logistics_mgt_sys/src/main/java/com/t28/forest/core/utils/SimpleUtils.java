@@ -33,11 +33,12 @@ public class SimpleUtils {
      * @return String
      */
     public static synchronized String generateId() {
-        return UUID.randomUUID().toString().substring(0, 8);
+        return UUID.randomUUID().toString().substring(0, 12);
     }
 
     /**
      * Object对象转JSON数据的方法
+     * @deprecated 已经被此类中的 objectToJSON(Object)方法代替
      * @param obj
      * @return String
      */

@@ -1,6 +1,8 @@
 package com.t28.forest.operate.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.ShipmentTrack;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.vo.WayBillTranckVO;
 import org.apache.ibatis.annotations.Param;
@@ -15,7 +17,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Repository
-public interface WaybillTrackDao {
+public interface WaybillTrackDao extends BaseMapper<ShipmentTrack> {
 
     /**
      * 分页条件查询运单跟踪的信息

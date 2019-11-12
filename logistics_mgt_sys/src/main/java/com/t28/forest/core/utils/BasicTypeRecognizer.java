@@ -1,13 +1,12 @@
 package com.t28.forest.core.utils;
 
-import java.util.Objects;
-
 /**
  * @author XiangYuFeng
  * @description 基本类型识别器
  * @create 2019/11/7
  * @since 1.0.0
  */
+@Deprecated
 public class BasicTypeRecognizer {
 
     private static final String STRING = "java.lang.String";

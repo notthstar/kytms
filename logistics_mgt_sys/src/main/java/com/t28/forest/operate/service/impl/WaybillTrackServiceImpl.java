@@ -1,6 +1,7 @@
 package com.t28.forest.operate.service.impl;
 
 import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.entity.ShipmentTrack;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.dao.WaybillTrackDao;
 import com.t28.forest.operate.service.WaybillTrackService;
@@ -26,5 +27,10 @@ public class WaybillTrackServiceImpl implements WaybillTrackService {
     public List<WayBillTranckVO> getWayBillTrancksByPage(PageVO page, Condition condition) {
         page.calaTotalPage(waybillTrackDao.findWayBillCount(condition));
         return waybillTrackDao.findWayBillByPage(page, condition);
+    }
+
+    @Override
+    public ShipmentTrack getShipmentTrackById(String id) {
+        return waybillTrackDao.selectById(id);
     }
 }
