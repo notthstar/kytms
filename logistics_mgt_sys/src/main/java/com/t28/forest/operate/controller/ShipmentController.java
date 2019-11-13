@@ -2,8 +2,6 @@ package com.t28.forest.operate.controller;
 
 import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Shipment;
-import com.t28.forest.core.model.CommModel;
-import com.t28.forest.core.model.JgGridListModel;
 import com.t28.forest.core.model.ReturnInfoModel;
 import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author XiangYuFeng
@@ -40,6 +37,7 @@ public class ShipmentController {
     }
 
     @RequestMapping("/show/{id}")
+    @ResponseBody
     public String showShipmentById(@PathVariable String id) {
         Shipment shipment = shipmentService.getShipmentById(id);
 

@@ -7,8 +7,11 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import java.util.List;
 
 /**
+ * 功能描述: 数据返回模型
+ * @Author XiangYuFeng
+ * @Date 11:12 2019/11/1
  * @deprecated 返回响应数据模型。已经被ReturnInfoModel代替
- */
+ **/
 @Deprecated
 public class JgGridListModel {
     /**对象数据*/

@@ -34,8 +34,11 @@ public class MainTest {
 //        SysUser user = userService.login("test", DigestUtils.md5Hex("123456"));
 //        System.out.println(user);
 
-        String fail = SimpleUtils.objectToJSON(new ReturnInfoModel(null, "ss", false));
-        System.out.println(fail);
+//        String fail = SimpleUtils.objectToJSON(new ReturnInfoModel(null, "ss", false));
+//        System.out.println(fail);
+
+        System.out.println(SimpleUtils.generateId());
+        System.out.println(SimpleUtils.generateUniqueCode("GZFZX"));
     }
 
 }

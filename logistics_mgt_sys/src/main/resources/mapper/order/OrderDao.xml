@@ -145,7 +145,7 @@
         desc limit 5
     </select>
 
-    <select id="ledSign" resultType="com.t28.forest.order.vo.LedSign">
+    <select id="ledSign" resultType="com.t28.forest.order.vo.OrderSign">
         SELECT
         led0_.ID as col_0_0_,
         organizati5_.NAME as col_1_0_,

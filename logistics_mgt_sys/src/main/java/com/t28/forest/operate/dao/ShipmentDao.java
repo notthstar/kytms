@@ -1,7 +1,6 @@
 package com.t28.forest.operate.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.vo.PageVO;

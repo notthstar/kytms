@@ -1,8 +1,8 @@
 package com.t28.forest.operate.controller;
 
 import com.t28.forest.core.cond.Condition;
-import com.t28.forest.core.model.CommModel;
-import com.t28.forest.core.model.JgGridListModel;
+import com.t28.forest.core.model.ReturnInfoModel;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.service.ArrivalVehicleRecordService;
 import com.t28.forest.operate.vo.ArrivalVehicleRecordVO;
@@ -28,11 +28,10 @@ public class ArrivalVehicleRecordController {
 
     @RequestMapping("/show")
     @ResponseBody
-    public String getVehicleRecordList(CommModel model) {
-        List<ArrivalVehicleRecordVO> vehicleRecordVOS = arrivalVehicleRecordService.getArrivalVehicleRecordsByPage(new PageVO(1, 5), new Condition());
-        JgGridListModel jgGridListModel = new JgGridListModel(vehicleRecordVOS);
-        return jgGridListModel.toJSONString();
-    }
+    public String getVehicleRecordList(Condition condition) {
+        List<ArrivalVehicleRecordVO> vehicleRecordVOS = arrivalVehicleRecordService.getArrivalVehicleRecordsByPage(new PageVO(1, 100), condition);
 
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(vehicleRecordVOS));
+    }
 
 }

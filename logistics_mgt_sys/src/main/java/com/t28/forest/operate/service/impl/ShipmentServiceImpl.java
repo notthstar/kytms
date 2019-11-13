@@ -2,6 +2,7 @@ package com.t28.forest.operate.service.impl;
 
 import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Shipment;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.dao.ShipmentDao;
 import com.t28.forest.operate.service.ShipmentService;
@@ -38,6 +39,10 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public Integer addShipment(Shipment shipment) {
+        // 生成唯一ID
+        shipment.setId(SimpleUtils.generateId());
+        // 生成订单号
+        shipment.setCode(SimpleUtils.generateUniqueCode("GZFZX"));
         return shipmentDao.insert(shipment);
     }
 

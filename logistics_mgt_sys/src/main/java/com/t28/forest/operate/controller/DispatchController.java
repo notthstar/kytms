@@ -2,8 +2,6 @@ package com.t28.forest.operate.controller;
 
 import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Single;
-import com.t28.forest.core.model.CommModel;
-import com.t28.forest.core.model.JgGridListModel;
 import com.t28.forest.core.model.ReturnInfoModel;
 import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -55,7 +51,7 @@ public class DispatchController {
         return resultReturn(result, "派车单修改");
     }
 
-    @RequestMapping("/show/${id}")
+    @RequestMapping("/show/{id}")
     @ResponseBody
     public String showDispatchById(@PathVariable String id) {
         Single single = dispatchOrderService.getDispatchById(id);

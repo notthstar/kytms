@@ -2,6 +2,7 @@ package com.t28.forest.operate.service.impl;
 
 import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Single;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.dao.DispatchOrderDao;
 import com.t28.forest.operate.service.DispatchOrderService;
@@ -38,6 +39,10 @@ public class DispatchOrderServiceImpl implements DispatchOrderService {
 
     @Override
     public Integer addDispatch(Single single) {
+        // 生成唯一ID
+        single.setId(SimpleUtils.generateId());
+        // 生成订单号
+        single.setCode(SimpleUtils.generateUniqueCode("GZFZX"));
         return dispatchOrderDao.insert(single);
     }
 

@@ -1,8 +1,8 @@
 package com.t28.forest.operate.controller;
 
 import com.t28.forest.core.cond.Condition;
-import com.t28.forest.core.model.CommModel;
-import com.t28.forest.core.model.JgGridListModel;
+import com.t28.forest.core.model.ReturnInfoModel;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
 import com.t28.forest.operate.service.CargoStationService;
 import com.t28.forest.operate.vo.CargoStationDetailedVO;
@@ -29,18 +29,18 @@ public class CargoStationController {
 
     @RequestMapping("/left")
     @ResponseBody
-    public String getCargoStation(CommModel model) {
-        List<CargoStationVO> cargoStationVOS = cargoStationService.getCargoStationsByPage(new PageVO(1, 5), new Condition());
-        JgGridListModel jgGridListModel = new JgGridListModel(cargoStationVOS);
-        return jgGridListModel.toJSONString();
+    public String getCargoStation(Condition condition) {
+        List<CargoStationVO> cargoStationVOS = cargoStationService.getCargoStationsByPage(new PageVO(1, 100), condition);
+
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(cargoStationVOS));
     }
 
     @RequestMapping("/right")
     @ResponseBody
-    public String getCargoStationDetailed(CommModel model) {
-        List<CargoStationDetailedVO> stationDetailedVOS = cargoStationService.getStationDetailedsByPage(new PageVO(1, 5), new Condition());
-        JgGridListModel jgGridListModel = new JgGridListModel(stationDetailedVOS);
-        return jgGridListModel.toJSONString();
+    public String getCargoStationDetailed(Condition condition) {
+        List<CargoStationDetailedVO> stationDetailedVOS = cargoStationService.getStationDetailedsByPage(new PageVO(1, 100), condition);
+
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(stationDetailedVOS));
     }
 
 }
