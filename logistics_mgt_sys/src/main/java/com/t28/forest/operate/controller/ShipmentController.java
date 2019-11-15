@@ -31,10 +31,6 @@ public class ShipmentController {
     @RequestMapping("/show")
     @ResponseBody
     public String showShipments(Condition condition) {
-        System.out.println(condition.getValues()[0] instanceof Integer);
-        System.out.println(condition.getValues()[0] instanceof Double);
-        System.out.println(condition.getValues()[0] instanceof Float);
-        System.out.println(condition.getValues()[0] instanceof String);
         List<ShipmentVO> shipments = shipmentService.getShipmentsByPage(new PageVO(1, 100), condition);
 
         return SimpleUtils.objectToJSON(new ReturnInfoModel(shipments));
