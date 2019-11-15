@@ -29,12 +29,13 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public String userLogin(SysUser sysUser) {
+    public String userLogin(SysUser sysUser, HttpSession session) {
         SysUser user = userService.login(sysUser.getCode(), DigestUtils.md5Hex(sysUser.getPassword()));
 
         if (Objects.isNull(user) || Objects.isNull(user.getId())) {
             return SimpleUtils.objectToJSON(new ReturnInfoModel("用户名或密码错误！", false));
         }
+        session.setAttribute("loginUser", user);
         return SimpleUtils.objectToJSON(new ReturnInfoModel(user));
     }
 
