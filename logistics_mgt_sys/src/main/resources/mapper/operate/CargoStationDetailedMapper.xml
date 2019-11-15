@@ -24,7 +24,7 @@
                             AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
                         </when>
                         <otherwise>
-                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                            AND CAST(${condition.name} AS CHAR) LIKE concat('%',#{condition.values[0]},'%')
                         </otherwise>
                     </choose>
                 </if>
@@ -46,15 +46,15 @@
         left outer join JC_SERVER_ZONE serverzone7_ on led0_.JC_END_ZONE_ID=serverzone7_.ID
         <where>
             and (led0_.STATUS not in  (5, 9, 10, 11))
-            and shipment2_.ID='297ea48b6a57141c016a5717ba60003c'
             <if test="null != condition">
+                and shipment2_.ID=#{condition.id}
                 <if test="null != condition.values">
                     <choose>
                         <when test="condition.values.length > 1">
                             AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
                         </when>
                         <otherwise>
-                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                            AND CAST(${condition.name} AS CHAR) LIKE concat('%',#{condition.values[0]},'%')
                         </otherwise>
                     </choose>
                 </if>

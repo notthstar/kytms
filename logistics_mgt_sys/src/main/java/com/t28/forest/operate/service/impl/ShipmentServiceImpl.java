@@ -4,6 +4,7 @@ import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.entity.Shipment;
 import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
+import com.t28.forest.operate.dao.ArrivalVehicleRecordDao;
 import com.t28.forest.operate.dao.ShipmentDao;
 import com.t28.forest.operate.service.ShipmentService;
 import com.t28.forest.operate.vo.ShipmentVO;
@@ -22,6 +23,8 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Autowired
     ShipmentDao shipmentDao;
+    @Autowired
+    ArrivalVehicleRecordDao arrivalVehicleRecordDao;
 
     @Override
     public List<ShipmentVO> getShipmentsByPage(PageVO page, Condition condition) {

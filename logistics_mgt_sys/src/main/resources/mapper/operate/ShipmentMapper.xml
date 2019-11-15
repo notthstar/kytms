@@ -26,7 +26,7 @@
                             AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
                         </when>
                         <otherwise>
-                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                            AND CAST(${condition.name} AS CHAR) LIKE concat('%',#{condition.values[0]},'%')
                         </otherwise>
                     </choose>
                 </if>
@@ -60,7 +60,7 @@
                             AND ${condition.name} BETWEEN #{condition.values[0]} AND #{condition.values[1]}
                         </when>
                         <otherwise>
-                            AND ${condition.name} LIKE concat('%',#{condition.values[0]},'%')
+                            AND CAST(${condition.name} AS CHAR) LIKE concat('%',#{condition.values[0]},'%')
                         </otherwise>
                     </choose>
                 </if>

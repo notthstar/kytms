@@ -27,7 +27,7 @@ public class CargoStationController {
     @Autowired
     CargoStationService cargoStationService;
 
-    @RequestMapping("/left")
+    @RequestMapping("/show/left")
     @ResponseBody
     public String getCargoStation(Condition condition) {
         List<CargoStationVO> cargoStationVOS = cargoStationService.getCargoStationsByPage(new PageVO(1, 100), condition);
@@ -35,7 +35,7 @@ public class CargoStationController {
         return SimpleUtils.objectToJSON(new ReturnInfoModel(cargoStationVOS));
     }
 
-    @RequestMapping("/right")
+    @RequestMapping("/show/right")
     @ResponseBody
     public String getCargoStationDetailed(Condition condition) {
         List<CargoStationDetailedVO> stationDetailedVOS = cargoStationService.getStationDetailedsByPage(new PageVO(1, 100), condition);
