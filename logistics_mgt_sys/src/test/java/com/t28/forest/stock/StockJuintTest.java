@@ -6,8 +6,8 @@
  */
 package com.t28.forest.stock;
 
+import com.t28.forest.core.cond.Condition;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.dao.StuotkInquiryDao;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
@@ -32,8 +32,9 @@ public class StockJuintTest {
      */
     @Test
     public void select(){
-        MyCondition myCondition=new MyCondition();
-        myCondition.setStatus(5);
+        Condition myCondition=new Condition();
+        myCondition.setName("t2.STATUS");
+        myCondition.setValues(new Object[]{5});
         PageVO pageVO = new PageVO();
         pageVO.setCurrent(1);
         pageVO.setSize(4);
@@ -52,25 +53,23 @@ public class StockJuintTest {
      */
     @Test
     public void selectcount(){
-        MyCondition myCondition=new MyCondition();
-        myCondition.setId("402881a36710579c016710c4e2fb0230");
-        myCondition.setType(0);
-        Integer allCount = stuotkInquiryDao.getAllCount(myCondition);
+        Integer allCount = stuotkInquiryDao.getAllCount();
         System.out.println(allCount);
     }
 
     @Test
     public void  selectInout(){
-        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(new PageVO(1,3));
+        Condition myCondition=new Condition();
+        myCondition.setName("t2.name");
+        myCondition.setValues(new Object[]{"广州分中心"});
+        List<InOutRecordsVO> allInOutRecords = stuotkInquiryDao.getAllInOutRecords(new PageVO(1,3),myCondition);
         for (InOutRecordsVO allInOutRecord : allInOutRecords) {
             System.out.println(allInOutRecord);
         }
     }
     @Test
     public void selectCount(){
-        MyCondition myCondition=new MyCondition();
-        myCondition.setId("402881a36710579c016710c4e2fb0230");
-        Integer countInOutRecords = stuotkInquiryDao.getCountInOutRecords(myCondition);
+        Integer countInOutRecords = stuotkInquiryDao.getCountInOutRecords();
         System.out.println(countInOutRecords);
     }
 }

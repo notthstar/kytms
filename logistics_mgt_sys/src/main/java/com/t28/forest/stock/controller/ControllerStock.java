@@ -6,9 +6,11 @@
  */
 package com.t28.forest.stock.controller;
 
+import com.t28.forest.core.cond.Condition;
+import com.t28.forest.core.model.CommModel;
+import com.t28.forest.core.model.ReturnInfoModel;
+import com.t28.forest.core.utils.SimpleUtils;
 import com.t28.forest.core.vo.PageVO;
-import com.t28.forest.stock.condition.JgGridListModel;
-import com.t28.forest.stock.condition.MyCondition;
 import com.t28.forest.stock.service.StockService;
 import com.t28.forest.stock.vo.InOutRecordsVO;
 import com.t28.forest.stock.vo.StockInquiryVO;
@@ -27,24 +29,15 @@ public class ControllerStock {
 
     @RequestMapping("/showSctock")
     @ResponseBody
-    public String showSctock(Integer id) {
-        MyCondition myCondition=new MyCondition();
-        myCondition.setStatus(5);
-        if(id!=null){
-            myCondition.setStatus(id);
-        }
-        List<StockInquiryVO> allStuotkInquiry = stockService.getAllStuotkInquiry(new PageVO(1,4),myCondition);
-        JgGridListModel jgGridListModel = new JgGridListModel();
-        jgGridListModel.setRows(allStuotkInquiry);
-        return jgGridListModel.toJSONString();
+    public String showSctock(CommModel commModel) {
+        List<StockInquiryVO> allStuotkInquiry = stockService.getAllStuotkInquiry(new PageVO(1,4),new Condition());
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(allStuotkInquiry));
     }
 
     @RequestMapping("/showInoutRecords")
     @ResponseBody
-    public String showInOutRecords() {
-        List<InOutRecordsVO> allInOutRecords = stockService.getAllInOutRecords(new PageVO(1, 4));
-        JgGridListModel jgGridListModel = new JgGridListModel();
-        jgGridListModel.setRows(allInOutRecords);
-        return jgGridListModel.toJSONString();
+    public String showInOutRecords(CommModel commModel){
+        List<InOutRecordsVO> allInOutRecords = stockService.getAllInOutRecords(new PageVO(1, 4),new Condition());
+        return SimpleUtils.objectToJSON(new ReturnInfoModel(allInOutRecords));
     }
 }
